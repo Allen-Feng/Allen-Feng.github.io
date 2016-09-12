@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Mac下使用Github Pages和Hexo搭建博客 | Hexo</title>
+    <title>const和#define区别 | Hexo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="John Doe">
     
 
     
-    <meta name="description" content="使用Github Pages和Hexo搭建博客的教程网上很容易搜到，不过在我实际操作过程中有几处异常的地方，特此标示出来。">
+    <meta name="description" content="每个项目中基本上都会有需要宏定义的常量，而我们通常都是随机从const和#define中拿一个使用，可是你知道她们的区别吗？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac下使用Github Pages和Hexo搭建博客">
-<meta property="og:url" content="http://yoursite.com/2016/07/02/160702_Mac下使用Github-Pages和Hexo搭建博客/index.html">
+<meta property="og:title" content="const和#define区别">
+<meta property="og:url" content="http://yoursite.com/2016/08/13/160813_const和-define区别/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="使用Github Pages和Hexo搭建博客的教程网上很容易搜到，不过在我实际操作过程中有几处异常的地方，特此标示出来。">
-<meta property="og:updated_time" content="2016-08-05T01:54:43.000Z">
+<meta property="og:description" content="每个项目中基本上都会有需要宏定义的常量，而我们通常都是随机从const和#define中拿一个使用，可是你知道她们的区别吗？">
+<meta property="og:updated_time" content="2016-08-13T06:28:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac下使用Github Pages和Hexo搭建博客">
-<meta name="twitter:description" content="使用Github Pages和Hexo搭建博客的教程网上很容易搜到，不过在我实际操作过程中有几处异常的地方，特此标示出来。">
+<meta name="twitter:title" content="const和#define区别">
+<meta name="twitter:description" content="每个项目中基本上都会有需要宏定义的常量，而我们通常都是随机从const和#define中拿一个使用，可是你知道她们的区别吗？">
 <meta name="twitter:creator" content="@allenfeng945">
 
     
@@ -77,14 +77,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/07/02/160702_Mac下使用Github-Pages和Hexo搭建博客/" title="Mac下使用Github Pages和Hexo搭建博客" itemprop="url">Mac下使用Github Pages和Hexo搭建博客</a>
+      <a href="/2016/08/13/160813_const和-define区别/" title="const和#define区别" itemprop="url">const和#define区别</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="John Doe" target="_blank" itemprop="author">John Doe</a>
 		
   <p class="article-time">
-    <time datetime="2016-07-02T06:35:56.000Z" itemprop="datePublished"> 发表于 2016-07-02</time>
+    <time datetime="2016-08-13T05:32:01.000Z" itemprop="datePublished"> 发表于 2016-08-13</time>
     
   </p>
 </header>
@@ -93,21 +93,32 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-安装Hexo时报错"><span class="toc-number">1.</span> <span class="toc-text">1.安装Hexo时报错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-npm-install-和-hexo-init先后顺序？"><span class="toc-number">2.</span> <span class="toc-text">2.npm install 和 hexo init先后顺序？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-链接本地的Hexo文件到Github库时使用HTTPS还是SSH？"><span class="toc-number">3.</span> <span class="toc-text">3.链接本地的Hexo文件到Github库时使用HTTPS还是SSH？</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#编译器处理方式不同"><span class="toc-number">1.</span> <span class="toc-text">编译器处理方式不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型和安全检查不同"><span class="toc-number">2.</span> <span class="toc-text">类型和安全检查不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#存储方式不同"><span class="toc-number">3.</span> <span class="toc-text">存储方式不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效率不同"><span class="toc-number">4.</span> <span class="toc-text">效率不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#潜规则"><span class="toc-number">5.</span> <span class="toc-text">潜规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#规则-1"><span class="toc-number">5.1.</span> <span class="toc-text">规则 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规则-2"><span class="toc-number">5.2.</span> <span class="toc-text">规则 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规则-3"><span class="toc-number">5.3.</span> <span class="toc-text">规则 3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类中的常量"><span class="toc-number">6.</span> <span class="toc-text">类中的常量</span></a></li></ol>
 		
 		</div>
 		
 		<blockquote>
-<p>使用Github Pages和Hexo搭建博客的教程<a href="http://my.oschina.net/ryaneLee/blog/638440" target="_blank" rel="external">网上</a>很容易搜到，不过在我实际操作过程中有几处异常的地方，特此标示出来。</p>
+<p>每个项目中基本上都会有需要宏定义的常量，而我们通常都是随机从<code>const</code>和<code>#define</code>中拿一个使用，可是你知道她们的区别吗？</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="1-安装Hexo时报错"><a href="#1-安装Hexo时报错" class="headerlink" title="1.安装Hexo时报错"></a>1.安装Hexo时报错</h2><p>Mac用户注意了，要使用管理员权限，首先：“sudo -s”，回车，输入密码，再回车，然后：“npm install -g hexo-cli”，回车，等待下载安装即可！</p>
-<h2 id="2-npm-install-和-hexo-init先后顺序？"><a href="#2-npm-install-和-hexo-init先后顺序？" class="headerlink" title="2.npm install 和 hexo init先后顺序？"></a>2.npm install 和 hexo init先后顺序？</h2><p>官方指导及一些Blog上说的是先 hexo init，然后再执行 npm install。但是我在据此执行会报错，不知道是不是没有安装在默认路径下还是什么其他原因。不过执行顺序颠倒一下就OK了。</p>
-<h2 id="3-链接本地的Hexo文件到Github库时使用HTTPS还是SSH？"><a href="#3-链接本地的Hexo文件到Github库时使用HTTPS还是SSH？" class="headerlink" title="3.链接本地的Hexo文件到Github库时使用HTTPS还是SSH？"></a>3.链接本地的Hexo文件到Github库时使用HTTPS还是SSH？</h2><p>官方指导及一些Blog上说使用HTTPS，但是我依此执行会报错，但是改用SSH就OK了。不知道是不是和git、node版本有关系。</p>
-<blockquote>
-<p>作为一个小白，根据前人的指导去做出错时，必须耐得住折腾，并且要有勇于尝试的决心，哪怕把电脑折腾崩溃都在所不惜。以上几点虽然不知道真正的原因所在，但却是在我多次失败的尝试下得到的实战经验。希望对后来的人能有所帮助。</p>
-</blockquote>
-  
+<h2 id="编译器处理方式不同"><a href="#编译器处理方式不同" class="headerlink" title="编译器处理方式不同"></a>编译器处理方式不同</h2><p><code>define宏</code>是在预处理阶段展开。<br><code>const常量</code>是编译运行阶段使用。</p>
+<h2 id="类型和安全检查不同"><a href="#类型和安全检查不同" class="headerlink" title="类型和安全检查不同"></a>类型和安全检查不同</h2><p><code>define宏</code>没有类型，不做任何类型检查，仅仅是展开。<br><code>const常量</code>有具体的类型，在编译阶段会执行类型检查。</p>
+<h2 id="存储方式不同"><a href="#存储方式不同" class="headerlink" title="存储方式不同"></a>存储方式不同</h2><p><code>define宏</code>仅仅是展开，有多少地方使用，就展开多少次，不会分配内存。<br><code>const常量</code>会在内存中分配(可以是堆中也可以是栈中)。<br>const可以节省空间，避免不必要的内存分配。 例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#define PI 3.14159 //不进行内存分配</div><div class="line">double I=PI; //进行宏替换，分配内存</div><div class="line">double J=PI; //再进行宏替换，又一次分配内存</div><div class="line">const doulbe Pi=3.14159; //此时并未将Pi放入ROM中</div><div class="line">double i=Pi; //此时为Pi分配内存，以后不再分配</div><div class="line">double j=Pi; //没有内存分配</div></pre></td></tr></table></figure>
+<p>const定义常量从汇编的角度来看，只是给出了对应的内存地址，而不是象#define一样给出的是立即数。所以，<code>const</code>定义的常量在程序运行过程中只有一份拷贝，<code>#define</code>定义的常量在内存中有若干个拷贝。 </p>
+<h2 id="效率不同"><a href="#效率不同" class="headerlink" title="效率不同"></a>效率不同</h2><p>编译器通常不为普通const常量分配存储空间，而是将它们保存在符号表中，这使得它成为一个编译期间的常量，没有了存储与读内存的操作，使得它的效率也很高。</p>
+<h2 id="潜规则"><a href="#潜规则" class="headerlink" title="潜规则"></a>潜规则</h2><h3 id="规则-1"><a href="#规则-1" class="headerlink" title="规则 1"></a>规则 1</h3><p>在C++程序中只使用const常量而不使用宏常量，即const常量完全取代宏常量。</p>
+<h3 id="规则-2"><a href="#规则-2" class="headerlink" title="规则 2"></a>规则 2</h3><p>需要对外公开的常量放在头文件中，不需要对外公开的常量放在定义文件的头部。为便于管理，可以把不同模块的常量集中存放在一个公共的头文件中。</p>
+<h3 id="规则-3"><a href="#规则-3" class="headerlink" title="规则 3"></a>规则 3</h3><p>如果某一常量与其它常量密切相关，应在定义中包含这种关系，而不应给出一些孤立的值。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">const  float   RADIUS = 100;</div><div class="line">const  float   DIAMETER = RADIUS * 2;</div></pre></td></tr></table></figure>
+<h2 id="类中的常量"><a href="#类中的常量" class="headerlink" title="类中的常量"></a>类中的常量</h2><p>有时我们希望某些常量只在类中有效。由于#define定义的宏常量是全局的，不能达到目的，于是想当然地觉得应该用const修饰数据成员来实现。const数据成员的确是存在的，但其含义却不是我们所期望的。const数据成员只在某个对象生存期内是常量，而对于整个类而言却是可变的，因为类可以创建多个对象，不同的对象其const数据成员的值可以不同。<br>不能在类声明中初始化const数据成员。以下用法是错误的，因为类的对象未被创建时，编译器不知道SIZE的值是什么。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">class A &#123;</div><div class="line">	const int SIZE = 100;	// 错误，企图在类声明中初始化const数据成员</div><div class="line">	int array[SIZE];		// 错误，未知的SIZE</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>const数据成员的初始化只能在类构造函数的初始化表中进行，例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class A &#123;</div><div class="line">	A(int size);			// 构造函数</div><div class="line">	const int SIZE ;  </div><div class="line">&#125;;</div><div class="line">A::A(int size) : SIZE(size) &#123; // 构造函数的初始化表</div><div class="line">	…</div><div class="line">&#125;</div><div class="line">A  a(100);		// 对象 a 的SIZE值为100</div><div class="line">A  b(200);		// 对象 b 的SIZE值为200</div></pre></td></tr></table></figure>
+<p>怎样才能建立在整个类中都恒定的常量呢？别指望const数据成员了，应该用类中的枚举常量来实现。例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class A &#123;</div><div class="line">	enum &#123; SIZE1 = 100, SIZE2 = 200&#125;; // 枚举常量</div><div class="line">	int array1[SIZE1];</div><div class="line">	int array2[SIZE2];</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>枚举常量不会占用对象的存储空间，它们在编译时被全部求值。枚举常量的缺点是：它的隐含数据类型是整数，其最大值有限，且不能表示浮点数（如PI=3.14159）。sizeof(A) = 1200;其中枚举部长空间。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">enum   EM &#123; SIZE1 = 100, SIZE2 = 200&#125;; // 枚举常量    sizeof（EM） = 4；</div></pre></td></tr></table></figure>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -115,7 +126,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Hexo/">Hexo</a>
+  <span></span> <a href="/tags/iOS/">iOS</a>
   </div>
 
 </div>
@@ -124,7 +135,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/07/02/160702_Mac下使用Github-Pages和Hexo搭建博客/" data-title="Mac下使用Github Pages和Hexo搭建博客 | Hexo" data-tsina="5580378505" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/08/13/160813_const和-define区别/" data-title="const和#define区别 | Hexo" data-tsina="5580378505" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -137,20 +148,20 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/07/05/160705_在ARC项目中使用performSelector引起的内存警告/" title="在ARC项目中使用performSelector引起的内存警告">
-  <strong>上一篇：</strong><br/>
-  <span>
-  在ARC项目中使用performSelector引起的内存警告</span>
+
+<div class="next">
+<a href="/2016/08/02/160802_iOS获取设备信息总结/"  title="iOS获取设备信息总结">
+ <strong>下一篇：</strong><br/> 
+ <span>iOS获取设备信息总结
+</span>
 </a>
 </div>
-
 
 </nav>
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/07/02/160702_Mac下使用Github-Pages和Hexo搭建博客/" data-title="Mac下使用Github Pages和Hexo搭建博客" data-url="http://yoursite.com/2016/07/02/160702_Mac下使用Github-Pages和Hexo搭建博客/"></div>
+	<div class="ds-thread" data-thread-key="2016/08/13/160813_const和-define区别/" data-title="const和#define区别" data-url="http://yoursite.com/2016/08/13/160813_const和-define区别/"></div>
 </section>
 
 
@@ -160,7 +171,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-安装Hexo时报错"><span class="toc-number">1.</span> <span class="toc-text">1.安装Hexo时报错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-npm-install-和-hexo-init先后顺序？"><span class="toc-number">2.</span> <span class="toc-text">2.npm install 和 hexo init先后顺序？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-链接本地的Hexo文件到Github库时使用HTTPS还是SSH？"><span class="toc-number">3.</span> <span class="toc-text">3.链接本地的Hexo文件到Github库时使用HTTPS还是SSH？</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#编译器处理方式不同"><span class="toc-number">1.</span> <span class="toc-text">编译器处理方式不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型和安全检查不同"><span class="toc-number">2.</span> <span class="toc-text">类型和安全检查不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#存储方式不同"><span class="toc-number">3.</span> <span class="toc-text">存储方式不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效率不同"><span class="toc-number">4.</span> <span class="toc-text">效率不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#潜规则"><span class="toc-number">5.</span> <span class="toc-text">潜规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#规则-1"><span class="toc-number">5.1.</span> <span class="toc-text">规则 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规则-2"><span class="toc-number">5.2.</span> <span class="toc-text">规则 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规则-3"><span class="toc-number">5.3.</span> <span class="toc-text">规则 3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类中的常量"><span class="toc-number">6.</span> <span class="toc-text">类中的常量</span></a></li></ol>
  
   </div>
 
