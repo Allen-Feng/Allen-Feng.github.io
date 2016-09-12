@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/09/12/160912_iOS基础知识汇总/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
 <meta property="og:description" content="初级iOS工程师知道怎么做就可以了，但是高级iOS工程师就需要知道为什么这么做。以下列出了一些基础知识的问题，后续慢慢完善答案。同时其中好多也是面试必问题哦！">
-<meta property="og:updated_time" content="2016-09-12T08:39:51.000Z">
+<meta property="og:updated_time" content="2016-09-12T08:41:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS基础知识汇总">
 <meta name="twitter:description" content="初级iOS工程师知道怎么做就可以了，但是高级iOS工程师就需要知道为什么这么做。以下列出了一些基础知识的问题，后续慢慢完善答案。同时其中好多也是面试必问题哦！">
@@ -45,7 +45,7 @@
 				<h1 class="site-name"><a href="/" title="aFeng`s Blog">aFeng`s Blog</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -61,7 +61,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -84,16 +84,16 @@
 		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
 		
   <p class="article-time">
-    <time datetime="2016-09-12T08:32:25.000Z" itemprop="datePublished"> Published 2016-09-12</time>
+    <time datetime="2016-09-12T08:32:25.000Z" itemprop="datePublished"> 发表于 2016-09-12</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#import和-include的区别-import和-class的区别？-lt-x-h-和-“x-h”的区别"><span class="toc-number">1.</span> <span class="toc-text">#import和#include的区别? import和@class的区别？ < x.h > 和 “x.h”的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#import和-include的区别"><span class="toc-number">1.1.</span> <span class="toc-text">#import和#include的区别?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#import和-class的区别？"><span class="toc-number">1.2.</span> <span class="toc-text">#import和@class的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-x-h-和-“-x-h-“的区别"><span class="toc-number">1.3.</span> <span class="toc-text">< x.h > 和 “ x.h “的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浅拷贝和深拷贝的区别？"><span class="toc-number">2.</span> <span class="toc-text">浅拷贝和深拷贝的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OC中分类和扩展的区别？"><span class="toc-number">3.</span> <span class="toc-text">OC中分类和扩展的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Objective-C中堆和栈的区别？"><span class="toc-number">4.</span> <span class="toc-text">Objective-C中堆和栈的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内存管理的几个原则是什么？"><span class="toc-number">5.</span> <span class="toc-text">内存管理的几个原则是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSMuatableArray-array-NSMuatableArray-array-需要释放么？"><span class="toc-number">6.</span> <span class="toc-text">NSMuatableArray *array = [NSMuatableArray array] 需要释放么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#property本质是什么"><span class="toc-number">7.</span> <span class="toc-text">@property本质是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#delegate用什么属性修饰，ARC下与MRC下有何不同，为什么？"><span class="toc-number">8.</span> <span class="toc-text">delegate用什么属性修饰，ARC下与MRC下有何不同，为什么？</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#import和-include的区别-import和-class的区别？-lt-x-h-和-“x-h”的区别"><span class="toc-number">1.</span> <span class="toc-text">#import和#include的区别? import和@class的区别？ < x.h > 和 “x.h”的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#import和-include的区别"><span class="toc-number">1.1.</span> <span class="toc-text">#import和#include的区别?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#import和-class的区别？"><span class="toc-number">1.2.</span> <span class="toc-text">#import和@class的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-x-h-和-“-x-h-“的区别"><span class="toc-number">1.3.</span> <span class="toc-text">< x.h > 和 “ x.h “的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浅拷贝和深拷贝的区别？"><span class="toc-number">2.</span> <span class="toc-text">浅拷贝和深拷贝的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OC中分类和扩展的区别？"><span class="toc-number">3.</span> <span class="toc-text">OC中分类和扩展的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Objective-C中堆和栈的区别？"><span class="toc-number">4.</span> <span class="toc-text">Objective-C中堆和栈的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内存管理的几个原则是什么？"><span class="toc-number">5.</span> <span class="toc-text">内存管理的几个原则是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSMuatableArray-array-NSMuatableArray-array-需要释放么？"><span class="toc-number">6.</span> <span class="toc-text">NSMuatableArray *array = [NSMuatableArray array] 需要释放么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#property本质是什么"><span class="toc-number">7.</span> <span class="toc-text">@property本质是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#delegate用什么属性修饰，ARC下与MRC下有何不同，为什么？"><span class="toc-number">8.</span> <span class="toc-text">delegate用什么属性修饰，ARC下与MRC下有何不同，为什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSString，NSArray，NSMutableArray分别用什么属性修饰，原因是什么"><span class="toc-number">9.</span> <span class="toc-text">NSString，NSArray，NSMutableArray分别用什么属性修饰，原因是什么?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#block用什么属性修饰，为什么？"><span class="toc-number">10.</span> <span class="toc-text">block用什么属性修饰，为什么？</span></a></li></ol>
 		
 		</div>
 		
@@ -180,7 +180,10 @@
 <li><code>delegate</code>之所以用<code>weak</code>来修饰，是防止循环引用，weak属性的变量是不为其所属对象持有的，并且在该变量被销毁之后，此<code>weak</code>变量的值会自动被赋值为<code>nil</code>。</li>
 <li>而<code>assign</code>属性一般是对基本数据类型成员变量的声明，当然也可以用在对象类型成员变量上，只是其代表的意义只是单纯地拷贝所赋值变量的值。即如果对某<code>assign</code>成员变量B赋值某对象A的指针，则此B只是简单地保存此指针的值，且并不持有对象A，也就意味着如果A被销毁，则B就指向了一个已经被销毁的对象，如果再对其发送消息会引发崩溃。</li>
 <li>那关于<code>delegate</code>既然用<code>weak</code>这么好用，用<code>assign</code>会出现野指针，为什么还会用呢？<code>weak</code>和<code>strong</code>属性是<code>ARC</code>才引入的，而在<code>MRC</code>情况下，只能使用<code>assign</code>修饰了。<code>weak</code>之所以强大的地方，是当引用的对象被销毁时，它的值也会变为<code>nil</code>，所以推荐使用<code>ARC</code>。</li>
+<li><h2 id="NSString，NSArray，NSMutableArray分别用什么属性修饰，原因是什么"><a href="#NSString，NSArray，NSMutableArray分别用什么属性修饰，原因是什么" class="headerlink" title="NSString，NSArray，NSMutableArray分别用什么属性修饰，原因是什么?"></a>NSString，NSArray，NSMutableArray分别用什么属性修饰，原因是什么?</h2></li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@property(nonatomic,copy)NSString *string;</div><div class="line">@property(nonatomic,copy)NSArray *array;</div><div class="line">@property(nonatomic,strong)NSMutableArray *array;</div></pre></td></tr></table></figure>
+<h2 id="block用什么属性修饰，为什么？"><a href="#block用什么属性修饰，为什么？" class="headerlink" title="block用什么属性修饰，为什么？"></a>block用什么属性修饰，为什么？</h2><p>用copy修饰，保证线程安全，以及block的声明</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -229,22 +232,22 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#import和-include的区别-import和-class的区别？-lt-x-h-和-“x-h”的区别"><span class="toc-number">1.</span> <span class="toc-text">#import和#include的区别? import和@class的区别？ < x.h > 和 “x.h”的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#import和-include的区别"><span class="toc-number">1.1.</span> <span class="toc-text">#import和#include的区别?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#import和-class的区别？"><span class="toc-number">1.2.</span> <span class="toc-text">#import和@class的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-x-h-和-“-x-h-“的区别"><span class="toc-number">1.3.</span> <span class="toc-text">< x.h > 和 “ x.h “的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浅拷贝和深拷贝的区别？"><span class="toc-number">2.</span> <span class="toc-text">浅拷贝和深拷贝的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OC中分类和扩展的区别？"><span class="toc-number">3.</span> <span class="toc-text">OC中分类和扩展的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Objective-C中堆和栈的区别？"><span class="toc-number">4.</span> <span class="toc-text">Objective-C中堆和栈的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内存管理的几个原则是什么？"><span class="toc-number">5.</span> <span class="toc-text">内存管理的几个原则是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSMuatableArray-array-NSMuatableArray-array-需要释放么？"><span class="toc-number">6.</span> <span class="toc-text">NSMuatableArray *array = [NSMuatableArray array] 需要释放么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#property本质是什么"><span class="toc-number">7.</span> <span class="toc-text">@property本质是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#delegate用什么属性修饰，ARC下与MRC下有何不同，为什么？"><span class="toc-number">8.</span> <span class="toc-text">delegate用什么属性修饰，ARC下与MRC下有何不同，为什么？</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#import和-include的区别-import和-class的区别？-lt-x-h-和-“x-h”的区别"><span class="toc-number">1.</span> <span class="toc-text">#import和#include的区别? import和@class的区别？ < x.h > 和 “x.h”的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#import和-include的区别"><span class="toc-number">1.1.</span> <span class="toc-text">#import和#include的区别?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#import和-class的区别？"><span class="toc-number">1.2.</span> <span class="toc-text">#import和@class的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-x-h-和-“-x-h-“的区别"><span class="toc-number">1.3.</span> <span class="toc-text">< x.h > 和 “ x.h “的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浅拷贝和深拷贝的区别？"><span class="toc-number">2.</span> <span class="toc-text">浅拷贝和深拷贝的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OC中分类和扩展的区别？"><span class="toc-number">3.</span> <span class="toc-text">OC中分类和扩展的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Objective-C中堆和栈的区别？"><span class="toc-number">4.</span> <span class="toc-text">Objective-C中堆和栈的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内存管理的几个原则是什么？"><span class="toc-number">5.</span> <span class="toc-text">内存管理的几个原则是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSMuatableArray-array-NSMuatableArray-array-需要释放么？"><span class="toc-number">6.</span> <span class="toc-text">NSMuatableArray *array = [NSMuatableArray array] 需要释放么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#property本质是什么"><span class="toc-number">7.</span> <span class="toc-text">@property本质是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#delegate用什么属性修饰，ARC下与MRC下有何不同，为什么？"><span class="toc-number">8.</span> <span class="toc-text">delegate用什么属性修饰，ARC下与MRC下有何不同，为什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSString，NSArray，NSMutableArray分别用什么属性修饰，原因是什么"><span class="toc-number">9.</span> <span class="toc-text">NSString，NSArray，NSMutableArray分别用什么属性修饰，原因是什么?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#block用什么属性修饰，为什么？"><span class="toc-number">10.</span> <span class="toc-text">block用什么属性修饰，为什么？</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github Card</p>
+<p class="asidetitle">Github 名片</p>
 <div class="github-card" data-github="Allen-Feng" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -256,7 +259,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
@@ -280,7 +283,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -320,11 +323,11 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">Weibo</p>
+  <p class="asidetitle">新浪微博</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5580378505&verifier=07a80851&dpc=1"></iframe>
 </div>
 
@@ -573,7 +576,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
