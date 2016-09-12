@@ -1,0 +1,551 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>iOS获取设备信息总结 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="John Doe">
+    
+
+    
+    <meta name="description" content="有些时候我们需要动态获取移动设备的一些信息，大多数情况官方都有对应的方法直接获取，但是也有一些是官方没有直接提供获取方法的，如设备型号、设备IP等。但是我们可以可以调用私有方法实现。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS获取设备信息总结">
+<meta property="og:url" content="http://yoursite.com/2016/08/02/160802_iOS获取设备信息总结/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="有些时候我们需要动态获取移动设备的一些信息，大多数情况官方都有对应的方法直接获取，但是也有一些是官方没有直接提供获取方法的，如设备型号、设备IP等。但是我们可以可以调用私有方法实现。">
+<meta property="og:updated_time" content="2016-08-04T07:54:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS获取设备信息总结">
+<meta name="twitter:description" content="有些时候我们需要动态获取移动设备的一些信息，大多数情况官方都有对应的方法直接获取，但是也有一些是官方没有直接提供获取方法的，如设备型号、设备IP等。但是我们可以可以调用私有方法实现。">
+<meta name="twitter:creator" content="@allenfeng945">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Hexo">Hexo</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/08/02/160802_iOS获取设备信息总结/" title="iOS获取设备信息总结" itemprop="url">iOS获取设备信息总结</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="John Doe" target="_blank" itemprop="author">John Doe</a>
+		
+  <p class="article-time">
+    <time datetime="2016-08-02T12:43:20.000Z" itemprop="datePublished"> 發表於 2016-08-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取设备的信息"><span class="toc-number">1.</span> <span class="toc-text">获取设备的信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取设备的唯一标示符"><span class="toc-number">2.</span> <span class="toc-text">获取设备的唯一标示符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UDID-Unique-Device-Identifier"><span class="toc-number">2.1.</span> <span class="toc-text">UDID (Unique Device Identifier)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UUID（Universally-Unique-Identifier）"><span class="toc-number">2.2.</span> <span class="toc-text">UUID（Universally Unique Identifier）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IDFA（identifierForIdentifier）"><span class="toc-number">2.3.</span> <span class="toc-text">IDFA（identifierForIdentifier）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IDFV（identifierForVendor）"><span class="toc-number">2.4.</span> <span class="toc-text">IDFV（identifierForVendor）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取当前屏幕分辨率的信息"><span class="toc-number">3.</span> <span class="toc-text">获取当前屏幕分辨率的信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取运营商的信息"><span class="toc-number">4.</span> <span class="toc-text">获取运营商的信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取电池的相关信息"><span class="toc-number">5.</span> <span class="toc-text">获取电池的相关信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取设备型号"><span class="toc-number">6.</span> <span class="toc-text">获取设备型号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取设备IP"><span class="toc-number">7.</span> <span class="toc-text">获取设备IP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取应用的PList信息"><span class="toc-number">8.</span> <span class="toc-text">获取应用的PList信息</span></a></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>有些时候我们需要动态获取移动设备的一些信息，大多数情况官方都有对应的方法直接获取，但是也有一些是官方没有直接提供获取方法的，如设备型号、设备IP等。但是我们可以可以调用私有方法实现。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="获取设备的信息"><a href="#获取设备的信息" class="headerlink" title="获取设备的信息"></a>获取设备的信息</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">NSString *name = [[UIDevice currentDevice] name];</div><div class="line">NSString *model = [[UIDevice currentDevice] model];</div><div class="line">NSString *localizedModel = [[UIDevice currentDevice] localizedModel];</div><div class="line">NSString *systemName = [[UIDevice currentDevice] systemName];</div><div class="line">NSString *systemVersion = [[UIDevice currentDevice] systemVersion];</div></pre></td></tr></table></figure>
+<h2 id="获取设备的唯一标示符"><a href="#获取设备的唯一标示符" class="headerlink" title="获取设备的唯一标示符"></a>获取设备的唯一标示符</h2><h3 id="UDID-Unique-Device-Identifier"><a href="#UDID-Unique-Device-Identifier" class="headerlink" title="UDID (Unique Device Identifier)"></a>UDID (Unique Device Identifier)</h3><p><code>UDID</code>的全称是Unique Device Identifier，顾名思义，它就是苹果IOS设备的唯一识别码。</p>
+<p>它由40个字符的字母和数字组成，在很多需要限制一台设备一个账号的应用中经常会用到。在<code>iOS5</code>之前可以获取到设备的UDID，后来被苹果<code>禁止</code>了。</p>
+<h3 id="UUID（Universally-Unique-Identifier）"><a href="#UUID（Universally-Unique-Identifier）" class="headerlink" title="UUID（Universally Unique Identifier）"></a>UUID（Universally Unique Identifier）</h3><p><code>UUID</code>是Universally Unique Identifier的缩写，中文意思是通用唯一识别码。</p>
+<p>它是让分布式系统中的所有元素，都能有唯一的辨识资讯，而不需要透过中央控制端来做辨识资讯的指定。这样，每个人都可以建立不与其它人冲突的UUID。在此情况下，就不需考虑数据库建立时的名称重复问题。苹果公司建议使用UUID为应用生成唯一标识字符串。</p>
+<p>开发者可以在应用第一次启动时调用一次，然后将该串存储起来，替代UDID来使用。但是，如果用户删除该应用再次安装时，又会生成新的字符串，所以不能保证唯一识别该设备。使用UUID，就要考虑应用被删除后再重新安装时的处理。一个解决的办法是：UUID一般只生成一次，保存在iOS系统里面，如果应用删除了，重装应用之后它的UUID还是一样的，除非系统重置 。但是不能保证在以后的系统升级后还能用（如果系统保存了该信息就能用）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NSString *uuid = [[NSUUID UUID] UUIDString]</div></pre></td></tr></table></figure>
+<h3 id="IDFA（identifierForIdentifier）"><a href="#IDFA（identifierForIdentifier）" class="headerlink" title="IDFA（identifierForIdentifier）"></a>IDFA（identifierForIdentifier）</h3><p>广告标示符，适用于对外，例如广告推广，换量等跨应用的用户追踪等。</p>
+<p>是iOS 6中另外一个新的方法，提供了一个方法advertisingIdentifier，通过调用该方法会返回一个NSUUID实例，最后可以获得一个UUID，由系统存储着的。不过即使这是由系统存储的，但是有几种情况下，会重新生成广告标示符。</p>
+<blockquote>
+<p>重置：<code>设置</code> -&gt; <code>通用</code> -&gt; <code>还原</code> -&gt; <code>还原位置与隐私</code><br>重置：<code>设置</code> -&gt; <code>隐私</code> -&gt; <code>广告</code> -&gt; <code>还原广告标示符</code><br>关闭：<code>设置</code> -&gt; <code>隐私</code> -&gt; <code>广告</code> -&gt; <code>限制广告追踪</code></p>
+</blockquote>
+<p>在同一个设备上的所有App都会取到相同的值，是苹果专门给各广告提供商用来追踪用户而设的，用户可以重置或限制此idfa的使用，故此idfa有可能会取不到值。但好在Apple默认是允许追踪的，而且一般用户都不知道有这么个设置，所以基本上用来监测推广效果，是戳戳有余了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];</div></pre></td></tr></table></figure>
+<h3 id="IDFV（identifierForVendor）"><a href="#IDFV（identifierForVendor）" class="headerlink" title="IDFV（identifierForVendor）"></a>IDFV（identifierForVendor）</h3><p>Vindor标示符，适用于对内：例如分析用户在应用内的行为等。</p>
+<p>是给Vendor标识用户用的，每个设备在所属同一个Vender的应用里，都有相同的值。其中的Vender是指应用提供商，但准确点说，是通过BundleID的DNS反转的前两部分进行匹配，如果相同就是同一个Vender，例如对于<code>com.somecompany.appone</code>,<code>com.somecompany.apptwo</code>这两个BundleID来说，就属于同一个Vender，共享同一个idfv的值。和idfa不同的是，idfv的值是一定能取到的，所以非常适合于作为内部用户行为分析的主id，来标识用户，替代OpenUDID。</p>
+<p><code>注意</code>：如果用户将属于此Vender的所有App卸载，则idfv的值会被重置，即再重装此Vender的App，idfv的值和之前不同。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NSString *idfv = [[[UIDevice currentDevice] identifierForVendor] UUIDString];</div></pre></td></tr></table></figure>
+<h2 id="获取当前屏幕分辨率的信息"><a href="#获取当前屏幕分辨率的信息" class="headerlink" title="获取当前屏幕分辨率的信息"></a>获取当前屏幕分辨率的信息</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">CGRect rect = [[UIScreen mainScreen] bounds];  </div><div class="line">CGFloat scale = [[UIScreen mainScreen].scale];  </div><div class="line">CGFloat width = rect.size.width * scale;  </div><div class="line">CGFloat height = rect.size.height * scale;</div></pre></td></tr></table></figure>
+<h2 id="获取运营商的信息"><a href="#获取运营商的信息" class="headerlink" title="获取运营商的信息"></a>获取运营商的信息</h2><p>需要先导入头文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#import &lt;CoreTelephony/CTCarrier.h&gt;  </div><div class="line">#import &lt;CoreTelephony/CTTelephonyNetworkInfo.h&gt;</div></pre></td></tr></table></figure>
+<p>创建对象(iOS7+)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CCTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc] init];</div></pre></td></tr></table></figure>
+<p>获取运行商的名称</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CTCarrier *carrier = [info subscriberCellularProvider];  </div><div class="line">NSString *mCarrier = [NSString stringWithFormat:@&quot;%@&quot;,[carrier carrierName]];</div></pre></td></tr></table></figure>
+<p>获取当前网络的类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NSString *mConnectType = [[NSString alloc] initWithFormat:@&quot;%@&quot;,info.currentRadioAccessTechnology];</div></pre></td></tr></table></figure>
+<p>类型有以下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">CTRadioAccessTechnologyGPRS         	//2G    </div><div class="line">CTRadioAccessTechnologyEdge         	//2G   </div><div class="line">CTRadioAccessTechnologyWCDMA           </div><div class="line">CTRadioAccessTechnologyHSDPA  </div><div class="line">CTRadioAccessTechnologyHSUPA  </div><div class="line">CTRadioAccessTechnologyCDMA1x       	//2G      </div><div class="line">CTRadioAccessTechnologyCDMAEVDORev0  </div><div class="line">CTRadioAccessTechnologyCDMAEVDORevA    </div><div class="line">CTRadioAccessTechnologyCDMAEVDORevB    </div><div class="line">CTRadioAccessTechnologyeHRPD      </div><div class="line">CTRadioAccessTechnologyLTE          	//4G</div></pre></td></tr></table></figure>
+<p>ios7之前的话apple给我们提供了Reachability来获取。<br>首先要导入<code>SystemConfiguration.framework</code>，把下载下来的<code>Reachability.h</code>和<code>Reachability.m</code>加进项目中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Reachability *reach = [Reachability reachabilityWithHostName:@&quot;www.apple.com&quot;];  </div><div class="line">switch([reach currentReachabilityStatus])  </div><div class="line">&#123;  </div><div class="line">    case NotReachable:  //没有连接上  </div><div class="line">        //do something  </div><div class="line">        break;  </div><div class="line">    case ReachableViaWiFi:  //通过wifi连接  </div><div class="line">        //do something  </div><div class="line">        break;  </div><div class="line">    case ReachableViaWWAN:  //通过GPRS连接  </div><div class="line">        //do something  </div><div class="line">        break;  </div><div class="line">    default:    &lt;span style=&quot;white-space:pre&quot;&gt;    &lt;/span&gt;//未知情况  </div><div class="line">        //do something  </div><div class="line">        break;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>注意</code>：通常<code>CoreTelephony</code>和<code>Reachability</code>结合使用，使用嵌套<code>switch</code>来判断<code>2G</code>、<code>3G</code>、<code>4G</code>、<code>Wifi</code>。</p>
+<h2 id="获取电池的相关信息"><a href="#获取电池的相关信息" class="headerlink" title="获取电池的相关信息"></a>获取电池的相关信息</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">//获取电池当前的状态，共有4种状态  </div><div class="line">-(NSString*) getBatteryState &#123;    </div><div class="line">    UIDevice *device = [UIDevice currentDevice];    </div><div class="line">    if (device.batteryState == UIDeviceBatteryStateUnknown) &#123;    </div><div class="line">        return @&quot;UnKnow&quot;;    </div><div class="line">    &#125;else if (device.batteryState == UIDeviceBatteryStateUnplugged)&#123;    </div><div class="line">        return @&quot;Unplugged&quot;;    </div><div class="line">    &#125;else if (device.batteryState == UIDeviceBatteryStateCharging)&#123;    </div><div class="line">        return @&quot;Charging&quot;;    </div><div class="line">    &#125;else if (device.batteryState == UIDeviceBatteryStateFull)&#123;    </div><div class="line">        return @&quot;Full&quot;;    </div><div class="line">    &#125;  </div><div class="line">    return nil;   </div><div class="line">&#125;   </div><div class="line">//获取电量的等级，0.00~1.00  </div><div class="line">-(float) getBatteryLevel &#123;    </div><div class="line">    return [UIDevice currentDevice].batteryLevel;  </div><div class="line">&#125;   </div><div class="line">-(void) getBatteryInfo  </div><div class="line">&#123;  </div><div class="line">    NSString \*state = getBatteryState();  </div><div class="line">    float level = getBatteryLevel()*100.0;  </div><div class="line">    //yourControlFunc(state, level);  //写自己要实现的获取电量信息后怎么处理  </div><div class="line">&#125;  </div><div class="line">//打开对电量和电池状态的监控，类似定时器的功能  </div><div class="line">-(void) didLoad  </div><div class="line">&#123;  </div><div class="line">    [[UIDevice currentDevice] setBatteryMonitoringEnable:YES];  </div><div class="line">    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getBatteryInfo:) name:UIDeviceBatteryStateDidChangeNotification object:nil];  </div><div class="line">    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getBatteryInfo:) name:UIDeviceBatteryLevelDidChangeNotification object:nil];  </div><div class="line">    [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(getBatteryInfo:) userInfo:nil repeats:YES];  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="获取设备型号"><a href="#获取设备型号" class="headerlink" title="获取设备型号"></a>获取设备型号</h2><p>因Apple官方没有直接获取设备型号的API，故只能使用以下私有方法获取。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">- (NSString*)deviceString</div><div class="line">&#123;</div><div class="line">    // 需要#import &quot;sys/utsname.h&quot;</div><div class="line">    struct utsname systemInfo;</div><div class="line">    uname(&amp;systemInfo);</div><div class="line">    NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];</div><div class="line">    //iPhone    </div><div class="line">    if ([deviceString isEqualToString:@&quot;iPhone1,1&quot;]) return @&quot;iPhone 2G (A1203)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPhone1,2&quot;]) return @&quot;iPhone 3G (A1241/A1324)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPhone2,1&quot;]) return @&quot;iPhone 3GS (A1303/A1325)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPhone3,1&quot;]) return @&quot;iPhone 4 (A1332)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPhone3,2&quot;]) return @&quot;iPhone 4 (A1332)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPhone3,3&quot;]) return @&quot;iPhone 4 (A1349)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPhone4,1&quot;]) return @&quot;iPhone 4S (A1387/A1431)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPhone5,1&quot;]) return @&quot;iPhone 5 (A1428)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPhone5,2&quot;]) return @&quot;iPhone 5 (A1429/A1442)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPhone5,3&quot;]) return @&quot;iPhone 5c (A1456/A1532)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPhone5,4&quot;]) return @&quot;iPhone 5c (A1507/A1516/A1526/A1529)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPhone6,1&quot;]) return @&quot;iPhone 5s (A1453/A1533)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPhone6,2&quot;]) return @&quot;iPhone 5s (A1457/A1518/A1528/A1530)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPhone7,1&quot;]) return @&quot;iPhone 6 Plus (A1522/A1524)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPhone7,2&quot;]) return @&quot;iPhone 6 (A1549/A1586)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPhone8,1&quot;]) return @&quot;iPhone 6S&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPhone8,2&quot;]) return @&quot;iPhone 6S Plus&quot;;</div><div class="line">    //iPod    </div><div class="line">    if ([deviceString isEqualToString:@&quot;iPod1,1&quot;])   return @&quot;iPod Touch 1G (A1213)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPod2,1&quot;])   return @&quot;iPod Touch 2G (A1288)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPod3,1&quot;])   return @&quot;iPod Touch 3G (A1318)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPod4,1&quot;])   return @&quot;iPod Touch 4G (A1367)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPod5,1&quot;])   return @&quot;iPod Touch 5G (A1421/A1509)&quot;;</div><div class="line">    //iPad    </div><div class="line">    if ([deviceString isEqualToString:@&quot;iPad1,1&quot;])   return @&quot;iPad 1G (A1219/A1337)&quot;;    </div><div class="line">    if ([deviceString isEqualToString:@&quot;iPad2,1&quot;])   return @&quot;iPad 2 (A1395)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPad2,2&quot;])   return @&quot;iPad 2 (A1396)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPad2,3&quot;])   return @&quot;iPad 2 (A1397)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPad2,4&quot;])   return @&quot;iPad 2 (A1395+New Chip)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPad2,5&quot;])   return @&quot;iPad Mini 1G (A1432)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPad2,6&quot;])   return @&quot;iPad Mini 1G (A1454)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPad2,7&quot;])   return @&quot;iPad Mini 1G (A1455)&quot;;    </div><div class="line">    if ([deviceString isEqualToString:@&quot;iPad3,1&quot;])   return @&quot;iPad 3 (A1416)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPad3,2&quot;])   return @&quot;iPad 3 (A1403)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPad3,3&quot;])   return @&quot;iPad 3 (A1430)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPad3,4&quot;])   return @&quot;iPad 4 (A1458)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPad3,5&quot;])   return @&quot;iPad 4 (A1459)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPad3,6&quot;])   return @&quot;iPad 4 (A1460)&quot;;    </div><div class="line">    if ([deviceString isEqualToString:@&quot;iPad4,1&quot;])   return @&quot;iPad Air (A1474)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPad4,2&quot;])   return @&quot;iPad Air (A1475)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPad4,3&quot;])   return @&quot;iPad Air (A1476)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPad4,4&quot;])   return @&quot;iPad Mini 2G (A1489)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPad4,5&quot;])   return @&quot;iPad Mini 2G (A1490)&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;iPad4,6&quot;])   return @&quot;iPad Mini 2G (A1491)&quot;;</div><div class="line">    //Simulator  </div><div class="line">    if ([deviceString isEqualToString:@&quot;i386&quot;])      return @&quot;iPhone Simulator&quot;;</div><div class="line">    if ([deviceString isEqualToString:@&quot;x86_64&quot;])    return @&quot;iPhone Simulator&quot;;</div><div class="line">    return deviceString;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="获取设备IP"><a href="#获取设备IP" class="headerlink" title="获取设备IP"></a>获取设备IP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">//导入头文件</div><div class="line">#import &lt;sys/socket.h&gt;</div><div class="line">#import &lt;sys/sockio.h&gt;</div><div class="line">#import &lt;sys/ioctl.h&gt;</div><div class="line">#import &lt;net/if.h&gt;</div><div class="line">#import &lt;arpa/inet.h&gt;</div><div class="line">//私有方法</div><div class="line">- (NSString *)getDeviceIPAddress &#123;</div><div class="line">    int sockfd = socket(AF_INET, SOCK_DGRAM, 0);</div><div class="line">    if (sockfd &lt; 0) return nil;</div><div class="line">    NSMutableArray *ips = [NSMutableArray array];</div><div class="line">    int BUFFERSIZE = 4096;</div><div class="line">    struct ifconf ifc;</div><div class="line">    char buffer[BUFFERSIZE], *ptr, lastname[IFNAMSIZ], *cptr;</div><div class="line">    struct ifreq *ifr, ifrcopy;</div><div class="line">    ifc.ifc_len = BUFFERSIZE;</div><div class="line">    ifc.ifc_buf = buffer;</div><div class="line">    if (ioctl(sockfd, SIOCGIFCONF, &amp;ifc) &gt;= 0)&#123;</div><div class="line">        for (ptr = buffer; ptr &lt; buffer + ifc.ifc_len; )&#123;</div><div class="line">            ifr = (struct ifreq *)ptr;</div><div class="line">            int len = sizeof(struct sockaddr);</div><div class="line">            if (ifr-&gt;ifr_addr.sa_len &gt; len) &#123;</div><div class="line">                len = ifr-&gt;ifr_addr.sa_len;</div><div class="line">            &#125;</div><div class="line">            ptr += sizeof(ifr-&gt;ifr_name) + len;</div><div class="line">            if (ifr-&gt;ifr_addr.sa_family != AF_INET) continue;</div><div class="line">            if ((cptr = (char *)strchr(ifr-&gt;ifr_name, &apos;:&apos;)) != NULL) *cptr = 0;</div><div class="line">            if (strncmp(lastname, ifr-&gt;ifr_name, IFNAMSIZ) == 0) continue;</div><div class="line">            memcpy(lastname, ifr-&gt;ifr_name, IFNAMSIZ);</div><div class="line">            ifrcopy = *ifr;</div><div class="line">            ioctl(sockfd, SIOCGIFFLAGS, &amp;ifrcopy);</div><div class="line">            if ((ifrcopy.ifr_flags &amp; IFF_UP) == 0) continue;</div><div class="line">            NSString *ip = [NSString  stringWithFormat:@&quot;%s&quot;,inet_ntoa(((struct sockaddr_in *)&amp;ifr-&gt;ifr_addr)-&gt;sin_addr)];</div><div class="line">            [ips addObject:ip];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    close(sockfd);</div><div class="line">    NSString *deviceIP = @&quot;&quot;;</div><div class="line">    for (int i=0; i &lt; ips.count; i++) &#123;</div><div class="line">        if (ips.count &gt; 0) &#123;</div><div class="line">            deviceIP = [NSString stringWithFormat:@&quot;%@&quot;,ips.lastObject];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return deviceIP;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="获取应用的PList信息"><a href="#获取应用的PList信息" class="headerlink" title="获取应用的PList信息"></a>获取应用的PList信息</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier]</div><div class="line">NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary]</div></pre></td></tr></table></figure>
+<p>可以根据<code>infoDictionary</code>的key值使用下面方法获取对应的信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (nullable id)objectForInfoDictionaryKey:(NSString *)key;</div></pre></td></tr></table></figure>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/iOS/">iOS</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/08/02/160802_iOS获取设备信息总结/" data-title="iOS获取设备信息总结 | Hexo" data-tsina="5580378505" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/07/27/160727_理解iOS的内存管理/"  title="理解iOS的内存管理">
+ <strong>下一篇：</strong><br/> 
+ <span>理解iOS的内存管理
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/08/02/160802_iOS获取设备信息总结/" data-title="iOS获取设备信息总结" data-url="http://yoursite.com/2016/08/02/160802_iOS获取设备信息总结/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取设备的信息"><span class="toc-number">1.</span> <span class="toc-text">获取设备的信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取设备的唯一标示符"><span class="toc-number">2.</span> <span class="toc-text">获取设备的唯一标示符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UDID-Unique-Device-Identifier"><span class="toc-number">2.1.</span> <span class="toc-text">UDID (Unique Device Identifier)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UUID（Universally-Unique-Identifier）"><span class="toc-number">2.2.</span> <span class="toc-text">UUID（Universally Unique Identifier）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IDFA（identifierForIdentifier）"><span class="toc-number">2.3.</span> <span class="toc-text">IDFA（identifierForIdentifier）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IDFV（identifierForVendor）"><span class="toc-number">2.4.</span> <span class="toc-text">IDFV（identifierForVendor）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取当前屏幕分辨率的信息"><span class="toc-number">3.</span> <span class="toc-text">获取当前屏幕分辨率的信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取运营商的信息"><span class="toc-number">4.</span> <span class="toc-text">获取运营商的信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取电池的相关信息"><span class="toc-number">5.</span> <span class="toc-text">获取电池的相关信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取设备型号"><span class="toc-number">6.</span> <span class="toc-text">获取设备型号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取设备IP"><span class="toc-number">7.</span> <span class="toc-text">获取设备IP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取应用的PList信息"><span class="toc-number">8.</span> <span class="toc-text">获取应用的PList信息</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="Allen-Feng" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Xcode/" title="Xcode">Xcode<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ARC/" title="ARC">ARC<sup>2</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.cocoachina.com" target="_blank" title="CocoaChina">CocoaChina</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://objccn.io/" target="_blank" title="objc中国">objc中国</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.devtang.com/" target="_blank" title="唐巧大神">唐巧大神</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://yulingtianxia.com/" target="_blank" title="玉令天下">玉令天下</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5580378505&verifier=07a80851&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Stay hungry, stay foolish <br/>
+			Talk is cheap, show me the code.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/5580378505" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/Allen-Feng" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/6587241" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		<a href="https://twitter.com/allenfeng945" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/profile.php?id=100011457513784" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		
+		<a href="mailto:allen-feng@hotmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="John Doe">John Doe</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"allenfeng123"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
