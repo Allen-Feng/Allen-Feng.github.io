@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/09/12/160912_iOS基础知识汇总/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
 <meta property="og:description" content="初级iOS工程师知道怎么做就可以了，但是高级iOS工程师就需要知道为什么这么做。以下列出了一些基础知识的问题，后续慢慢完善答案。同时其中好多也是面试必问题哦！">
-<meta property="og:updated_time" content="2016-09-12T08:33:31.000Z">
+<meta property="og:updated_time" content="2016-09-12T08:38:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS基础知识汇总">
 <meta name="twitter:description" content="初级iOS工程师知道怎么做就可以了，但是高级iOS工程师就需要知道为什么这么做。以下列出了一些基础知识的问题，后续慢慢完善答案。同时其中好多也是面试必问题哦！">
@@ -93,7 +93,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#import和-include的区别-import和-class的区别？-lt-x-h-和-“x-h”的区别"><span class="toc-number">1.</span> <span class="toc-text">#import和#include的区别? import和@class的区别？ < x.h > 和 “x.h”的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#import和-include的区别"><span class="toc-number">1.1.</span> <span class="toc-text">#import和#include的区别?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#import和-class的区别？"><span class="toc-number">1.2.</span> <span class="toc-text">#import和@class的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-x-h-和-“-x-h-“的区别"><span class="toc-number">1.3.</span> <span class="toc-text">< x.h > 和 “ x.h “的区别</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#import和-include的区别-import和-class的区别？-lt-x-h-和-“x-h”的区别"><span class="toc-number">1.</span> <span class="toc-text">#import和#include的区别? import和@class的区别？ < x.h > 和 “x.h”的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#import和-include的区别"><span class="toc-number">1.1.</span> <span class="toc-text">#import和#include的区别?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#import和-class的区别？"><span class="toc-number">1.2.</span> <span class="toc-text">#import和@class的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-x-h-和-“-x-h-“的区别"><span class="toc-number">1.3.</span> <span class="toc-text">< x.h > 和 “ x.h “的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浅拷贝和深拷贝的区别？"><span class="toc-number">2.</span> <span class="toc-text">浅拷贝和深拷贝的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OC中分类和扩展的区别？"><span class="toc-number">3.</span> <span class="toc-text">OC中分类和扩展的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Objective-C中堆和栈的区别？"><span class="toc-number">4.</span> <span class="toc-text">Objective-C中堆和栈的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内存管理的几个原则是什么？"><span class="toc-number">5.</span> <span class="toc-text">内存管理的几个原则是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSMuatableArray-array-NSMuatableArray-array-需要释放么？"><span class="toc-number">6.</span> <span class="toc-text">NSMuatableArray *array = [NSMuatableArray array] 需要释放么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#property本质是什么"><span class="toc-number">7.</span> <span class="toc-text">@property本质是什么</span></a></li></ol>
 		
 		</div>
 		
@@ -112,6 +112,70 @@
 <p> #import大部分功能和#include是一样的，但是他处理了重复引用的问题，我们在引用文件的时候不用再去自己进行重复引用处理.</p>
 <h3 id="import和-class的区别？"><a href="#import和-class的区别？" class="headerlink" title="#import和@class的区别？"></a>#import和@class的区别？</h3><p><code>#import</code>会链入该头文件的全部信息，包括实体变量和方法等；<br><code>@class</code>只是告诉编译器，其后面声明的名称是类的名称，至于这些类是如何定义的，暂时不用考虑。在头文件中， 一般只需要知道被引用的类的名称就可以了。 不需要知道其内部的实体变量和方法，所以在头文件中一般使用@class来声明这个名称是类的名称。 而在实现类里面，因为会用到这个引用类的内部的实体变量和方法，所以需要使用#import来包含这个被引用类的头文件。<br><strong><em>在编译效率方面</em></strong>，如果你有100个头文件都#import了同一个头文件，或者这些文件是依次引用的，如A–&gt;B, B–&gt;C, C–&gt;D这样的引用关系。当最开始的那个头文件有变化的话，后面所有引用它的类都需要重新编译，如果你的类有很多的话，这将耗费大量的时间。而用@class则不会。<br><strong><em>在循环依赖关系方面</em></strong>，如:A–&gt;B, B–&gt;A这样的相互依赖关系，如果使用#import来相互包含，那么就会出现编译错误，如果使用@class在两个类的头文件中相互声明，则不会有编译错误出现。<br><strong><em>所以</em></strong>，一般来说，@class是放在interface中的，只是为了在interface中引用这个类，把这个类作为一个类型来用的。 在实现这个接口的实现类中，如果需要引用这个类的实体变量或者方法之类的，还是需要import在@class中声明的类进来。</p>
 <h3 id="lt-x-h-和-“-x-h-“的区别"><a href="#lt-x-h-和-“-x-h-“的区别" class="headerlink" title="&lt; x.h > 和 “ x.h “的区别"></a>&lt; x.h > 和 “ x.h “的区别</h3><p><code>&lt;x.h&gt;</code>: 它用于对系统自带的头文件的引用，编译器会在系统文件目录下去查找该文件。<br><code>“x.h”</code>: 用户自定义的文件用双引号引用，编译器首先会在用户目录下查找，然后到安装目录中查找，最后在系统文件中查找。</p>
+<h2 id="浅拷贝和深拷贝的区别？"><a href="#浅拷贝和深拷贝的区别？" class="headerlink" title="浅拷贝和深拷贝的区别？"></a>浅拷贝和深拷贝的区别？</h2><p><code>浅拷贝</code>：只复制指向对象的指针，而不复制引用对象本身。<br><code>深拷贝</code>：复制引用对象本身。<br>意思就是说我有个A对象，复制一份后得到A_copy对象后，对于浅拷贝来说，A和A_copy指向的是同一个内存资源，拷贝的只不过是一个指针，对象本身资源还是只有一份，那如果我们对A_copy执行了修改操作,那么发现A引用的对象同样被修改。深拷贝就好理解了,内存中存在了两份独立对象本身。</p>
+<p>通俗的话将就是：</p>
+<blockquote>
+<p>浅拷贝好比你和你的影子，你完蛋，你的影子也完蛋<br>深拷贝好比你和你的克隆人，你完蛋，你的克隆人还活着。</p>
+</blockquote>
+<h2 id="OC中分类和扩展的区别？"><a href="#OC中分类和扩展的区别？" class="headerlink" title="OC中分类和扩展的区别？"></a>OC中分类和扩展的区别？</h2><p><code>分类／Category</code></p>
+<ul>
+<li>就是给类添加方法的，尤其是不想生成一个新子类的情况下。</li>
+<li>分类只能给指定的类添加方法，可以是自定义的类，也可以是系统的类。</li>
+<li>分类中只能添加方法，不可以声明实例变量，所以属性也就没有意义，但可以访问主类的实例变量、属性。</li>
+<li>分类增加的方法如果与主类的方法同名，会覆盖主类的方法，因为Category的优先级更高！</li>
+</ul>
+<p><code>扩展／Extension</code></p>
+<ul>
+<li>是分类的一种特殊形式，扩展是没有名字的分类，亦被称之为匿名分类。</li>
+<li>两种创建方式：<br>1.创建单独的扩展头文件<code>.h</code>，在其中添加方法、成员变量、属性，在被扩展的<code>.m</code>文件中实现(最常见的创建方式)；<br>2.直接在被需要扩展的.m文件中添加，在@interface中添加方法、声明成员变量、属性，在实现部分实现(也就是通常所说的私有方法、私有变量、私有属性)。</li>
+</ul>
+<blockquote>
+<p>分类和扩展其实就是把原本一个文件能完成的工作根据需要拆分开，区别就是拆分的方式不一样而已。<br>主要有两个用途：<br>1.优化代码结构；<br>2.打包库时选择性对外暴漏接口。</p>
+</blockquote>
+<h2 id="Objective-C中堆和栈的区别？"><a href="#Objective-C中堆和栈的区别？" class="headerlink" title="Objective-C中堆和栈的区别？"></a>Objective-C中堆和栈的区别？</h2><p><code>管理方式</code></p>
+<ul>
+<li><strong>堆</strong>：释放工作由程序员控制，容易产生memory leak。</li>
+<li><strong>栈</strong>：是由编译器自动管理，无需我们手工控制；</li>
+</ul>
+<p><code>申请大小</code></p>
+<ul>
+<li><strong>堆</strong>：是向高地址扩展的数据结构，是不连续的内存区域。这是由于系统是用链表来存储的空闲内存地址，自然是不连续的，而链表的遍历方向是由低地址向高地址。堆的大小受限于计算机系统中有效的虚拟内存。由此可见，堆获得的空间比较灵活，也比较大。</li>
+<li><strong>栈</strong>：是向低地址扩展的数据结构，是一块连续的内存的区域。也就是说栈顶的地址和栈的最大容量是系统预先规定好的，栈的大小是2M（也有的说是1M，总之是一个编译时就确定的常数），如果申请的空间超过栈的剩余空间时，将提示overflow。因此，能从栈获得的空间较小。</li>
+</ul>
+<p><code>碎片问题</code></p>
+<ul>
+<li><strong>堆</strong>：频繁的new/delete势必会造成内存空间的不连续，从而造成大量的碎片，使程序效率降低。</li>
+<li><strong>栈</strong>：不会存在这个问题，因为栈是先进后出的队列，他们是如此的一一对应，以至于永远都不可能有一个内存块从栈中间弹出</li>
+</ul>
+<p><code>分配方式</code></p>
+<ul>
+<li><strong>堆</strong>：是动态分配的，没有静态分配的堆。</li>
+<li><strong>栈</strong>：有2种分配方式：静态分配和动态分配。静态分配是编译器完成的，比如局部变量的分配。动态分配由alloca函数进行分配，但是栈的动态分配和堆是不同的，他的动态分配是由编译器进行释放，无需我们手工实现。</li>
+</ul>
+<p><code>分配效率</code></p>
+<ul>
+<li><strong>堆</strong>：则是C/C++函数库提供的，它的机制是很复杂的。</li>
+<li><strong>栈</strong>：是机器系统提供的数据结构，计算机会在底层对栈提供支持：分配专门的寄存器存放栈的地址，压栈出栈都有专门的指令执行，这就决定了栈的效率比较高。</li>
+</ul>
+<p>堆和栈的区别可以用如下的比喻来看出：</p>
+<blockquote>
+<ul>
+<li><strong><em>使用堆</em></strong> 就象是自己动手做喜欢吃的菜肴，比较麻烦，但是比较符合自己的口味，而且自由度大。</li>
+<li><strong><em>使用栈</em></strong> 就像我们去饭馆里吃饭，只管点菜（发出申请）、付钱、和吃（使用），吃饱了就走，不必理会切菜、洗菜等准备工作和洗碗、刷锅等扫尾工作，他的好处是快捷，但是自由度小。</li>
+</ul>
+</blockquote>
+<h2 id="内存管理的几个原则是什么？"><a href="#内存管理的几个原则是什么？" class="headerlink" title="内存管理的几个原则是什么？"></a>内存管理的几个原则是什么？</h2><p>详见 “ <a href="https://allen-feng.github.io/2016/07/27/160727_%E7%90%86%E8%A7%A3iOS%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" target="_blank" rel="external">理解iOS的内存管理</a> ”</p>
+<h2 id="NSMuatableArray-array-NSMuatableArray-array-需要释放么？"><a href="#NSMuatableArray-array-NSMuatableArray-array-需要释放么？" class="headerlink" title="NSMuatableArray *array = [NSMuatableArray array] 需要释放么？"></a>NSMuatableArray *array = [NSMuatableArray array] 需要释放么？</h2><p><code>不需要</code></p>
+<h2 id="property本质是什么"><a href="#property本质是什么" class="headerlink" title="@property本质是什么"></a>@property本质是什么</h2><p>@property本质就是<code>setter</code>、<code>getter</code>方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@property (nonatomic, retain) NSString *name;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-(NSString *) name&#123;</div><div class="line">	return name;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">-(void) setName:(NSStrng *) newName&#123;</div><div class="line">	if(name!=newName)&#123;</div><div class="line">		[name release];</div><div class="line">		name=[newName retain];</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>对setName方法的解释：</p>
+<blockquote>
+<ol>
+<li>为何要加<code>name！=newName</code>的判断?<br>如果要是不加，传过来的参数如果是相同的，则newName会一直retain</li>
+<li>为何<code>[name release]</code>？<br>如果不release，直接name=[newName retain]，则name原先所指向的内存则会泄露，因为没有释放</li>
+</ol>
+</blockquote>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -165,7 +229,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#import和-include的区别-import和-class的区别？-lt-x-h-和-“x-h”的区别"><span class="toc-number">1.</span> <span class="toc-text">#import和#include的区别? import和@class的区别？ < x.h > 和 “x.h”的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#import和-include的区别"><span class="toc-number">1.1.</span> <span class="toc-text">#import和#include的区别?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#import和-class的区别？"><span class="toc-number">1.2.</span> <span class="toc-text">#import和@class的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-x-h-和-“-x-h-“的区别"><span class="toc-number">1.3.</span> <span class="toc-text">< x.h > 和 “ x.h “的区别</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#import和-include的区别-import和-class的区别？-lt-x-h-和-“x-h”的区别"><span class="toc-number">1.</span> <span class="toc-text">#import和#include的区别? import和@class的区别？ < x.h > 和 “x.h”的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#import和-include的区别"><span class="toc-number">1.1.</span> <span class="toc-text">#import和#include的区别?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#import和-class的区别？"><span class="toc-number">1.2.</span> <span class="toc-text">#import和@class的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-x-h-和-“-x-h-“的区别"><span class="toc-number">1.3.</span> <span class="toc-text">< x.h > 和 “ x.h “的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浅拷贝和深拷贝的区别？"><span class="toc-number">2.</span> <span class="toc-text">浅拷贝和深拷贝的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OC中分类和扩展的区别？"><span class="toc-number">3.</span> <span class="toc-text">OC中分类和扩展的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Objective-C中堆和栈的区别？"><span class="toc-number">4.</span> <span class="toc-text">Objective-C中堆和栈的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内存管理的几个原则是什么？"><span class="toc-number">5.</span> <span class="toc-text">内存管理的几个原则是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSMuatableArray-array-NSMuatableArray-array-需要释放么？"><span class="toc-number">6.</span> <span class="toc-text">NSMuatableArray *array = [NSMuatableArray array] 需要释放么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#property本质是什么"><span class="toc-number">7.</span> <span class="toc-text">@property本质是什么</span></a></li></ol>
  
   </div>
 
