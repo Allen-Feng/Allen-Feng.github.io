@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Mac下使用Github Pages和Hexo搭建博客 | aFeng`s Blog</title>
+    <title>iOS基础知识汇总 | aFeng`s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Allen Feng">
     
 
     
-    <meta name="description" content="使用Github Pages和Hexo搭建博客的教程网上很容易搜到，不过在我实际操作过程中有几处异常的地方，特此标示出来。">
+    <meta name="description" content="初级iOS工程师知道怎么做就可以了，但是高级iOS工程师就需要知道为什么这么做。以下列出了一些基础知识的问题，后续慢慢完善答案。同时其中好多也是面试必问题哦！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac下使用Github Pages和Hexo搭建博客">
-<meta property="og:url" content="http://yoursite.com/2016/07/02/160702_Mac下使用Github-Pages和Hexo搭建博客/index.html">
+<meta property="og:title" content="iOS基础知识汇总">
+<meta property="og:url" content="http://yoursite.com/2016/09/12/160912_iOS基础知识汇总/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
-<meta property="og:description" content="使用Github Pages和Hexo搭建博客的教程网上很容易搜到，不过在我实际操作过程中有几处异常的地方，特此标示出来。">
-<meta property="og:updated_time" content="2016-08-05T01:54:43.000Z">
+<meta property="og:description" content="初级iOS工程师知道怎么做就可以了，但是高级iOS工程师就需要知道为什么这么做。以下列出了一些基础知识的问题，后续慢慢完善答案。同时其中好多也是面试必问题哦！">
+<meta property="og:updated_time" content="2016-09-12T08:33:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac下使用Github Pages和Hexo搭建博客">
-<meta name="twitter:description" content="使用Github Pages和Hexo搭建博客的教程网上很容易搜到，不过在我实际操作过程中有几处异常的地方，特此标示出来。">
+<meta name="twitter:title" content="iOS基础知识汇总">
+<meta name="twitter:description" content="初级iOS工程师知道怎么做就可以了，但是高级iOS工程师就需要知道为什么这么做。以下列出了一些基础知识的问题，后续慢慢完善答案。同时其中好多也是面试必问题哦！">
 <meta name="twitter:creator" content="@allenfeng945">
 
     
@@ -77,14 +77,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/07/02/160702_Mac下使用Github-Pages和Hexo搭建博客/" title="Mac下使用Github Pages和Hexo搭建博客" itemprop="url">Mac下使用Github Pages和Hexo搭建博客</a>
+      <a href="/2016/09/12/160912_iOS基础知识汇总/" title="iOS基础知识汇总" itemprop="url">iOS基础知识汇总</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
 		
   <p class="article-time">
-    <time datetime="2016-07-02T06:35:56.000Z" itemprop="datePublished"> Published 2016-07-02</time>
+    <time datetime="2016-09-12T08:32:25.000Z" itemprop="datePublished"> Published 2016-09-12</time>
     
   </p>
 </header>
@@ -93,20 +93,25 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-安装Hexo时报错"><span class="toc-number">1.</span> <span class="toc-text">1.安装Hexo时报错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-npm-install-和-hexo-init先后顺序？"><span class="toc-number">2.</span> <span class="toc-text">2.npm install 和 hexo init先后顺序？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-链接本地的Hexo文件到Github库时使用HTTPS还是SSH？"><span class="toc-number">3.</span> <span class="toc-text">3.链接本地的Hexo文件到Github库时使用HTTPS还是SSH？</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#import和-include的区别-import和-class的区别？-lt-x-h-和-“x-h”的区别"><span class="toc-number">1.</span> <span class="toc-text">#import和#include的区别? import和@class的区别？ < x.h > 和 “x.h”的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#import和-include的区别"><span class="toc-number">1.1.</span> <span class="toc-text">#import和#include的区别?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#import和-class的区别？"><span class="toc-number">1.2.</span> <span class="toc-text">#import和@class的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-x-h-和-“-x-h-“的区别"><span class="toc-number">1.3.</span> <span class="toc-text">< x.h > 和 “ x.h “的区别</span></a></li></ol></li></ol>
 		
 		</div>
 		
 		<blockquote>
-<p>使用Github Pages和Hexo搭建博客的教程<a href="http://my.oschina.net/ryaneLee/blog/638440" target="_blank" rel="external">网上</a>很容易搜到，不过在我实际操作过程中有几处异常的地方，特此标示出来。</p>
+<p><code>初级iOS工程师</code>知道<code>怎么做</code>就可以了，但是<code>高级iOS工程师</code>就需要知道<code>为什么这么做</code>。以下列出了一些基础知识的问题，后续慢慢完善答案。同时其中好多也是面试必问题哦！</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="1-安装Hexo时报错"><a href="#1-安装Hexo时报错" class="headerlink" title="1.安装Hexo时报错"></a>1.安装Hexo时报错</h2><p>Mac用户注意了，要使用管理员权限，首先：“sudo -s”，回车，输入密码，再回车，然后：“npm install -g hexo-cli”，回车，等待下载安装即可！</p>
-<h2 id="2-npm-install-和-hexo-init先后顺序？"><a href="#2-npm-install-和-hexo-init先后顺序？" class="headerlink" title="2.npm install 和 hexo init先后顺序？"></a>2.npm install 和 hexo init先后顺序？</h2><p>官方指导及一些Blog上说的是先 hexo init，然后再执行 npm install。但是我在据此执行会报错，不知道是不是没有安装在默认路径下还是什么其他原因。不过执行顺序颠倒一下就OK了。</p>
-<h2 id="3-链接本地的Hexo文件到Github库时使用HTTPS还是SSH？"><a href="#3-链接本地的Hexo文件到Github库时使用HTTPS还是SSH？" class="headerlink" title="3.链接本地的Hexo文件到Github库时使用HTTPS还是SSH？"></a>3.链接本地的Hexo文件到Github库时使用HTTPS还是SSH？</h2><p>官方指导及一些Blog上说使用HTTPS，但是我依此执行会报错，但是改用SSH就OK了。不知道是不是和git、node版本有关系。</p>
-<blockquote>
-<p>作为一个小白，根据前人的指导去做出错时，必须耐得住折腾，并且要有勇于尝试的决心，哪怕把电脑折腾崩溃都在所不惜。以上几点虽然不知道真正的原因所在，但却是在我多次失败的尝试下得到的实战经验。希望对后来的人能有所帮助。</p>
-</blockquote>
+<h2 id="import和-include的区别-import和-class的区别？-lt-x-h-和-“x-h”的区别"><a href="#import和-include的区别-import和-class的区别？-lt-x-h-和-“x-h”的区别" class="headerlink" title="#import和#include的区别? import和@class的区别？ &lt; x.h > 和 “x.h”的区别"></a>#import和#include的区别? import和@class的区别？ &lt; x.h > 和 “x.h”的区别</h2><h3 id="import和-include的区别"><a href="#import和-include的区别" class="headerlink" title="#import和#include的区别?"></a>#import和#include的区别?</h3><p><code>#include</code>: C, C++ 中的预编译指令</p>
+<p>在使用#include的时候要注意处理重复引用（这也是OC中#import与#include的区别）<br>例如: ClassA 与 ClassB 同时引用了 ClassC，不做重复引用处理的时候在 ClassD 中同时引用ClassA, ClassB 编译会提示对 ClassC 重复引用的错误。我们可以:</p>
+<pre><code>#ifndef _CLASSC_H
+#define _CLASSC_H
+#include &quot;ClassC&quot;
+#endif    
+</code></pre><p>这样处理在编译时就不会有重复引用的错误出现（在Objective-C中#import解决了这个问题，这是它们的区别）</p>
+<p><code>#import</code>: Objective-C 中的预编译指令</p>
+<p> #import大部分功能和#include是一样的，但是他处理了重复引用的问题，我们在引用文件的时候不用再去自己进行重复引用处理.</p>
+<h3 id="import和-class的区别？"><a href="#import和-class的区别？" class="headerlink" title="#import和@class的区别？"></a>#import和@class的区别？</h3><p><code>#import</code>会链入该头文件的全部信息，包括实体变量和方法等；<br><code>@class</code>只是告诉编译器，其后面声明的名称是类的名称，至于这些类是如何定义的，暂时不用考虑。在头文件中， 一般只需要知道被引用的类的名称就可以了。 不需要知道其内部的实体变量和方法，所以在头文件中一般使用@class来声明这个名称是类的名称。 而在实现类里面，因为会用到这个引用类的内部的实体变量和方法，所以需要使用#import来包含这个被引用类的头文件。<br><strong><em>在编译效率方面</em></strong>，如果你有100个头文件都#import了同一个头文件，或者这些文件是依次引用的，如A–&gt;B, B–&gt;C, C–&gt;D这样的引用关系。当最开始的那个头文件有变化的话，后面所有引用它的类都需要重新编译，如果你的类有很多的话，这将耗费大量的时间。而用@class则不会。<br><strong><em>在循环依赖关系方面</em></strong>，如:A–&gt;B, B–&gt;A这样的相互依赖关系，如果使用#import来相互包含，那么就会出现编译错误，如果使用@class在两个类的头文件中相互声明，则不会有编译错误出现。<br><strong><em>所以</em></strong>，一般来说，@class是放在interface中的，只是为了在interface中引用这个类，把这个类作为一个类型来用的。 在实现这个接口的实现类中，如果需要引用这个类的实体变量或者方法之类的，还是需要import在@class中声明的类进来。</p>
+<h3 id="lt-x-h-和-“-x-h-“的区别"><a href="#lt-x-h-和-“-x-h-“的区别" class="headerlink" title="&lt; x.h > 和 “ x.h “的区别"></a>&lt; x.h > 和 “ x.h “的区别</h3><p><code>&lt;x.h&gt;</code>: 它用于对系统自带的头文件的引用，编译器会在系统文件目录下去查找该文件。<br><code>“x.h”</code>: 用户自定义的文件用双引号引用，编译器首先会在用户目录下查找，然后到安装目录中查找，最后在系统文件中查找。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -115,7 +120,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Hexo/">Hexo</a>
+  <span></span> <a href="/tags/iOS/">iOS</a>
   </div>
 
 </div>
@@ -124,7 +129,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/07/02/160702_Mac下使用Github-Pages和Hexo搭建博客/" data-title="Mac下使用Github Pages和Hexo搭建博客 | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/09/12/160912_iOS基础知识汇总/" data-title="iOS基础知识汇总 | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -137,19 +142,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/07/05/160705_在ARC项目中使用performSelector引起的内存警告/" title="在ARC项目中使用performSelector引起的内存警告">
-  <strong>上一篇：</strong><br/>
-  <span>
-  在ARC项目中使用performSelector引起的内存警告</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/06/30/160630_hello-world/"  title="Hello World">
+<a href="/2016/08/13/160813_const和-define区别/"  title="const和#define区别">
  <strong>下一篇：</strong><br/> 
- <span>Hello World
+ <span>const和#define区别
 </span>
 </a>
 </div>
@@ -158,7 +155,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/07/02/160702_Mac下使用Github-Pages和Hexo搭建博客/" data-title="Mac下使用Github Pages和Hexo搭建博客" data-url="http://yoursite.com/2016/07/02/160702_Mac下使用Github-Pages和Hexo搭建博客/"></div>
+	<div class="ds-thread" data-thread-key="2016/09/12/160912_iOS基础知识汇总/" data-title="iOS基础知识汇总" data-url="http://yoursite.com/2016/09/12/160912_iOS基础知识汇总/"></div>
 </section>
 
 
@@ -168,7 +165,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-安装Hexo时报错"><span class="toc-number">1.</span> <span class="toc-text">1.安装Hexo时报错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-npm-install-和-hexo-init先后顺序？"><span class="toc-number">2.</span> <span class="toc-text">2.npm install 和 hexo init先后顺序？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-链接本地的Hexo文件到Github库时使用HTTPS还是SSH？"><span class="toc-number">3.</span> <span class="toc-text">3.链接本地的Hexo文件到Github库时使用HTTPS还是SSH？</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#import和-include的区别-import和-class的区别？-lt-x-h-和-“x-h”的区别"><span class="toc-number">1.</span> <span class="toc-text">#import和#include的区别? import和@class的区别？ < x.h > 和 “x.h”的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#import和-include的区别"><span class="toc-number">1.1.</span> <span class="toc-text">#import和#include的区别?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#import和-class的区别？"><span class="toc-number">1.2.</span> <span class="toc-text">#import和@class的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-x-h-和-“-x-h-“的区别"><span class="toc-number">1.3.</span> <span class="toc-text">< x.h > 和 “ x.h “的区别</span></a></li></ol></li></ol>
  
   </div>
 
