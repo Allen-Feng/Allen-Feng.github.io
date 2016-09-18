@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/09/18/160918_兼容iOS-10-资料整理笔记/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
 <meta property="og:description" content="1.Notification(通知)自从Notification被引入之后，苹果就不断的更新优化，但这些更新优化只是小打小闹，直至现在iOS 10开始真正的进行大改重构，这让开发者也体会到UserNotifications的易用，功能也变得非常强大。">
-<meta property="og:updated_time" content="2016-09-18T07:01:58.000Z">
+<meta property="og:updated_time" content="2016-09-18T07:04:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="兼容iOS 10 资料整理笔记">
 <meta name="twitter:description" content="1.Notification(通知)自从Notification被引入之后，苹果就不断的更新优化，但这些更新优化只是小打小闹，直至现在iOS 10开始真正的进行大改重构，这让开发者也体会到UserNotifications的易用，功能也变得非常强大。">
@@ -97,7 +97,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Notification-通知"><span class="toc-number">1.</span> <span class="toc-text">1.Notification(通知)</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Notification-通知"><span class="toc-number">1.</span> <span class="toc-text">1.Notification(通知)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-ATS的问题"><span class="toc-number">2.</span> <span class="toc-text">2.ATS的问题</span></a></li></ol>
 		
 		</div>
 		
@@ -130,9 +130,8 @@
 <li>iOS 10 通知学习相关资料：</li>
 </ul>
 <p>UserNotifications: 苹果官方文档 - 苹果官方视频1 - 苹果官方视频2 - 苹果官方视频3<br>活久见的重构 - iOS 10 UserNotifications 框架解析<br>WWDC2016 Session笔记 - iOS 10 推送Notification新特性</p>
-<p>2.ATS的问题<br>iOS 9中默认非HTTPS的网络是被禁止的，当然我们也可以把NSAllowsArbitraryLoads设置为YES禁用ATS。不过iOS 10从2017年1月1日起苹果不允许我们通过这个方法跳过ATS，也就是说强制我们用HTTPS，如果不这样的话提交App可能会被拒绝。但是我们可以通过NSExceptionDomains来针对特定的域名开放HTTP可以容易通过审核。</p>
+<h2 id="2-ATS的问题"><a href="#2-ATS的问题" class="headerlink" title="2.ATS的问题"></a>2.ATS的问题</h2><p>iOS 9中默认非HTTPS的网络是被禁止的，当然我们也可以把<code>NSAllowsArbitraryLoads</code>设置为<code>YES</code>禁用<code>ATS</code>。不过iOS 10从2017年1月1日起苹果不允许我们通过这个方法跳过<code>ATS</code>，也就是说强制我们用<code>HTTPS</code>，如果不这样的话提交App可能会被拒绝。但是我们可以通过<code>NSExceptionDomains</code>来针对特定的域名开放<code>HTTP</code>可以容易通过审核。</p>
 <p>参考学习文章如下：<br>关于 iOS 10 中 ATS 的问题</p>
-<p>文／判若两人丶（简书作者）<br>原文链接：<a href="http://www.jianshu.com/p/0cc7aad638d9" target="_blank" rel="external">http://www.jianshu.com/p/0cc7aad638d9</a><br>著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -186,7 +185,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Notification-通知"><span class="toc-number">1.</span> <span class="toc-text">1.Notification(通知)</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Notification-通知"><span class="toc-number">1.</span> <span class="toc-text">1.Notification(通知)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-ATS的问题"><span class="toc-number">2.</span> <span class="toc-text">2.ATS的问题</span></a></li></ol>
  
   </div>
 
