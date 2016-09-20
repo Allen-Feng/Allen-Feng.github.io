@@ -17,10 +17,12 @@
 <meta property="og:url" content="http://yoursite.com/2016/09/18/160918_兼容iOS-10-资料整理笔记/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
 <meta property="og:description" content="Notification(通知)自从Notification被引入之后，苹果就不断的更新优化，但这些更新优化只是小打小闹，直至现在iOS 10开始真正的进行大改重构，这让开发者也体会到UserNotifications的易用，功能也变得非常强大。">
-<meta property="og:updated_time" content="2016-09-20T07:15:47.000Z">
+<meta property="og:image" content="http://yoursite.com/images/16091801.png">
+<meta property="og:updated_time" content="2016-09-20T09:31:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="兼容iOS 10 资料整理笔记">
 <meta name="twitter:description" content="Notification(通知)自从Notification被引入之后，苹果就不断的更新优化，但这些更新优化只是小打小闹，直至现在iOS 10开始真正的进行大改重构，这让开发者也体会到UserNotifications的易用，功能也变得非常强大。">
+<meta name="twitter:image" content="http://yoursite.com/images/16091801.png">
 <meta name="twitter:creator" content="@allenfeng945">
 
     
@@ -97,7 +99,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Notification-通知"><span class="toc-number">1.</span> <span class="toc-text">Notification(通知)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ATS的问题"><span class="toc-number">2.</span> <span class="toc-text">ATS的问题</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Notification-通知"><span class="toc-number">1.</span> <span class="toc-text">Notification(通知)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ATS的问题"><span class="toc-number">2.</span> <span class="toc-text">ATS的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS-10-隐私权限设置"><span class="toc-number">3.</span> <span class="toc-text">iOS 10 隐私权限设置</span></a></li></ol>
 		
 		</div>
 		
@@ -126,12 +128,13 @@
 <li>iOS 10开始对于权限问题进行了优化，申请权限就比较简单了(本地与远程通知集成在一个方法中)。</li>
 </ul>
 </blockquote>
-<ul>
-<li>iOS 10 通知学习相关资料：<br><a href="https://developer.apple.com/reference/usernotifications" target="_blank" rel="external">苹果官方文档</a> - <a href="https://developer.apple.com/videos/play/wwdc2016/707/" target="_blank" rel="external">苹果官方视频1</a> - <a href="https://developer.apple.com/videos/play/wwdc2016/708/" target="_blank" rel="external">苹果官方视频2</a> - <a href="https://developer.apple.com/videos/play/wwdc2016/724/" target="_blank" rel="external">苹果官方视频3</a><br><a href="https://onevcat.com/2016/08/notification/" target="_blank" rel="external">活久见的重构 - iOS 10 UserNotifications 框架解析</a><br><a href="http://www.jianshu.com/p/9b720efe3779" target="_blank" rel="external">WWDC2016 Session笔记 - iOS 10 推送Notification新特性</a></li>
-</ul>
+<p>iOS 10 通知学习相关资料：<br><a href="https://developer.apple.com/reference/usernotifications" target="_blank" rel="external">苹果官方文档</a> - <a href="https://developer.apple.com/videos/play/wwdc2016/707/" target="_blank" rel="external">苹果官方视频1</a> - <a href="https://developer.apple.com/videos/play/wwdc2016/708/" target="_blank" rel="external">苹果官方视频2</a> - <a href="https://developer.apple.com/videos/play/wwdc2016/724/" target="_blank" rel="external">苹果官方视频3</a><br><a href="https://onevcat.com/2016/08/notification/" target="_blank" rel="external">活久见的重构 - iOS 10 UserNotifications 框架解析</a><br><a href="http://www.jianshu.com/p/9b720efe3779" target="_blank" rel="external">WWDC2016 Session笔记 - iOS 10 推送Notification新特性</a></p>
 <h2 id="ATS的问题"><a href="#ATS的问题" class="headerlink" title="ATS的问题"></a>ATS的问题</h2><p>iOS 9中默认非HTTPS的网络是被禁止的，当然我们也可以把<code>NSAllowsArbitraryLoads</code>设置为<code>YES</code>禁用<code>ATS</code>。不过iOS 10从2017年1月1日起苹果不允许我们通过这个方法跳过<code>ATS</code>，也就是说强制我们用<code>HTTPS</code>，如果不这样的话提交App可能会被拒绝。但是我们可以通过<code>NSExceptionDomains</code>来针对特定的域名开放<code>HTTP</code>可以容易通过审核。</p>
 <p>参考学习文章如下：<br><a href="https://onevcat.com/2016/06/ios-10-ats/" target="_blank" rel="external">关于 iOS 10 中 ATS 的问题</a></p>
-<p><a href="http://www.jianshu.com/p/0cc7aad638d9" target="_blank" rel="external">原文链接</a></p>
+<h2 id="iOS-10-隐私权限设置"><a href="#iOS-10-隐私权限设置" class="headerlink" title="iOS 10 隐私权限设置"></a>iOS 10 隐私权限设置</h2><p>iOS 10 开始对隐私权限更加严格，如果你不设置就会直接崩溃，现在很多遇到崩溃问题了，一般解决办法都是在<code>info.plist</code>文件添加对应的<code>Key</code>-<code>Value</code>就可以了。</p>
+<p><img src="/images/16091801.png" alt=""></p>
+<p>以上<code>Value</code>值，圈出的红线部分的文字是展示给用户看的，需要自己添加规范的提示说明，不能为空。目前解决办法基本都一样，参考学习文章如下：<br>兼容iOS 10：配置获取隐私数据权限声明</p>
+<p><a href="http://www.jianshu.com/p/0cc7aad638d9" target="_blank" rel="external">原文链接  文／判若两人（简书作者）</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -185,7 +188,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Notification-通知"><span class="toc-number">1.</span> <span class="toc-text">Notification(通知)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ATS的问题"><span class="toc-number">2.</span> <span class="toc-text">ATS的问题</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Notification-通知"><span class="toc-number">1.</span> <span class="toc-text">Notification(通知)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ATS的问题"><span class="toc-number">2.</span> <span class="toc-text">ATS的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS-10-隐私权限设置"><span class="toc-number">3.</span> <span class="toc-text">iOS 10 隐私权限设置</span></a></li></ol>
  
   </div>
 
