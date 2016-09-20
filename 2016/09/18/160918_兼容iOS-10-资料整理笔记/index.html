@@ -18,7 +18,9 @@
 <meta property="og:site_name" content="aFeng`s Blog">
 <meta property="og:description" content="Notification(通知)自从Notification被引入之后，苹果就不断的更新优化，但这些更新优化只是小打小闹，直至现在iOS 10开始真正的进行大改重构，这让开发者也体会到UserNotifications的易用，功能也变得非常强大。">
 <meta property="og:image" content="http://yoursite.com/images/16091801.png">
-<meta property="og:updated_time" content="2016-09-20T09:33:47.000Z">
+<meta property="og:image" content="http://yoursite.com/images/16091802.png">
+<meta property="og:image" content="http://yoursite.com/images/16091803.png">
+<meta property="og:updated_time" content="2016-09-20T09:42:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="兼容iOS 10 资料整理笔记">
 <meta name="twitter:description" content="Notification(通知)自从Notification被引入之后，苹果就不断的更新优化，但这些更新优化只是小打小闹，直至现在iOS 10开始真正的进行大改重构，这让开发者也体会到UserNotifications的易用，功能也变得非常强大。">
@@ -51,7 +53,7 @@
 				<h1 class="site-name"><a href="/" title="aFeng`s Blog">aFeng`s Blog</a></h1>
 				<h2 class="blog-motto">记录学习的点点滴滴</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -67,7 +69,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -90,16 +92,16 @@
 		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
 		
   <p class="article-time">
-    <time datetime="2016-09-18T06:48:49.000Z" itemprop="datePublished"> Published 2016-09-18</time>
+    <time datetime="2016-09-18T06:48:49.000Z" itemprop="datePublished"> 发表于 2016-09-18</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Notification-通知"><span class="toc-number">1.</span> <span class="toc-text">Notification(通知)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ATS的问题"><span class="toc-number">2.</span> <span class="toc-text">ATS的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS-10-隐私权限设置"><span class="toc-number">3.</span> <span class="toc-text">iOS 10 隐私权限设置</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Notification-通知"><span class="toc-number">1.</span> <span class="toc-text">Notification(通知)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ATS的问题"><span class="toc-number">2.</span> <span class="toc-text">ATS的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS-10-隐私权限设置"><span class="toc-number">3.</span> <span class="toc-text">iOS 10 隐私权限设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Xcode-8-运行一堆没用的logs解决办法"><span class="toc-number">4.</span> <span class="toc-text">Xcode 8 运行一堆没用的logs解决办法</span></a></li></ol>
 		
 		</div>
 		
@@ -134,6 +136,9 @@
 <h2 id="iOS-10-隐私权限设置"><a href="#iOS-10-隐私权限设置" class="headerlink" title="iOS 10 隐私权限设置"></a>iOS 10 隐私权限设置</h2><p>iOS 10 开始对隐私权限更加严格，如果你不设置就会直接崩溃，现在很多遇到崩溃问题了，一般解决办法都是在<code>info.plist</code>文件添加对应的<code>Key</code>-<code>Value</code>就可以了。</p>
 <p><img src="/images/16091801.png" alt=""></p>
 <p>以上<code>Value</code>值，圈出的红线部分的文字是展示给用户看的，需要自己添加规范的提示说明，不能为空。目前解决办法基本都一样，参考学习文章如下：<br><a href="http://www.jianshu.com/p/616240463a7a" target="_blank" rel="external">兼容iOS 10：配置获取隐私数据权限声明</a></p>
+<h2 id="Xcode-8-运行一堆没用的logs解决办法"><a href="#Xcode-8-运行一堆没用的logs解决办法" class="headerlink" title="Xcode 8 运行一堆没用的logs解决办法"></a>Xcode 8 运行一堆没用的logs解决办法</h2><p>如图我们看到，自己新建的一个工程啥也没干就打印一堆烂七八糟的东西：<br><img src="/images/16091802.png" alt=""></p>
+<p>我觉得这个应该是Xcode 8的问题，具体也没细研究，解决办法是设置OS_ACTIVITY_MODE : disable如下图:<br><img src="/images/16091803.png" alt=""></p>
+<p>相关问题连接：<br><a href="http://stackoverflow.com/questions/37800790/hide-strange-unwanted-xcode-8-logs" target="_blank" rel="external">stackoverflow问答</a></p>
 <hr>
 <p><a href="http://www.jianshu.com/p/0cc7aad638d9" target="_blank" rel="external">原文链接  文／判若两人（简书作者）</a></p>
   
@@ -184,22 +189,22 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Notification-通知"><span class="toc-number">1.</span> <span class="toc-text">Notification(通知)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ATS的问题"><span class="toc-number">2.</span> <span class="toc-text">ATS的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS-10-隐私权限设置"><span class="toc-number">3.</span> <span class="toc-text">iOS 10 隐私权限设置</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Notification-通知"><span class="toc-number">1.</span> <span class="toc-text">Notification(通知)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ATS的问题"><span class="toc-number">2.</span> <span class="toc-text">ATS的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS-10-隐私权限设置"><span class="toc-number">3.</span> <span class="toc-text">iOS 10 隐私权限设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Xcode-8-运行一堆没用的logs解决办法"><span class="toc-number">4.</span> <span class="toc-text">Xcode 8 运行一堆没用的logs解决办法</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github Card</p>
+<p class="asidetitle">Github 名片</p>
 <div class="github-card" data-github="Allen-Feng" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -211,7 +216,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
@@ -235,7 +240,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -275,11 +280,11 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">Weibo</p>
+  <p class="asidetitle">新浪微博</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5580378505&verifier=07a80851&dpc=1"></iframe>
 </div>
 
@@ -528,7 +533,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
