@@ -11,20 +11,24 @@
     
 
     
-    <meta name="description" content="简介Charles是在 Mac 下常用的网络封包截取工具，在做移动开发时，我们为了调试与服务器端的网络通讯协议，常常需要截取网络封包来分析。">
+    <meta name="description" content="简介Charles 是在 Mac 下常用的网络封包截取工具，在做移动开发时，我们为了调试与服务器端的网络通讯协议，常常需要截取网络封包来分析。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Charles 从入门到精通">
 <meta property="og:url" content="http://yoursite.com/2016/09/21/160921_Charles-从入门到精通/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
-<meta property="og:description" content="简介Charles是在 Mac 下常用的网络封包截取工具，在做移动开发时，我们为了调试与服务器端的网络通讯协议，常常需要截取网络封包来分析。">
+<meta property="og:description" content="简介Charles 是在 Mac 下常用的网络封包截取工具，在做移动开发时，我们为了调试与服务器端的网络通讯协议，常常需要截取网络封包来分析。">
 <meta property="og:image" content="http://yoursite.com/images/16092101.png">
 <meta property="og:image" content="http://yoursite.com/images/16092102.png">
 <meta property="og:image" content="http://yoursite.com/images/16092103.png">
 <meta property="og:image" content="http://yoursite.com/images/16092104.png">
-<meta property="og:updated_time" content="2016-09-21T03:23:34.000Z">
+<meta property="og:image" content="http://yoursite.com/images/16092105.png">
+<meta property="og:image" content="http://yoursite.com/images/16092106.png">
+<meta property="og:image" content="http://yoursite.com/images/16092107.png">
+<meta property="og:image" content="http://yoursite.com/images/16092108.png">
+<meta property="og:updated_time" content="2016-09-21T03:36:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Charles 从入门到精通">
-<meta name="twitter:description" content="简介Charles是在 Mac 下常用的网络封包截取工具，在做移动开发时，我们为了调试与服务器端的网络通讯协议，常常需要截取网络封包来分析。">
+<meta name="twitter:description" content="简介Charles 是在 Mac 下常用的网络封包截取工具，在做移动开发时，我们为了调试与服务器端的网络通讯协议，常常需要截取网络封包来分析。">
 <meta name="twitter:image" content="http://yoursite.com/images/16092101.png">
 <meta name="twitter:creator" content="@allenfeng945">
 
@@ -54,7 +58,7 @@
 				<h1 class="site-name"><a href="/" title="aFeng`s Blog">aFeng`s Blog</a></h1>
 				<h2 class="blog-motto">记录学习的点点滴滴</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -93,20 +97,20 @@
 		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
 		
   <p class="article-time">
-    <time datetime="2016-09-21T03:12:18.000Z" itemprop="datePublished"> 發表於 2016-09-21</time>
+    <time datetime="2016-09-21T03:12:18.000Z" itemprop="datePublished"> 发表于 2016-09-21</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#截取-iPhone-上的网络封包"><span class="toc-number">2.</span> <span class="toc-text">截取 iPhone 上的网络封包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Charles-上的设置"><span class="toc-number">2.1.</span> <span class="toc-text">Charles 上的设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iPhone-上的设置"><span class="toc-number">2.2.</span> <span class="toc-text">iPhone 上的设置</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将-Charles-设置成系统代理"><span class="toc-number">2.</span> <span class="toc-text">将 Charles 设置成系统代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Charles-主界面介绍"><span class="toc-number">3.</span> <span class="toc-text">Charles 主界面介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过滤网络请求"><span class="toc-number">4.</span> <span class="toc-text">过滤网络请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#截取-iPhone-上的网络封包"><span class="toc-number">5.</span> <span class="toc-text">截取 iPhone 上的网络封包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Charles-上的设置"><span class="toc-number">5.1.</span> <span class="toc-text">Charles 上的设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iPhone-上的设置"><span class="toc-number">5.2.</span> <span class="toc-text">iPhone 上的设置</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a href="http://www.charlesproxy.com" target="_blank" rel="external">Charles</a>是在 Mac 下常用的网络封包截取工具，在做移动开发时，我们为了调试与服务器端的网络通讯协议，常常需要截取网络封包来分析。</p>
+		<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a href="http://www.charlesproxy.com" target="_blank" rel="external">Charles</a> 是在 Mac 下常用的网络封包截取工具，在做移动开发时，我们为了调试与服务器端的网络通讯协议，常常需要截取网络封包来分析。</p>
 <a id="more"></a>
 <p>Charles 通过将自己设置成系统的网络访问代理服务器，使得所有的网络访问请求都通过它来完成，从而实现了网络封包的截取和分析。</p>
 <p>除了在做移动开发中调试端口外，<code>Charles</code>也可以用于分析第三方应用的通讯协议。配合<code>Charles</code>的<code>SSL</code>功能，<code>Charles</code>还可以分析<code>Https</code>协议。</p>
@@ -124,12 +128,29 @@
 <li>支持 Http 2。</li>
 <li>支持 IPv6。</li>
 </ul>
+<h2 id="将-Charles-设置成系统代理"><a href="#将-Charles-设置成系统代理" class="headerlink" title="将 Charles 设置成系统代理"></a>将 Charles 设置成系统代理</h2><p>之前提到，Charles 是通过将自己设置成代理服务器来完成封包截取的，所以使用 Charles 的第一步是将其设置成系统的代理服务器。</p>
+<p>启动 Charles 后，第一次 Charles 会请求你给它设置系统代理的权限。你可以输入登录密码授予 Charles 该权限。你也可以忽略该请求，然后在需要将 Charles 设置成系统代理时，选择菜单中的 “Proxy” -&gt; “Mac OS X Proxy” 来将 Charles 设置成系统代理。如下所示：<br><img src="/images/16092101.png" alt=""></p>
+<p>之后，你就可以看到源源不断的网络请求出现在 Charles 的界面中。</p>
+<p>需要注意的是，Chrome 和 Firefox 浏览器默认并不使用系统的代理服务器设置，而 Charles 是通过将自己设置成代理服务器来完成封包截取的，所以在默认情况下无法截取 Chrome 和 Firefox 浏览器的网络通讯内容。如果你需要截取的话，在 Chrome 中设置成使用系统的代理服务器设置即可，或者直接将代理服务器设置成 127.0.0.1:8888 也可达到相同效果。</p>
+<h2 id="Charles-主界面介绍"><a href="#Charles-主界面介绍" class="headerlink" title="Charles 主界面介绍"></a>Charles 主界面介绍</h2><p>Charles 主要提供两种查看封包的视图，分别名为 “Structure” 和 “Sequence”。 </p>
+<ol>
+<li>Structure 视图将网络请求按访问的域名分类。</li>
+<li>Sequence 视图将网络请求按访问的时间排序。</li>
+</ol>
+<p>大家可以根据具体的需要在这两种视图之前来回切换。请求多了有些时候会看不过来，Charles 提供了一个简单的 Filter 功能，可以输入关键字来快速筛选出 URL 中带指定关键字的网络请求。<br><img src="/images/16092102.png" alt=""></p>
+<p>对于某一个具体的网络请求，你可以查看其详细的请求内容和响应内容。如果请求内容是 POST 的表单，Charles 会自动帮你将表单进行分项显示。如果响应内容是 JSON 格式的，那么 Charles 可以自动帮你将 JSON 内容格式化，方便你查看。如果响应内容是图片，那么 Charles 可以显示出图片的预览。</p>
+<h2 id="过滤网络请求"><a href="#过滤网络请求" class="headerlink" title="过滤网络请求"></a>过滤网络请求</h2><p>通常情况下，我们需要对网络请求进行过滤，只监控向指定目录服务器上发送的请求。对于这种需求，以下几种办法：</p>
+<p>方法一：在主界面的中部的 Filter 栏中填入需要过滤出来的关键字。例如我们的服务器的地址是：<a href="http://yuantiku.com" target="_blank" rel="external">http://yuantiku.com</a> , 那么只需要在 Filter 栏中填入 yuantiku 即可。</p>
+<p>方法二：在 Charles 的菜单栏选择 “Proxy”-&gt;”Recording Settings”，然后选择 Include 栏，选择添加一个项目，然后填入需要监控的协议，主机地址，端口号。这样就可以只截取目标网站的封包了。如下图所示：<br><img src="/images/16092103.png" alt=""></p>
+<p>通常情况下，我们使用方法一做一些临时性的封包过滤，使用方法二做一些经常性的封包过滤。</p>
+<p>方法三：在想过滤的网络请求上右击，选择 “Focus”，之后在 Filter 一栏勾选上 Focussed 一项，如下图所示：<br><img src="/images/16092104.png" alt=""></p>
+<p>这种方式可以临时性的，快速地过滤出一些没有通过关键字的一类网络请求。</p>
 <h2 id="截取-iPhone-上的网络封包"><a href="#截取-iPhone-上的网络封包" class="headerlink" title="截取 iPhone 上的网络封包"></a>截取 iPhone 上的网络封包</h2><p>Charles 通常用来截取本地上的网络封包，但是当我们需要时，我们也可以用来截取其它设备上的网络请求。下面我就以 iPhone 为例，讲解如何进行相应操作。</p>
 <h3 id="Charles-上的设置"><a href="#Charles-上的设置" class="headerlink" title="Charles 上的设置"></a>Charles 上的设置</h3><p>要截取 iPhone 上的网络请求，我们首先需要将 Charles 的代理功能打开。在 Charles 的菜单栏上选择 “Proxy”-&gt;”Proxy Settings”，填入代理端口 8888，并且勾上 “Enable transparent HTTP proxying” 就完成了在 Charles 上的设置。如下图所示:</p>
-<p><img src="/images/16092101.png" alt=""></p>
-<h3 id="iPhone-上的设置"><a href="#iPhone-上的设置" class="headerlink" title="iPhone 上的设置"></a>iPhone 上的设置</h3><p>首先我们需要获取 Charles 运行所在电脑的 IP 地址，Charles 的顶部菜单的 “Help”-&gt;”Local IP Address”，即可在弹出的对话框中看到 IP 地址，如下图所示：<br><img src="/images/16092102.png" alt=""></p>
-<p>在 iPhone 的 “ 设置 “-&gt;” 无线局域网 “ 中，可以看到当前连接的 wifi 名，通过点击右边的详情键，可以看到当前连接上的 wifi 的详细信息，包括 IP 地址，子网掩码等信息。在其最底部有「HTTP 代理」一项，我们将其切换成手动，然后填上 Charles 运行所在的电脑的 IP，以及端口号 8888，如下图所示：<br><img src="/images/16092103.png" alt=""></p>
-<p>设置好之后，我们打开 iPhone 上的任意需要网络通讯的程序，就可以看到 Charles 弹出 iPhone 请求连接的确认菜单（如下图所示），点击 “Allow” 即可完成设置。<br><img src="/images/16092104.png" alt=""></p>
+<p><img src="/images/16092105.png" alt=""></p>
+<h3 id="iPhone-上的设置"><a href="#iPhone-上的设置" class="headerlink" title="iPhone 上的设置"></a>iPhone 上的设置</h3><p>首先我们需要获取 Charles 运行所在电脑的 IP 地址，Charles 的顶部菜单的 “Help”-&gt;”Local IP Address”，即可在弹出的对话框中看到 IP 地址，如下图所示：<br><img src="/images/16092106.png" alt=""></p>
+<p>在 iPhone 的 “ 设置 “-&gt;” 无线局域网 “ 中，可以看到当前连接的 wifi 名，通过点击右边的详情键，可以看到当前连接上的 wifi 的详细信息，包括 IP 地址，子网掩码等信息。在其最底部有「HTTP 代理」一项，我们将其切换成手动，然后填上 Charles 运行所在的电脑的 IP，以及端口号 8888，如下图所示：<br><img src="/images/16092107.png" alt=""></p>
+<p>设置好之后，我们打开 iPhone 上的任意需要网络通讯的程序，就可以看到 Charles 弹出 iPhone 请求连接的确认菜单（如下图所示），点击 “Allow” 即可完成设置。<br><img src="/images/16092108.png" alt=""></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -173,17 +194,17 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目錄</strong>
+  <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#截取-iPhone-上的网络封包"><span class="toc-number">2.</span> <span class="toc-text">截取 iPhone 上的网络封包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Charles-上的设置"><span class="toc-number">2.1.</span> <span class="toc-text">Charles 上的设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iPhone-上的设置"><span class="toc-number">2.2.</span> <span class="toc-text">iPhone 上的设置</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将-Charles-设置成系统代理"><span class="toc-number">2.</span> <span class="toc-text">将 Charles 设置成系统代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Charles-主界面介绍"><span class="toc-number">3.</span> <span class="toc-text">Charles 主界面介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过滤网络请求"><span class="toc-number">4.</span> <span class="toc-text">过滤网络请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#截取-iPhone-上的网络封包"><span class="toc-number">5.</span> <span class="toc-text">截取 iPhone 上的网络封包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Charles-上的设置"><span class="toc-number">5.1.</span> <span class="toc-text">Charles 上的设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iPhone-上的设置"><span class="toc-number">5.2.</span> <span class="toc-text">iPhone 上的设置</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
@@ -200,7 +221,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
@@ -224,7 +245,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情鏈接</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -264,7 +285,7 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
   <div class="weiboshow">
@@ -517,7 +538,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
