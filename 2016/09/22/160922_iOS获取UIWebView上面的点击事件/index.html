@@ -11,16 +11,16 @@
     
 
     
-    <meta name="description" content="在网上看到很多文章都说iOS的UIWebView比较耗内存，在我的项目中，最开始我也是用UIWebView来加载网页的。刚开始加载的是自己拼接成的Html，后来在Html中加入一个按钮，点击之后用当前的UIWebView去加载网络上的网页。程序跑起来发现非常耗内存，加载几个网上的网页之后就爆内存警告了，不处理的话很容易被评估拒掉app。">
+    <meta name="description" content="问题背景在网上看到很多文章都说iOS的UIWebView比较耗内存，在我的项目中，最开始我也是用UIWebView来加载网页的。刚开始加载的是自己拼接成的Html，后来在Html中加入一个按钮，点击之后用当前的UIWebView去加载网络上的网页。程序跑起来发现非常耗内存，加载几个网上的网页之后就爆内存警告了，不处理的话很容易被评估拒掉app。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS获取UIWebView上面的点击事件">
 <meta property="og:url" content="http://yoursite.com/2016/09/22/160922_iOS获取UIWebView上面的点击事件/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
-<meta property="og:description" content="在网上看到很多文章都说iOS的UIWebView比较耗内存，在我的项目中，最开始我也是用UIWebView来加载网页的。刚开始加载的是自己拼接成的Html，后来在Html中加入一个按钮，点击之后用当前的UIWebView去加载网络上的网页。程序跑起来发现非常耗内存，加载几个网上的网页之后就爆内存警告了，不处理的话很容易被评估拒掉app。">
-<meta property="og:updated_time" content="2016-09-22T07:42:32.000Z">
+<meta property="og:description" content="问题背景在网上看到很多文章都说iOS的UIWebView比较耗内存，在我的项目中，最开始我也是用UIWebView来加载网页的。刚开始加载的是自己拼接成的Html，后来在Html中加入一个按钮，点击之后用当前的UIWebView去加载网络上的网页。程序跑起来发现非常耗内存，加载几个网上的网页之后就爆内存警告了，不处理的话很容易被评估拒掉app。">
+<meta property="og:updated_time" content="2016-09-22T07:45:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS获取UIWebView上面的点击事件">
-<meta name="twitter:description" content="在网上看到很多文章都说iOS的UIWebView比较耗内存，在我的项目中，最开始我也是用UIWebView来加载网页的。刚开始加载的是自己拼接成的Html，后来在Html中加入一个按钮，点击之后用当前的UIWebView去加载网络上的网页。程序跑起来发现非常耗内存，加载几个网上的网页之后就爆内存警告了，不处理的话很容易被评估拒掉app。">
+<meta name="twitter:description" content="问题背景在网上看到很多文章都说iOS的UIWebView比较耗内存，在我的项目中，最开始我也是用UIWebView来加载网页的。刚开始加载的是自己拼接成的Html，后来在Html中加入一个按钮，点击之后用当前的UIWebView去加载网络上的网页。程序跑起来发现非常耗内存，加载几个网上的网页之后就爆内存警告了，不处理的话很容易被评估拒掉app。">
 <meta name="twitter:creator" content="@allenfeng945">
 
     
@@ -97,19 +97,17 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题背景"><span class="toc-number">1.</span> <span class="toc-text">问题背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意"><span class="toc-number">3.</span> <span class="toc-text">注意</span></a></li></ol>
 		
 		</div>
 		
-		<p>在网上看到很多文章都说iOS的UIWebView比较耗内存，在我的项目中，最开始我也是用UIWebView来加载网页的。刚开始加载的是自己拼接成的Html，后来在Html中加入一个按钮，点击之后用当前的UIWebView去加载网络上的网页。程序跑起来发现非常耗内存，加载几个网上的网页之后就爆内存警告了，不处理的话很容易被评估拒掉app。</p>
+		<h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>在网上看到很多文章都说iOS的UIWebView比较耗内存，在我的项目中，最开始我也是用UIWebView来加载网页的。刚开始加载的是自己拼接成的Html，后来在Html中加入一个按钮，点击之后用当前的UIWebView去加载网络上的网页。程序跑起来发现非常耗内存，加载几个网上的网页之后就爆内存警告了，不处理的话很容易被评估拒掉app。</p>
 <a id="more"></a>
 <p>后来就改成用系统的safari浏览器来打开网络上的网页，把着耗内存的工作交给苹果自己自带的浏览器来处理，就避免了我这个app crash。但是怎么获取网页上这个按钮点击的事件呢，这个按钮本身就绑定了一个url,怎么让它点击之后当前的UIWebView不去load这个url呢。</p>
-<p>后来查了一下资料，发现UIWebView的协议里面有这么个方法，可以获取它加载的网页上面的事件，比如单击了图片，单击了按钮等等。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>后来查了一下资料，发现UIWebView的协议里面有这么个方法，可以获取它加载的网页上面的事件，比如单击了图片，单击了按钮等等。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType</div><div class="line">&#123;</div><div class="line">//判断是否是单击</div><div class="line">    if (navigationType == UIWebViewNavigationTypeLinkClicked)</div><div class="line">    &#123;</div><div class="line">        NSURL *url = [request URL];</div><div class="line">        if([[UIApplication sharedApplication]canOpenURL:url])</div><div class="line">        &#123;</div><div class="line">            [[UIApplication sharedApplication]openURL:url];</div><div class="line">        &#125;</div><div class="line">        return NO;</div><div class="line">    &#125;</div><div class="line">    return YES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这样写了之后，点击按钮之后就不会用当前的UIWebView来加载网络上的网页，而是调用系统的Safari来打开。</p>
-<blockquote>
-<p>注意：最后一点要返回YES，否则UIWebView刚开始将一片空白，这是因为第一次加载的时候也是UIWebView请求一个链接，如果返回NO，就不会去加载了。还可以对url的内容进行判断，看是什么请求。</p>
-</blockquote>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>最后一点要返回YES，否则UIWebView刚开始将一片空白，这是因为第一次加载的时候也是UIWebView请求一个链接，如果返回NO，就不会去加载了。还可以对url的内容进行判断，看是什么请求。</p>
 <p>如果为webView添加了delegate对象并实现该接口，那么在webView加载任何一个frame之前都会delegate对象的该方法，该方法的返回值用以控制是否允许加载目标链接页面的内容，返回YES将直接加载内容，NO则反之。并且UIWebViewNavigationType枚举，定义了页面中用户行为的分类，包括</p>
 <ul>
 <li>UIWebViewNavigationTypeLinkClicked，        //用户触击了一个链接。</li>
@@ -172,7 +170,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题背景"><span class="toc-number">1.</span> <span class="toc-text">问题背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意"><span class="toc-number">3.</span> <span class="toc-text">注意</span></a></li></ol>
  
   </div>
 
