@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/09/28/160928_H5容器的一些探究（一）：UIWebView和WKWebView/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
 <meta property="og:description" content="Native开发中为什么需要H5容器Native开发原生应用是手机操作系统厂商（目前主要是苹果的iOS和google的Android）对外界提供的标准化的开发模式，他们对于native开发提供了一套标准化实现和优化方案。但是他们存在一些硬伤，比如">
-<meta property="og:updated_time" content="2016-09-28T07:02:43.000Z">
+<meta property="og:updated_time" content="2016-09-28T07:03:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="H5容器的一些探究（一）：UIWebView和WKWebView">
 <meta name="twitter:description" content="Native开发中为什么需要H5容器Native开发原生应用是手机操作系统厂商（目前主要是苹果的iOS和google的Android）对外界提供的标准化的开发模式，他们对于native开发提供了一套标准化实现和优化方案。但是他们存在一些硬伤，比如">
@@ -49,7 +49,7 @@
 				<h1 class="site-name"><a href="/" title="aFeng`s Blog">aFeng`s Blog</a></h1>
 				<h2 class="blog-motto">记录学习的点点滴滴</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -65,7 +65,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -88,16 +88,16 @@
 		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
 		
   <p class="article-time">
-    <time datetime="2016-09-28T06:42:00.000Z" itemprop="datePublished"> 发表于 2016-09-28</time>
+    <time datetime="2016-09-28T06:42:00.000Z" itemprop="datePublished"> Published 2016-09-28</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Native开发中为什么需要H5容器"><span class="toc-number">1.</span> <span class="toc-text">Native开发中为什么需要H5容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIWebView的基本用法"><span class="toc-number">2.</span> <span class="toc-text">UIWebView的基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#加载网页"><span class="toc-number">2.1.</span> <span class="toc-text">加载网页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIWebViewDelegate几个常用的代理方法"><span class="toc-number">2.2.</span> <span class="toc-text">UIWebViewDelegate几个常用的代理方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Native调用JS中的方法"><span class="toc-number">2.3.</span> <span class="toc-text">Native调用JS中的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS中调用Naitve的方法"><span class="toc-number">2.4.</span> <span class="toc-text">JS中调用Naitve的方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WKWebView的基本用法"><span class="toc-number">3.</span> <span class="toc-text">WKWebView的基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#加载网页-1"><span class="toc-number">3.1.</span> <span class="toc-text">加载网页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#几个常用的代理方法"><span class="toc-number">3.2.</span> <span class="toc-text">几个常用的代理方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Native调用JS中的方法-1"><span class="toc-number">3.3.</span> <span class="toc-text">Native调用JS中的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS中调用Naitve的方法-1"><span class="toc-number">3.4.</span> <span class="toc-text">JS中调用Naitve的方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIWebView和WKWebView的比较和选择"><span class="toc-number">4.</span> <span class="toc-text">UIWebView和WKWebView的比较和选择</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Native开发中为什么需要H5容器"><span class="toc-number">1.</span> <span class="toc-text">Native开发中为什么需要H5容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIWebView的基本用法"><span class="toc-number">2.</span> <span class="toc-text">UIWebView的基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#加载网页"><span class="toc-number">2.1.</span> <span class="toc-text">加载网页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIWebViewDelegate几个常用的代理方法"><span class="toc-number">2.2.</span> <span class="toc-text">UIWebViewDelegate几个常用的代理方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Native调用JS中的方法"><span class="toc-number">2.3.</span> <span class="toc-text">Native调用JS中的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS中调用Naitve的方法"><span class="toc-number">2.4.</span> <span class="toc-text">JS中调用Naitve的方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WKWebView的基本用法"><span class="toc-number">3.</span> <span class="toc-text">WKWebView的基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#加载网页-1"><span class="toc-number">3.1.</span> <span class="toc-text">加载网页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#几个常用的代理方法"><span class="toc-number">3.2.</span> <span class="toc-text">几个常用的代理方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Native调用JS中的方法-1"><span class="toc-number">3.3.</span> <span class="toc-text">Native调用JS中的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS中调用Naitve的方法-1"><span class="toc-number">3.4.</span> <span class="toc-text">JS中调用Naitve的方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIWebView和WKWebView的比较和选择"><span class="toc-number">4.</span> <span class="toc-text">UIWebView和WKWebView的比较和选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#但是他有一个最致命的缺陷，就是WKWebView的请求不能被NSURLProtocol截获。而我们团队开发的app中对于H5容器最佳的优化点主要就在于使用NSURLProtocol技术对于H5进行离线包的处理和H5的图片和Native的图片公用一套缓存的技术。因为该问题的存在，目前我们团队还没有使用WKWebView代替UIWebVIew。"><span class="toc-number">5.</span> <span class="toc-text">但是他有一个最致命的缺陷，就是WKWebView的请求不能被NSURLProtocol截获。而我们团队开发的app中对于H5容器最佳的优化点主要就在于使用NSURLProtocol技术对于H5进行离线包的处理和H5的图片和Native的图片公用一套缓存的技术。因为该问题的存在，目前我们团队还没有使用WKWebView代替UIWebVIew。</span></a></li></ol>
 		
 		</div>
 		
@@ -144,7 +144,7 @@ NSURLRequest *request = [NSURLRequest requestWithURL:url];
 <p>触发以上方法的时候，会在native以下方法中进行拦截处理。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#pragma mark - WKScriptMessageHandler</div><div class="line">- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message&#123;</div><div class="line">    //这里就是使用高端配置，js调用native的处理地方。我们可以根据name和body，进行桥协议的处理。</div><div class="line">    NSString *messageName = message.name;</div><div class="line">    if ([@&quot;NativeMethod&quot; isEqualToString:messageName]) &#123;</div><div class="line">        id messageBody = message.body;</div><div class="line">        NSLog(@&quot;%@&quot;,messageBody);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="UIWebView和WKWebView的比较和选择"><a href="#UIWebView和WKWebView的比较和选择" class="headerlink" title="UIWebView和WKWebView的比较和选择"></a>UIWebView和WKWebView的比较和选择</h2><p>WKWebView是苹果在WWDC2014发布会中发布IOS8的时候公布WebKit时候使用的新型的H5容器。它与UIWebView相比较，拥有更快的加载速度和性能，更低的内存占用。将UIWebViewDelegate和UIWebView重构成了14个类，3个协议，可以让开发者进行更加细致的配置。</p>
-<p>但是他有一个最致命的缺陷，就是WKWebView的请求不能被NSURLProtocol截获。而我们团队开发的app中对于H5容器最佳的优化点主要就在于使用NSURLProtocol技术对于H5进行离线包的处理和H5的图片和Native的图片公用一套缓存的技术。因为该问题的存在，目前我们团队还没有使用WKWebView代替UIWebVIew。<br><a href="http://www.jianshu.com/p/84a6b1ac974a#" target="_blank" rel="external">原文链接</a></p>
+<h2 id="但是他有一个最致命的缺陷，就是WKWebView的请求不能被NSURLProtocol截获。而我们团队开发的app中对于H5容器最佳的优化点主要就在于使用NSURLProtocol技术对于H5进行离线包的处理和H5的图片和Native的图片公用一套缓存的技术。因为该问题的存在，目前我们团队还没有使用WKWebView代替UIWebVIew。"><a href="#但是他有一个最致命的缺陷，就是WKWebView的请求不能被NSURLProtocol截获。而我们团队开发的app中对于H5容器最佳的优化点主要就在于使用NSURLProtocol技术对于H5进行离线包的处理和H5的图片和Native的图片公用一套缓存的技术。因为该问题的存在，目前我们团队还没有使用WKWebView代替UIWebVIew。" class="headerlink" title="但是他有一个最致命的缺陷，就是WKWebView的请求不能被NSURLProtocol截获。而我们团队开发的app中对于H5容器最佳的优化点主要就在于使用NSURLProtocol技术对于H5进行离线包的处理和H5的图片和Native的图片公用一套缓存的技术。因为该问题的存在，目前我们团队还没有使用WKWebView代替UIWebVIew。"></a>但是他有一个最致命的缺陷，就是WKWebView的请求不能被NSURLProtocol截获。而我们团队开发的app中对于H5容器最佳的优化点主要就在于使用NSURLProtocol技术对于H5进行离线包的处理和H5的图片和Native的图片公用一套缓存的技术。因为该问题的存在，目前我们团队还没有使用WKWebView代替UIWebVIew。</h2><p><a href="http://www.jianshu.com/p/84a6b1ac974a#" target="_blank" rel="external">原文链接</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -193,22 +193,22 @@ NSURLRequest *request = [NSURLRequest requestWithURL:url];
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Native开发中为什么需要H5容器"><span class="toc-number">1.</span> <span class="toc-text">Native开发中为什么需要H5容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIWebView的基本用法"><span class="toc-number">2.</span> <span class="toc-text">UIWebView的基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#加载网页"><span class="toc-number">2.1.</span> <span class="toc-text">加载网页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIWebViewDelegate几个常用的代理方法"><span class="toc-number">2.2.</span> <span class="toc-text">UIWebViewDelegate几个常用的代理方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Native调用JS中的方法"><span class="toc-number">2.3.</span> <span class="toc-text">Native调用JS中的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS中调用Naitve的方法"><span class="toc-number">2.4.</span> <span class="toc-text">JS中调用Naitve的方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WKWebView的基本用法"><span class="toc-number">3.</span> <span class="toc-text">WKWebView的基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#加载网页-1"><span class="toc-number">3.1.</span> <span class="toc-text">加载网页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#几个常用的代理方法"><span class="toc-number">3.2.</span> <span class="toc-text">几个常用的代理方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Native调用JS中的方法-1"><span class="toc-number">3.3.</span> <span class="toc-text">Native调用JS中的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS中调用Naitve的方法-1"><span class="toc-number">3.4.</span> <span class="toc-text">JS中调用Naitve的方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIWebView和WKWebView的比较和选择"><span class="toc-number">4.</span> <span class="toc-text">UIWebView和WKWebView的比较和选择</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Native开发中为什么需要H5容器"><span class="toc-number">1.</span> <span class="toc-text">Native开发中为什么需要H5容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIWebView的基本用法"><span class="toc-number">2.</span> <span class="toc-text">UIWebView的基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#加载网页"><span class="toc-number">2.1.</span> <span class="toc-text">加载网页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIWebViewDelegate几个常用的代理方法"><span class="toc-number">2.2.</span> <span class="toc-text">UIWebViewDelegate几个常用的代理方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Native调用JS中的方法"><span class="toc-number">2.3.</span> <span class="toc-text">Native调用JS中的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS中调用Naitve的方法"><span class="toc-number">2.4.</span> <span class="toc-text">JS中调用Naitve的方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WKWebView的基本用法"><span class="toc-number">3.</span> <span class="toc-text">WKWebView的基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#加载网页-1"><span class="toc-number">3.1.</span> <span class="toc-text">加载网页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#几个常用的代理方法"><span class="toc-number">3.2.</span> <span class="toc-text">几个常用的代理方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Native调用JS中的方法-1"><span class="toc-number">3.3.</span> <span class="toc-text">Native调用JS中的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS中调用Naitve的方法-1"><span class="toc-number">3.4.</span> <span class="toc-text">JS中调用Naitve的方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIWebView和WKWebView的比较和选择"><span class="toc-number">4.</span> <span class="toc-text">UIWebView和WKWebView的比较和选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#但是他有一个最致命的缺陷，就是WKWebView的请求不能被NSURLProtocol截获。而我们团队开发的app中对于H5容器最佳的优化点主要就在于使用NSURLProtocol技术对于H5进行离线包的处理和H5的图片和Native的图片公用一套缓存的技术。因为该问题的存在，目前我们团队还没有使用WKWebView代替UIWebVIew。"><span class="toc-number">5.</span> <span class="toc-text">但是他有一个最致命的缺陷，就是WKWebView的请求不能被NSURLProtocol截获。而我们团队开发的app中对于H5容器最佳的优化点主要就在于使用NSURLProtocol技术对于H5进行离线包的处理和H5的图片和Native的图片公用一套缓存的技术。因为该问题的存在，目前我们团队还没有使用WKWebView代替UIWebVIew。</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github 名片</p>
+<p class="asidetitle">Github Card</p>
 <div class="github-card" data-github="Allen-Feng" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -220,7 +220,7 @@ NSURLRequest *request = [NSURLRequest requestWithURL:url];
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -244,7 +244,7 @@ NSURLRequest *request = [NSURLRequest requestWithURL:url];
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -284,11 +284,11 @@ NSURLRequest *request = [NSURLRequest requestWithURL:url];
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
+  <p class="asidetitle">Weibo</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5580378505&verifier=07a80851&dpc=1"></iframe>
 </div>
 
@@ -537,7 +537,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
