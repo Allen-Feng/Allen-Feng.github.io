@@ -4,19 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>aFeng`s Blog</title>
+    <title>H5容器的一些探究（二）：iOS下的黑魔法NSURLProtocol | aFeng`s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Allen Feng">
     
 
     
-    <meta property="og:type" content="website">
-<meta property="og:title" content="aFeng`s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+    <meta name="description" content="前言NSURLProtocol是iOS中URL Loading System的一部分。如果开发者自定义的一个NSURLProtocol并且注册到app中，那么在这个自定义的NSURLProtocol中我们可以拦截UIWebView，基于系统的NSURLConnection或者NSURLSession进行封装的网络请求，然后做到自定义的response返回。非常强大。
+NSURLProtocol的使">
+<meta property="og:type" content="article">
+<meta property="og:title" content="H5容器的一些探究（二）：iOS下的黑魔法NSURLProtocol">
+<meta property="og:url" content="http://yoursite.com/2016/09/30/160930_H5容器的一些探究（二）：iOS下的黑魔法NSURLProtocol/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
+<meta property="og:description" content="前言NSURLProtocol是iOS中URL Loading System的一部分。如果开发者自定义的一个NSURLProtocol并且注册到app中，那么在这个自定义的NSURLProtocol中我们可以拦截UIWebView，基于系统的NSURLConnection或者NSURLSession进行封装的网络请求，然后做到自定义的response返回。非常强大。
+NSURLProtocol的使">
+<meta property="og:updated_time" content="2016-09-30T08:14:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="aFeng`s Blog">
+<meta name="twitter:title" content="H5容器的一些探究（二）：iOS下的黑魔法NSURLProtocol">
+<meta name="twitter:description" content="前言NSURLProtocol是iOS中URL Loading System的一部分。如果开发者自定义的一个NSURLProtocol并且注册到app中，那么在这个自定义的NSURLProtocol中我们可以拦截UIWebView，基于系统的NSURLConnection或者NSURLSession进行封装的网络请求，然后做到自定义的response返回。非常强大。
+NSURLProtocol的使">
 <meta name="twitter:creator" content="@allenfeng945">
 
     
@@ -71,12 +78,10 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
   <h1 itemprop="name">
     
       <a href="/2016/09/30/160930_H5容器的一些探究（二）：iOS下的黑魔法NSURLProtocol/" title="H5容器的一些探究（二）：iOS下的黑魔法NSURLProtocol" itemprop="url">H5容器的一些探究（二）：iOS下的黑魔法NSURLProtocol</a>
@@ -90,9 +95,16 @@
     
   </p>
 </header>
-    <div class="article-content">
-        
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>NSURLProtocol</code>是iOS中<a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html" target="_blank" rel="external">URL Loading System</a>的一部分。如果开发者自定义的一个<code>NSURLProtocol</code>并且注册到<code>app</code>中，那么在这个自定义的<code>NSURLProtocol</code>中我们可以拦截<code>UIWebView</code>，基于系统的<code>NSURLConnection</code>或者<code>NSURLSession</code>进行封装的网络请求，然后做到自定义的<code>response</code>返回。非常强大。</p>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSURLProtocol的使用流程"><span class="toc-number">2.</span> <span class="toc-text">NSURLProtocol的使用流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在AppDelegate中注册自定义的NSURLProtocol。"><span class="toc-number">2.1.</span> <span class="toc-text">在AppDelegate中注册自定义的NSURLProtocol。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSURLProtocol中的几个方法"><span class="toc-number">2.2.</span> <span class="toc-text">NSURLProtocol中的几个方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#是否进入自定义的NSURLProtocol加载器"><span class="toc-number">2.2.1.</span> <span class="toc-text">是否进入自定义的NSURLProtocol加载器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重新设置NSURLRequest的信息"><span class="toc-number">2.2.2.</span> <span class="toc-text">重新设置NSURLRequest的信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#是否父类的实现"><span class="toc-number">2.2.3.</span> <span class="toc-text">是否父类的实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#被拦截的请求开始执行的地方"><span class="toc-number">2.2.4.</span> <span class="toc-text">被拦截的请求开始执行的地方</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结束加载URL请求"><span class="toc-number">2.2.5.</span> <span class="toc-text">结束加载URL请求</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSURLProtocolClient中的几个方法"><span class="toc-number">2.3.</span> <span class="toc-text">NSURLProtocolClient中的几个方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现一个地址重定向的Demo"><span class="toc-number">3.</span> <span class="toc-text">实现一个地址重定向的Demo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一步，新建一个UIWebView，加载sina首页"><span class="toc-number">3.1.</span> <span class="toc-text">第一步，新建一个UIWebView，加载sina首页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义一个NSURLProtocol"><span class="toc-number">3.2.</span> <span class="toc-text">自定义一个NSURLProtocol</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在AppDelegate中，进行注册"><span class="toc-number">3.3.</span> <span class="toc-text">在AppDelegate中，进行注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在canInitWithRequest方法中拦截https-sina-cn"><span class="toc-number">3.4.</span> <span class="toc-text">在canInitWithRequest方法中拦截https://sina.cn/</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在startLoading中进行方法重定向"><span class="toc-number">3.5.</span> <span class="toc-text">在startLoading中进行方法重定向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现他的代理方法"><span class="toc-number">3.6.</span> <span class="toc-text">实现他的代理方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">4.</span> <span class="toc-text">小结</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>NSURLProtocol</code>是iOS中<a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html" target="_blank" rel="external">URL Loading System</a>的一部分。如果开发者自定义的一个<code>NSURLProtocol</code>并且注册到<code>app</code>中，那么在这个自定义的<code>NSURLProtocol</code>中我们可以拦截<code>UIWebView</code>，基于系统的<code>NSURLConnection</code>或者<code>NSURLSession</code>进行封装的网络请求，然后做到自定义的<code>response</code>返回。非常强大。</p>
 <h2 id="NSURLProtocol的使用流程"><a href="#NSURLProtocol的使用流程" class="headerlink" title="NSURLProtocol的使用流程"></a>NSURLProtocol的使用流程</h2><h3 id="在AppDelegate中注册自定义的NSURLProtocol。"><a href="#在AppDelegate中注册自定义的NSURLProtocol。" class="headerlink" title="在AppDelegate中注册自定义的NSURLProtocol。"></a>在AppDelegate中注册自定义的NSURLProtocol。</h3><p>比如我这边自定义的<code>NSURLProtocol</code>叫做<code>YXNSURLProtocol</code>。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@interface YXNSURLProtocol : NSURLProtocol</div><div class="line">@end</div></pre></td></tr></table></figure>
 <p>在系统加载的时候，把自定义的YXNSURLProtocol注册到URL加载系统中，这样 所有的URL请求都有机会进入我们自定义的YXNSURLProtocol进行拦截处理。</p>
@@ -134,14 +146,9 @@
 <li>当有多个自定义NSURLProtocol注册到系统中的话，会按照他们注册的反向顺序依次调用URL加载流程。当其中有一个NSURLProtocol拦截到请求的话，后续的NSURLProtocol就无法拦截到该请求。</li>
 </ol>
 <p><a href="http://www.jianshu.com/p/03ddcfe5ebd7" target="_blank" rel="external">原文链接</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
+  
+	</div>
+		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 
@@ -154,567 +161,47 @@
 
 
 
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/09/30/160930_H5容器的一些探究（二）：iOS下的黑魔法NSURLProtocol/" data-title="H5容器的一些探究（二）：iOS下的黑魔法NSURLProtocol | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
+	  </div>
+	
+	</div>
 
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/09/30/160930_H5容器的一些探究（二）：iOS下的黑魔法NSURLProtocol/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/30/160930_H5容器的一些探究（二）：iOS下的黑魔法NSURLProtocol/" data-count-type="comments">&nbsp;</a>
-	
-</div>
 
 </footer>
 
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/09/28/160928_H5容器的一些探究（一）：UIWebView和WKWebView/" title="H5容器的一些探究（一）：UIWebView和WKWebView" itemprop="url">H5容器的一些探究（一）：UIWebView和WKWebView</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
-		
-  <p class="article-time">
-    <time datetime="2016-09-28T06:42:00.000Z" itemprop="datePublished"> 發表於 2016-09-28</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="Native开发中为什么需要H5容器"><a href="#Native开发中为什么需要H5容器" class="headerlink" title="Native开发中为什么需要H5容器"></a>Native开发中为什么需要H5容器</h2><p>Native开发原生应用是手机操作系统厂商（目前主要是苹果的iOS和google的Android）对外界提供的标准化的开发模式，他们对于native开发提供了一套标准化实现和优化方案。但是他们存在一些硬伤，比如<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/09/28/160928_H5容器的一些探究（一）：UIWebView和WKWebView/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/iOS/">iOS</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
+   	       
+	</article>
 	
-	  	<span></span>
-		<a href="/2016/09/28/160928_H5容器的一些探究（一）：UIWebView和WKWebView/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/28/160928_H5容器的一些探究（一）：UIWebView和WKWebView/" data-count-type="comments">&nbsp;</a>
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/09/28/160928_H5容器的一些探究（一）：UIWebView和WKWebView/"  title="H5容器的一些探究（一）：UIWebView和WKWebView">
+ <strong>下一篇：</strong><br/> 
+ <span>H5容器的一些探究（一）：UIWebView和WKWebView
+</span>
+</a>
+</div>
+
+</nav>
+
 	
-</div>
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/09/30/160930_H5容器的一些探究（二）：iOS下的黑魔法NSURLProtocol/" data-title="H5容器的一些探究（二）：iOS下的黑魔法NSURLProtocol" data-url="http://yoursite.com/2016/09/30/160930_H5容器的一些探究（二）：iOS下的黑魔法NSURLProtocol/"></div>
+</section>
 
-</footer>
 
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/09/22/160922_iOS获取UIWebView上面的点击事件/" title="iOS获取UIWebView上面的点击事件" itemprop="url">iOS获取UIWebView上面的点击事件</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
-		
-  <p class="article-time">
-    <time datetime="2016-09-22T07:33:46.000Z" itemprop="datePublished"> 發表於 2016-09-22</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>在网上看到很多文章都说iOS的<code>UIWebView</code>比较耗内存，在我的项目中，最开始我也是用<code>UIWebView</code>来加载网页的。刚开始加载的是自己拼接成的<code>HTML</code>，后来在<code>HTML</code>中加入一个按钮，点击之后用当前的<code>UIWebView</code>去加载网络上的网页。程序跑起来发现非常耗内存，加载几个网上的网页之后就爆内存警告了，不处理的话很容易被评估拒掉app。</p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/09/22/160922_iOS获取UIWebView上面的点击事件/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/iOS/">iOS</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/09/22/160922_iOS获取UIWebView上面的点击事件/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/22/160922_iOS获取UIWebView上面的点击事件/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/09/21/160921_Charles-从入门到精通/" title="Charles 从入门到精通" itemprop="url">Charles 从入门到精通</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
-		
-  <p class="article-time">
-    <time datetime="2016-09-21T03:12:18.000Z" itemprop="datePublished"> 發表於 2016-09-21</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a href="http://www.charlesproxy.com">Charles</a> 是在 Mac 下常用的网络封包截取工具，在做移动开发时，我们为了调试与服务器端的网络通讯协议，常常需要截取网络封包来分析。</p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/09/21/160921_Charles-从入门到精通/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/09/21/160921_Charles-从入门到精通/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/21/160921_Charles-从入门到精通/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/09/18/160918_兼容iOS-10-资料整理笔记/" title="兼容iOS 10 资料整理笔记" itemprop="url">兼容iOS 10 资料整理笔记</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
-		
-  <p class="article-time">
-    <time datetime="2016-09-18T06:48:49.000Z" itemprop="datePublished"> 發表於 2016-09-18</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="Notification-通知"><a href="#Notification-通知" class="headerlink" title="Notification(通知)"></a>Notification(通知)</h2><p>自从<code>Notification</code>被引入之后，苹果就不断的更新优化，但这些更新优化只是小打小闹，直至现在iOS 10开始真正的进行大改重构，这让开发者也体会到<code>UserNotifications</code>的易用，功能也变得非常强大。</p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/09/18/160918_兼容iOS-10-资料整理笔记/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/iOS/">iOS</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/09/18/160918_兼容iOS-10-资料整理笔记/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/18/160918_兼容iOS-10-资料整理笔记/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/09/12/160912_iOS基础知识汇总/" title="iOS基础知识汇总" itemprop="url">iOS基础知识汇总</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
-		
-  <p class="article-time">
-    <time datetime="2016-09-12T08:32:25.000Z" itemprop="datePublished"> 發表於 2016-09-12</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <blockquote>
-<p><code>初级iOS工程师</code>知道<code>怎么做</code>就可以了，但是<code>高级iOS工程师</code>就需要知道<code>为什么这么做</code>。以下列出了一些基础知识的问题，后续慢慢完善答案。同时其中好多也是面试必问题哦！</p>
-</blockquote>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/09/12/160912_iOS基础知识汇总/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/iOS/">iOS</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/09/12/160912_iOS基础知识汇总/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/12/160912_iOS基础知识汇总/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/08/13/160813_const和-define区别/" title="const和#define区别" itemprop="url">const和#define区别</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
-		
-  <p class="article-time">
-    <time datetime="2016-08-13T05:32:01.000Z" itemprop="datePublished"> 發表於 2016-08-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <blockquote>
-<p>每个项目中基本上都会有需要宏定义的常量，而我们通常都是随机从<code>const</code>和<code>#define</code>中拿一个使用，可是你知道她们的区别吗？</p>
-</blockquote>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/08/13/160813_const和-define区别/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/iOS/">iOS</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/08/13/160813_const和-define区别/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/08/13/160813_const和-define区别/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/08/02/160802_iOS获取设备信息总结/" title="iOS获取设备信息总结" itemprop="url">iOS获取设备信息总结</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
-		
-  <p class="article-time">
-    <time datetime="2016-08-02T12:43:20.000Z" itemprop="datePublished"> 發表於 2016-08-02</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <blockquote>
-<p>有些时候我们需要动态获取移动设备的一些信息，大多数情况官方都有对应的方法直接获取，但是也有一些是官方没有直接提供获取方法的，如设备型号、设备IP等。但是我们可以可以调用私有方法实现。</p>
-</blockquote>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/08/02/160802_iOS获取设备信息总结/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/iOS/">iOS</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/08/02/160802_iOS获取设备信息总结/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/08/02/160802_iOS获取设备信息总结/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/07/27/160727_理解iOS的内存管理/" title="理解iOS的内存管理" itemprop="url">理解iOS的内存管理</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
-		
-  <p class="article-time">
-    <time datetime="2016-07-27T08:47:18.000Z" itemprop="datePublished"> 發表於 2016-07-27</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <blockquote>
-<p>在2010至2012年MRC、ARC交替的时代，一直有两个阵营在激烈的辩论，而两种极端情况就是：<br>对于老程序员，因用惯了MRC，会因为担心ARC的稳定性而不敢贸然尝试。<br>对于新程序员，因没有接触过MRC，他们相信ARC可以搞定一切。<br>当然这两种情况都是片面的，ARC只不过把引用计数自动化管理而已，使用不当仍然会出现内存泄漏。</p>
-</blockquote>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/07/27/160727_理解iOS的内存管理/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/ARC/">ARC</a><a href="/tags/iOS/">iOS</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/07/27/160727_理解iOS的内存管理/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/07/27/160727_理解iOS的内存管理/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/07/14/160714_Xcode中修改变量名、类名及字符串的替换操作/" title="Xcode中修改变量名、类名及字符串的替换操作" itemprop="url">Xcode中修改变量名、类名及字符串的替换操作</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
-		
-  <p class="article-time">
-    <time datetime="2016-07-14T09:41:19.000Z" itemprop="datePublished"> 發表於 2016-07-14</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <blockquote>
-<p>在做iOS开发代码优化的工作时，优化代码结构之前，我们应该先整理好工程的外貌，将文件和类的命名进行规范，在Xcode中为我们提供了方便而强大的名称修改功能。</p>
-</blockquote>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/07/14/160714_Xcode中修改变量名、类名及字符串的替换操作/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Xcode/">Xcode</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/07/14/160714_Xcode中修改变量名、类名及字符串的替换操作/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/07/14/160714_Xcode中修改变量名、类名及字符串的替换操作/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
-  </nav>
-
-</div>
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSURLProtocol的使用流程"><span class="toc-number">2.</span> <span class="toc-text">NSURLProtocol的使用流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在AppDelegate中注册自定义的NSURLProtocol。"><span class="toc-number">2.1.</span> <span class="toc-text">在AppDelegate中注册自定义的NSURLProtocol。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSURLProtocol中的几个方法"><span class="toc-number">2.2.</span> <span class="toc-text">NSURLProtocol中的几个方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#是否进入自定义的NSURLProtocol加载器"><span class="toc-number">2.2.1.</span> <span class="toc-text">是否进入自定义的NSURLProtocol加载器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重新设置NSURLRequest的信息"><span class="toc-number">2.2.2.</span> <span class="toc-text">重新设置NSURLRequest的信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#是否父类的实现"><span class="toc-number">2.2.3.</span> <span class="toc-text">是否父类的实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#被拦截的请求开始执行的地方"><span class="toc-number">2.2.4.</span> <span class="toc-text">被拦截的请求开始执行的地方</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结束加载URL请求"><span class="toc-number">2.2.5.</span> <span class="toc-text">结束加载URL请求</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSURLProtocolClient中的几个方法"><span class="toc-number">2.3.</span> <span class="toc-text">NSURLProtocolClient中的几个方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现一个地址重定向的Demo"><span class="toc-number">3.</span> <span class="toc-text">实现一个地址重定向的Demo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一步，新建一个UIWebView，加载sina首页"><span class="toc-number">3.1.</span> <span class="toc-text">第一步，新建一个UIWebView，加载sina首页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义一个NSURLProtocol"><span class="toc-number">3.2.</span> <span class="toc-text">自定义一个NSURLProtocol</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在AppDelegate中，进行注册"><span class="toc-number">3.3.</span> <span class="toc-text">在AppDelegate中，进行注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在canInitWithRequest方法中拦截https-sina-cn"><span class="toc-number">3.4.</span> <span class="toc-text">在canInitWithRequest方法中拦截https://sina.cn/</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在startLoading中进行方法重定向"><span class="toc-number">3.5.</span> <span class="toc-text">在startLoading中进行方法重定向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现他的代理方法"><span class="toc-number">3.6.</span> <span class="toc-text">实现他的代理方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">4.</span> <span class="toc-text">小结</span></a></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
@@ -903,14 +390,103 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
 
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"allenfeng123"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 
@@ -979,4 +555,4 @@ var _hmt = _hmt || [];
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
