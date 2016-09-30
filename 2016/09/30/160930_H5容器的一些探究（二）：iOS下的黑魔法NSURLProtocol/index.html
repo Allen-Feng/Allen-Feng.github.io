@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/09/30/160930_H5容器的一些探究（二）：iOS下的黑魔法NSURLProtocol/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
 <meta property="og:description" content="前言NSURLProtocol是iOS中URL Loading System的一部分。如果开发者自定义的一个NSURLProtocol并且注册到app中，那么在这个自定义的NSURLProtocol中我们可以拦截UIWebView，基于系统的NSURLConnection或者NSURLSession进行封装的网络请求，然后做到自定义的response返回。非常强大。">
-<meta property="og:updated_time" content="2016-09-30T08:16:05.000Z">
+<meta property="og:updated_time" content="2016-09-30T08:18:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="H5容器的一些探究（二）：iOS下的黑魔法NSURLProtocol">
 <meta name="twitter:description" content="前言NSURLProtocol是iOS中URL Loading System的一部分。如果开发者自定义的一个NSURLProtocol并且注册到app中，那么在这个自定义的NSURLProtocol中我们可以拦截UIWebView，基于系统的NSURLConnection或者NSURLSession进行封装的网络请求，然后做到自定义的response返回。非常强大。">
@@ -101,7 +101,7 @@
 		
 		</div>
 		
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>NSURLProtocol</code>是iOS中<a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html" target="_blank" rel="external">URL Loading System</a>的一部分。如果开发者自定义的一个<code>NSURLProtocol</code>并且注册到<code>app</code>中，那么在这个自定义的<code>NSURLProtocol</code>中我们可以拦截<code>UIWebView</code>，基于系统的<code>NSURLConnection</code>或者<code>NSURLSession</code>进行封装的网络请求，然后做到自定义的<code>response</code>返回。非常强大。</p>
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>NSURLProtocol</code>是iOS中<a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html" target="_blank" rel="external">URL Loading System</a>的一部分。如果开发者自定义的一个NSURLProtocol并且注册到app中，那么在这个自定义的NSURLProtocol中我们可以拦截UIWebView，基于系统的NSURLConnection或者NSURLSession进行封装的网络请求，然后做到自定义的response返回。非常强大。</p>
 <a id="more"></a>
 <h2 id="NSURLProtocol的使用流程"><a href="#NSURLProtocol的使用流程" class="headerlink" title="NSURLProtocol的使用流程"></a>NSURLProtocol的使用流程</h2><h3 id="在AppDelegate中注册自定义的NSURLProtocol。"><a href="#在AppDelegate中注册自定义的NSURLProtocol。" class="headerlink" title="在AppDelegate中注册自定义的NSURLProtocol。"></a>在AppDelegate中注册自定义的NSURLProtocol。</h3><p>比如我这边自定义的<code>NSURLProtocol</code>叫做<code>YXNSURLProtocol</code>。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@interface YXNSURLProtocol : NSURLProtocol</div><div class="line">@end</div></pre></td></tr></table></figure>
@@ -139,7 +139,7 @@
 <li>为测试提供数据Mocking功能，在没有网络的情况下使用本地数据返回。</li>
 <li>过滤掉一些非法请求</li>
 <li>快速进行测试环境的切换</li>
-<li>拦截图片加载请求，转为从本地文件加载</li>
+<li><a href="http://stackoverflow.com/questions/5572258/ios-webview-remote-html-with-local-image-files" target="_blank" rel="external">拦截图片加载请求，转为从本地文件加载</a></li>
 <li>可以拦截UIWebView，基于系统的NSURLConnection或者NSURLSession进行封装的网络请求。目前WKWebView无法被NSURLProtocol拦截。</li>
 <li>当有多个自定义NSURLProtocol注册到系统中的话，会按照他们注册的反向顺序依次调用URL加载流程。当其中有一个NSURLProtocol拦截到请求的话，后续的NSURLProtocol就无法拦截到该请求。</li>
 </ol>
