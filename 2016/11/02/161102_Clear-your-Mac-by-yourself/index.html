@@ -4,23 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>在ARC项目中使用performSelector引起的内存警告 | aFeng`s Blog</title>
+    <title>Clear your Mac by yourself | aFeng`s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Allen Feng">
     
 
     
-    <meta name="description" content="问题描述在ARC项目中使用 performSelector: withObject: 函数出现“perform Selector may cause a leak because its selector is unknown”。为什么在ARC模式下会出现这个警告？stackoverflow上有一个令人满意的答案。">
+    <meta name="description" content="在寸土寸金的SSD上，尤其是安装有Xcode的码农的Mac，存储空间一直都是Mac使用者淡淡的忧伤（当然，选购1TB硬盘的土豪们，请忽略）～">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在ARC项目中使用performSelector引起的内存警告">
-<meta property="og:url" content="http://yoursite.com/2016/07/05/160705_在ARC项目中使用performSelector引起的内存警告/index.html">
+<meta property="og:title" content="Clear your Mac by yourself">
+<meta property="og:url" content="http://yoursite.com/2016/11/02/161102_Clear-your-Mac-by-yourself/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
-<meta property="og:description" content="问题描述在ARC项目中使用 performSelector: withObject: 函数出现“perform Selector may cause a leak because its selector is unknown”。为什么在ARC模式下会出现这个警告？stackoverflow上有一个令人满意的答案。">
-<meta property="og:updated_time" content="2016-07-13T14:14:38.000Z">
+<meta property="og:description" content="在寸土寸金的SSD上，尤其是安装有Xcode的码农的Mac，存储空间一直都是Mac使用者淡淡的忧伤（当然，选购1TB硬盘的土豪们，请忽略）～">
+<meta property="og:image" content="http://yoursite.com/images/16110201.png">
+<meta property="og:updated_time" content="2016-11-02T03:02:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在ARC项目中使用performSelector引起的内存警告">
-<meta name="twitter:description" content="问题描述在ARC项目中使用 performSelector: withObject: 函数出现“perform Selector may cause a leak because its selector is unknown”。为什么在ARC模式下会出现这个警告？stackoverflow上有一个令人满意的答案。">
+<meta name="twitter:title" content="Clear your Mac by yourself">
+<meta name="twitter:description" content="在寸土寸金的SSD上，尤其是安装有Xcode的码农的Mac，存储空间一直都是Mac使用者淡淡的忧伤（当然，选购1TB硬盘的土豪们，请忽略）～">
+<meta name="twitter:image" content="http://yoursite.com/images/16110201.png">
 <meta name="twitter:creator" content="@allenfeng945">
 
     
@@ -81,14 +83,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/07/05/160705_在ARC项目中使用performSelector引起的内存警告/" title="在ARC项目中使用performSelector引起的内存警告" itemprop="url">在ARC项目中使用performSelector引起的内存警告</a>
+      <a href="/2016/11/02/161102_Clear-your-Mac-by-yourself/" title="Clear your Mac by yourself" itemprop="url">Clear your Mac by yourself</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
 		
   <p class="article-time">
-    <time datetime="2016-07-05T09:36:10.000Z" itemprop="datePublished"> 发表于 2016-07-05</time>
+    <time datetime="2016-11-02T02:25:05.000Z" itemprop="datePublished"> 发表于 2016-11-02</time>
     
   </p>
 </header>
@@ -97,30 +99,32 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原因"><span class="toc-number">2.</span> <span class="toc-text">原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决办法"><span class="toc-number">3.</span> <span class="toc-text">解决办法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-使用宏忽略警告"><span class="toc-number">3.1.</span> <span class="toc-text">1.使用宏忽略警告</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-使用函数指针方式"><span class="toc-number">3.2.</span> <span class="toc-text">2.使用函数指针方式</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Xcode磁盘空间大清理"><span class="toc-number">1.</span> <span class="toc-text">Xcode磁盘空间大清理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#移除对旧设备的支持"><span class="toc-number">1.1.</span> <span class="toc-text">移除对旧设备的支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除旧版本的模拟器支持"><span class="toc-number">1.2.</span> <span class="toc-text">移除旧版本的模拟器支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除模拟器的临时文件"><span class="toc-number">1.3.</span> <span class="toc-text">移除模拟器的临时文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除模拟器中安装的Apps"><span class="toc-number">1.4.</span> <span class="toc-text">移除模拟器中安装的Apps</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除Archives"><span class="toc-number">1.5.</span> <span class="toc-text">移除Archives</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除DerivedData"><span class="toc-number">1.6.</span> <span class="toc-text">移除DerivedData</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除旧的Docsets"><span class="toc-number">1.7.</span> <span class="toc-text">移除旧的Docsets</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#彻底清空GarageBand"><span class="toc-number">2.</span> <span class="toc-text">彻底清空GarageBand</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在ARC项目中使用 performSelector: withObject: 函数出现“perform Selector may cause a leak because its selector is unknown”。为什么在ARC模式下会出现这个警告？<a href="http://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown" target="_blank" rel="external">stackoverflow</a>上有一个令人满意的答案。</p>
-<a id="more"></a>
-<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>在ARC模式下，运行时需要知道如何处理你正在调用的方法的返回值。这个返回值可以是任意值,如<code>void</code>，<code>int</code>，<code>char</code>，<code>NSString</code>，<code>id</code>等等。ARC通过头文件的函数定义来得到这些信息。所以平时我们用到的静态选择器就不会出现这个警告。因为在编译期间，这些信息都已经确定。如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">[someController performSelector:@selector(someMethod)];</div><div class="line">...</div><div class="line">- (void)someMethod</div><div class="line">&#123;</div><div class="line">	//bla bla...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>而使用<code>[someController performSelector: NSSelectorFromString(@&quot;someMethod&quot;)]</code>;时ARC并不知道该方法的返回值是什么，以及该如何处理？该忽略？还是标记为<code>ns_returns_retained</code>还是<code>ns_returns_autoreleased</code>?</p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><h3 id="1-使用宏忽略警告"><a href="#1-使用宏忽略警告" class="headerlink" title="1.使用宏忽略警告"></a>1.使用宏忽略警告</h3><blockquote>
-<p>推荐此快速解决方法</p>
+		<p>在寸土寸金的SSD上，尤其是安装有Xcode的码农的Mac，存储空间一直都是Mac使用者淡淡的忧伤（当然，选购<code>1TB硬盘</code>的土豪们，请忽略）～<br><a id="more"></a></p>
+<h2 id="Xcode磁盘空间大清理"><a href="#Xcode磁盘空间大清理" class="headerlink" title="Xcode磁盘空间大清理"></a>Xcode磁盘空间大清理</h2><h3 id="移除对旧设备的支持"><a href="#移除对旧设备的支持" class="headerlink" title="移除对旧设备的支持"></a>移除对旧设备的支持</h3><p><strong>影响：</strong>可重新生成；再连接旧设备调试时，会重新自动生成。<br><strong>路径：</strong>~/Library/Developer/Xcode/iOS DeviceSupport</p>
+<h3 id="移除旧版本的模拟器支持"><a href="#移除旧版本的模拟器支持" class="headerlink" title="移除旧版本的模拟器支持"></a>移除旧版本的模拟器支持</h3><p><strong>影响：</strong>不可恢复；如果需要旧版本的模拟器，就需要重新下载了。<br><strong>路径：</strong>~/Library/Application Support/iPhone Simulator</p>
+<h3 id="移除模拟器的临时文件"><a href="#移除模拟器的临时文件" class="headerlink" title="移除模拟器的临时文件"></a>移除模拟器的临时文件</h3><p><strong>影响：</strong>可重新生成；如果需要保留较新版本的模拟器，但tmp文件夹很大。放心删吧，tmp文件夹里的内容是不重要的。在iOS Device中，存储空间不足时，tmp文件夹是可能被清空的。<br><strong>路径：</strong>~/Library/Application Support/iPhone Simulator/6.1/tmp (以iOS Simulator 6.1为例)</p>
+<h3 id="移除模拟器中安装的Apps"><a href="#移除模拟器中安装的Apps" class="headerlink" title="移除模拟器中安装的Apps"></a>移除模拟器中安装的Apps</h3><p><strong>影响：</strong>不可恢复；对应的模拟器中安装的Apps被清空了，如果不需要就删了吧。<br><strong>路径：</strong>~/Library/Application Support/iPhone Simulator/6.1/Applications (以iOS Simulator 6.1为例)</p>
+<h3 id="移除Archives"><a href="#移除Archives" class="headerlink" title="移除Archives"></a>移除Archives</h3><p><strong>影响：</strong>不可恢复；Adhoc或者App Store版本会被删除。建议备份dSYM文件夹<br><strong>路径：</strong>~/Library/Developer/Xcode/Archives</p>
+<h3 id="移除DerivedData"><a href="#移除DerivedData" class="headerlink" title="移除DerivedData"></a>移除DerivedData</h3><p><strong>影响：</strong>可重新生成；会删除build生成的项目索引、build输出以及日志。重新打开项目时会重新生成，大的项目会耗费一些时间。<br><strong>路径：</strong>~/Library/Developer/Xcode/DerivedData</p>
+<h3 id="移除旧的Docsets"><a href="#移除旧的Docsets" class="headerlink" title="移除旧的Docsets"></a>移除旧的Docsets</h3><p><strong>影响：</strong>不可恢复；将删除旧的Docsets文档<br><strong>路径：</strong>~/Library/Developer/Shared/Documentation/DocSets</p>
+<blockquote>
+<p>路径可以通过右键点击<code>finder</code>&gt;<code>前往文件夹</code>直接跳转。</p>
 </blockquote>
-<p>通过使用<code>#pragma clang diagnostic push/pop</code>，你可以告诉Clang编译器仅仅为某一特定部分的代码来忽视特定警告。但为了使代码严谨，通常在<code>performSelector</code>前面添加<code>respondsToSelector</code>方法进行判断。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#pragma clang diagnostic push</div><div class="line">#pragma clang diagnostic ignored &quot;-Warc-performSelector-leaks&quot;</div><div class="line">	if([_controller respondsToSelector:mySelector]) &#123;</div><div class="line">		[_controller performSelector:mySelector]</div><div class="line">	&#125;</div><div class="line">#pragma clang diagnostic pop</div></pre></td></tr></table></figure>
-<p>如果需要忽视的警告有多处，可以定义一个宏</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#define SuppressPerformSelectorLeakWarning(Stuff) \</div><div class="line">    do &#123; \</div><div class="line">        _Pragma(&quot;clang diagnostic push&quot;) \</div><div class="line">        _Pragma(&quot;clang diagnostic ignored \&quot;-Warc-performSelector-leaks\&quot;&quot;) \</div><div class="line">        Stuff; \</div><div class="line">        _Pragma(&quot;clang diagnostic pop&quot;) \</div><div class="line">    &#125; while (0)</div></pre></td></tr></table></figure>
-<p>在产生警告也就是<code>performSelector</code>的地方用使用该宏，如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SuppressPerformSelectorLeakWarning(</div><div class="line">    [_target performSelector:_action withObject:self]</div><div class="line">);</div></pre></td></tr></table></figure>
-<p>如果需要<code>performSelector</code>返回值的话</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">id result;</div><div class="line">SuppressPerformSelectorLeakWarning(</div><div class="line">    result = [_target performSelector:_action withObject:self]</div><div class="line">);</div></pre></td></tr></table></figure>
-<h3 id="2-使用函数指针方式"><a href="#2-使用函数指针方式" class="headerlink" title="2.使用函数指针方式"></a>2.使用函数指针方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SEL selector = NSSelectorFromString(@&quot;someMethod&quot;);</div><div class="line">IMP imp = [_controller methodForSelector:selector];</div><div class="line">void (*func)(id, SEL) = (void *)imp;</div><div class="line">func(_controller, selector);</div></pre></td></tr></table></figure>
-<p>当有额外参数时，如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SEL selector = NSSelectorFromString(@&quot;processRegion:ofView:&quot;);</div><div class="line">IMP imp = [_controller methodForSelector:selector];</div><div class="line">CGRect (*func)(id, SEL, CGRect, UIView *) = (void *)imp;</div><div class="line">CGRect result = func(_controller, selector, someRect, someView);</div></pre></td></tr></table></figure>
-<p>原文链接：<a href="https://github.com/dabing1022/Blog/issues/2" target="_blank" rel="external">https://github.com/dabing1022/Blog/issues/2</a></p>
+<h2 id="彻底清空GarageBand"><a href="#彻底清空GarageBand" class="headerlink" title="彻底清空GarageBand"></a>彻底清空GarageBand</h2><p>已从应用程序列表删除，/资源库/Application Support/GarageBand/里的也删除了，系统信息里显示还有1.61G文件。<br><img src="/images/16110201.png" alt=""></p>
+<p>从应用程序列表删除只是删除了第一项</p>
+<ol>
+<li>Macintosh HD/Applications/GarageBand.app (1.16GB)</li>
+<li>Macintosh HD/Library/Application Support/GarageBand (995MB)</li>
+<li>Macintosh HD/Library/Application Support/Logic (880MB)</li>
+<li>Macintosh HD/Library/Audio/Apple Loops (up to 10GB)*</li>
+</ol>
+<p>*Note that the size of the Apple Loops directory will vary depending on the number and type of loops downloaded by the user. You should not delete this folder (or the Logic folder) if you are using Logic Pro.<br><a href="https://www.tekrevue.com/tip/delete-garageband/" target="_blank" rel="external">原文地址</a></p>
+<hr>
+<p>更多技能，待续</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -129,7 +133,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/ARC/">ARC</a>
+  <span></span> <a href="/tags/Mac/">Mac</a>
   </div>
 
 </div>
@@ -138,7 +142,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/07/05/160705_在ARC项目中使用performSelector引起的内存警告/" data-title="在ARC项目中使用performSelector引起的内存警告 | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/11/02/161102_Clear-your-Mac-by-yourself/" data-title="Clear your Mac by yourself | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -151,19 +155,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/07/12/160712_Build-Setting中的Architectures参数问题/" title="Build Setting中的Architectures参数问题">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Build Setting中的Architectures参数问题</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/07/02/160702_Mac下使用Github-Pages和Hexo搭建博客/"  title="Mac下使用Github Pages和Hexo搭建博客">
+<a href="/2016/10/28/161028_聊聊-pragma-和-MARK/"  title="聊聊 #pragma 和 // MARK:">
  <strong>下一篇：</strong><br/> 
- <span>Mac下使用Github Pages和Hexo搭建博客
+ <span>聊聊 #pragma 和 // MARK:
 </span>
 </a>
 </div>
@@ -172,7 +168,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/07/05/160705_在ARC项目中使用performSelector引起的内存警告/" data-title="在ARC项目中使用performSelector引起的内存警告" data-url="http://yoursite.com/2016/07/05/160705_在ARC项目中使用performSelector引起的内存警告/"></div>
+	<div class="ds-thread" data-thread-key="2016/11/02/161102_Clear-your-Mac-by-yourself/" data-title="Clear your Mac by yourself" data-url="http://yoursite.com/2016/11/02/161102_Clear-your-Mac-by-yourself/"></div>
 </section>
 
 
@@ -182,7 +178,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原因"><span class="toc-number">2.</span> <span class="toc-text">原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决办法"><span class="toc-number">3.</span> <span class="toc-text">解决办法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-使用宏忽略警告"><span class="toc-number">3.1.</span> <span class="toc-text">1.使用宏忽略警告</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-使用函数指针方式"><span class="toc-number">3.2.</span> <span class="toc-text">2.使用函数指针方式</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Xcode磁盘空间大清理"><span class="toc-number">1.</span> <span class="toc-text">Xcode磁盘空间大清理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#移除对旧设备的支持"><span class="toc-number">1.1.</span> <span class="toc-text">移除对旧设备的支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除旧版本的模拟器支持"><span class="toc-number">1.2.</span> <span class="toc-text">移除旧版本的模拟器支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除模拟器的临时文件"><span class="toc-number">1.3.</span> <span class="toc-text">移除模拟器的临时文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除模拟器中安装的Apps"><span class="toc-number">1.4.</span> <span class="toc-text">移除模拟器中安装的Apps</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除Archives"><span class="toc-number">1.5.</span> <span class="toc-text">移除Archives</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除DerivedData"><span class="toc-number">1.6.</span> <span class="toc-text">移除DerivedData</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除旧的Docsets"><span class="toc-number">1.7.</span> <span class="toc-text">移除旧的Docsets</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#彻底清空GarageBand"><span class="toc-number">2.</span> <span class="toc-text">彻底清空GarageBand</span></a></li></ol>
  
   </div>
 
