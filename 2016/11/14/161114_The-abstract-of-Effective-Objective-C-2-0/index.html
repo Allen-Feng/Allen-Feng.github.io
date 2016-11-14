@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/14/161114_The-abstract-of-Effective-Objective-C-2-0/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
 <meta property="og:description" content="“Effective Software Development Series”系列经典著作，世界软件开发大师Scott Meyers亲自担任顾问编辑，Amazon全五星评价。从语法、接口与API设计、内存管理、框架等方面总结和探讨了Objective-C编程中的52歌鲜为人知和容易被忽略的特性和陷阱。">
-<meta property="og:updated_time" content="2016-11-14T07:17:36.000Z">
+<meta property="og:updated_time" content="2016-11-14T07:38:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The abstract of 'Effective Objective-C 2.0'">
 <meta name="twitter:description" content="“Effective Software Development Series”系列经典著作，世界软件开发大师Scott Meyers亲自担任顾问编辑，Amazon全五星评价。从语法、接口与API设计、内存管理、框架等方面总结和探讨了Objective-C编程中的52歌鲜为人知和容易被忽略的特性和陷阱。">
@@ -49,7 +49,7 @@
 				<h1 class="site-name"><a href="/" title="aFeng`s Blog">aFeng`s Blog</a></h1>
 				<h2 class="blog-motto">记录学习的点点滴滴</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -65,7 +65,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -88,22 +88,48 @@
 		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
 		
   <p class="article-time">
-    <time datetime="2016-11-14T07:07:45.000Z" itemprop="datePublished"> Published 2016-11-14</time>
+    <time datetime="2016-11-14T07:07:45.000Z" itemprop="datePublished"> 發表於 2016-11-14</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#了解Objective-C语言的起源"><span class="toc-number">1.</span> <span class="toc-text">了解Objective-C语言的起源</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#了解Objective-C语言的起源"><span class="toc-number">1.</span> <span class="toc-text">了解Objective-C语言的起源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Objective-C"><span class="toc-number">1.1.</span> <span class="toc-text">Objective-C</span></a></li></ol></li></ol>
 		
 		</div>
 		
 		<p>“Effective Software Development Series”系列经典著作，世界软件开发大师Scott Meyers亲自担任顾问编辑，Amazon全五星评价。从语法、接口与API设计、内存管理、框架等方面总结和探讨了Objective-C编程中的52歌鲜为人知和容易被忽略的特性和陷阱。 </p>
 <a id="more"></a>
-<h2 id="了解Objective-C语言的起源"><a href="#了解Objective-C语言的起源" class="headerlink" title="了解Objective-C语言的起源"></a>了解Objective-C语言的起源</h2>  
+<h2 id="了解Objective-C语言的起源"><a href="#了解Objective-C语言的起源" class="headerlink" title="了解Objective-C语言的起源"></a>了解Objective-C语言的起源</h2><h3 id="Objective-C"><a href="#Objective-C" class="headerlink" title="Objective-C"></a>Objective-C</h3><table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">Objective-C</th>
+<th style="text-align:left">C++、Java等面向对象语言</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">最大区别</td>
+<td style="text-align:left">消息结构</td>
+<td style="text-align:left">函数调用</td>
+</tr>
+<tr>
+<td style="text-align:left">运行时执行的代码</td>
+<td style="text-align:left">运行环境决定</td>
+<td style="text-align:left">编译器决定</td>
+</tr>
+<tr>
+<td style="text-align:left">如：多态情况</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">运行时就要去定执行哪个函数</td>
+</tr>
+</tbody>
+</table>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -151,22 +177,22 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#了解Objective-C语言的起源"><span class="toc-number">1.</span> <span class="toc-text">了解Objective-C语言的起源</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#了解Objective-C语言的起源"><span class="toc-number">1.</span> <span class="toc-text">了解Objective-C语言的起源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Objective-C"><span class="toc-number">1.1.</span> <span class="toc-text">Objective-C</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github Card</p>
+<p class="asidetitle">Github 名片</p>
 <div class="github-card" data-github="Allen-Feng" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -178,7 +204,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">標簽</p>
 		<ul class="clearfix">
 		
 			
@@ -210,7 +236,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情鏈接</p>
     <ul>
         
           <li>
@@ -250,11 +276,11 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">Weibo</p>
+  <p class="asidetitle">新浪微博</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5580378505&verifier=07a80851&dpc=1"></iframe>
 </div>
 
@@ -503,7 +529,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
