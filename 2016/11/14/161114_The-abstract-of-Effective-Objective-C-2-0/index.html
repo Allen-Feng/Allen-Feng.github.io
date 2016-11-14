@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>在ARC项目中使用performSelector引起的内存警告 | aFeng`s Blog</title>
+    <title>The abstract of &#39;Effective Objective-C 2.0&#39; | aFeng`s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Allen Feng">
     
 
     
-    <meta name="description" content="问题描述在ARC项目中使用 performSelector: withObject: 函数出现“perform Selector may cause a leak because its selector is unknown”。为什么在ARC模式下会出现这个警告？stackoverflow上有一个令人满意的答案。">
+    <meta name="description" content="“Effective Software Development Series”系列经典著作，世界软件开发大师Scott Meyers亲自担任顾问编辑，Amazon全五星评价。从语法、接口与API设计、内存管理、框架等方面总结和探讨了Objective-C编程中的52歌鲜为人知和容易被忽略的特性和陷阱。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在ARC项目中使用performSelector引起的内存警告">
-<meta property="og:url" content="http://yoursite.com/2016/07/05/160705_在ARC项目中使用performSelector引起的内存警告/index.html">
+<meta property="og:title" content="The abstract of 'Effective Objective-C 2.0'">
+<meta property="og:url" content="http://yoursite.com/2016/11/14/161114_The-abstract-of-Effective-Objective-C-2-0/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
-<meta property="og:description" content="问题描述在ARC项目中使用 performSelector: withObject: 函数出现“perform Selector may cause a leak because its selector is unknown”。为什么在ARC模式下会出现这个警告？stackoverflow上有一个令人满意的答案。">
-<meta property="og:updated_time" content="2016-07-13T14:14:38.000Z">
+<meta property="og:description" content="“Effective Software Development Series”系列经典著作，世界软件开发大师Scott Meyers亲自担任顾问编辑，Amazon全五星评价。从语法、接口与API设计、内存管理、框架等方面总结和探讨了Objective-C编程中的52歌鲜为人知和容易被忽略的特性和陷阱。">
+<meta property="og:updated_time" content="2016-11-14T07:17:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在ARC项目中使用performSelector引起的内存警告">
-<meta name="twitter:description" content="问题描述在ARC项目中使用 performSelector: withObject: 函数出现“perform Selector may cause a leak because its selector is unknown”。为什么在ARC模式下会出现这个警告？stackoverflow上有一个令人满意的答案。">
+<meta name="twitter:title" content="The abstract of 'Effective Objective-C 2.0'">
+<meta name="twitter:description" content="“Effective Software Development Series”系列经典著作，世界软件开发大师Scott Meyers亲自担任顾问编辑，Amazon全五星评价。从语法、接口与API设计、内存管理、框架等方面总结和探讨了Objective-C编程中的52歌鲜为人知和容易被忽略的特性和陷阱。">
 <meta name="twitter:creator" content="@allenfeng945">
 
     
@@ -81,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/07/05/160705_在ARC项目中使用performSelector引起的内存警告/" title="在ARC项目中使用performSelector引起的内存警告" itemprop="url">在ARC项目中使用performSelector引起的内存警告</a>
+      <a href="/2016/11/14/161114_The-abstract-of-Effective-Objective-C-2-0/" title="The abstract of &#39;Effective Objective-C 2.0&#39;" itemprop="url">The abstract of &#39;Effective Objective-C 2.0&#39;</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
 		
   <p class="article-time">
-    <time datetime="2016-07-05T09:36:10.000Z" itemprop="datePublished"> Published 2016-07-05</time>
+    <time datetime="2016-11-14T07:07:45.000Z" itemprop="datePublished"> Published 2016-11-14</time>
     
   </p>
 </header>
@@ -97,31 +97,13 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原因"><span class="toc-number">2.</span> <span class="toc-text">原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决办法"><span class="toc-number">3.</span> <span class="toc-text">解决办法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-使用宏忽略警告"><span class="toc-number">3.1.</span> <span class="toc-text">1.使用宏忽略警告</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-使用函数指针方式"><span class="toc-number">3.2.</span> <span class="toc-text">2.使用函数指针方式</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#了解Objective-C语言的起源"><span class="toc-number">1.</span> <span class="toc-text">了解Objective-C语言的起源</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在ARC项目中使用 performSelector: withObject: 函数出现“perform Selector may cause a leak because its selector is unknown”。为什么在ARC模式下会出现这个警告？<a href="http://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown" target="_blank" rel="external">stackoverflow</a>上有一个令人满意的答案。</p>
+		<p>“Effective Software Development Series”系列经典著作，世界软件开发大师Scott Meyers亲自担任顾问编辑，Amazon全五星评价。从语法、接口与API设计、内存管理、框架等方面总结和探讨了Objective-C编程中的52歌鲜为人知和容易被忽略的特性和陷阱。 </p>
 <a id="more"></a>
-<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>在ARC模式下，运行时需要知道如何处理你正在调用的方法的返回值。这个返回值可以是任意值,如<code>void</code>，<code>int</code>，<code>char</code>，<code>NSString</code>，<code>id</code>等等。ARC通过头文件的函数定义来得到这些信息。所以平时我们用到的静态选择器就不会出现这个警告。因为在编译期间，这些信息都已经确定。如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">[someController performSelector:@selector(someMethod)];</div><div class="line">...</div><div class="line">- (void)someMethod</div><div class="line">&#123;</div><div class="line">	//bla bla...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>而使用<code>[someController performSelector: NSSelectorFromString(@&quot;someMethod&quot;)]</code>;时ARC并不知道该方法的返回值是什么，以及该如何处理？该忽略？还是标记为<code>ns_returns_retained</code>还是<code>ns_returns_autoreleased</code>?</p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><h3 id="1-使用宏忽略警告"><a href="#1-使用宏忽略警告" class="headerlink" title="1.使用宏忽略警告"></a>1.使用宏忽略警告</h3><blockquote>
-<p>推荐此快速解决方法</p>
-</blockquote>
-<p>通过使用<code>#pragma clang diagnostic push/pop</code>，你可以告诉Clang编译器仅仅为某一特定部分的代码来忽视特定警告。但为了使代码严谨，通常在<code>performSelector</code>前面添加<code>respondsToSelector</code>方法进行判断。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#pragma clang diagnostic push</div><div class="line">#pragma clang diagnostic ignored &quot;-Warc-performSelector-leaks&quot;</div><div class="line">	if([_controller respondsToSelector:mySelector]) &#123;</div><div class="line">		[_controller performSelector:mySelector]</div><div class="line">	&#125;</div><div class="line">#pragma clang diagnostic pop</div></pre></td></tr></table></figure>
-<p>如果需要忽视的警告有多处，可以定义一个宏</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#define SuppressPerformSelectorLeakWarning(Stuff) \</div><div class="line">    do &#123; \</div><div class="line">        _Pragma(&quot;clang diagnostic push&quot;) \</div><div class="line">        _Pragma(&quot;clang diagnostic ignored \&quot;-Warc-performSelector-leaks\&quot;&quot;) \</div><div class="line">        Stuff; \</div><div class="line">        _Pragma(&quot;clang diagnostic pop&quot;) \</div><div class="line">    &#125; while (0)</div></pre></td></tr></table></figure>
-<p>在产生警告也就是<code>performSelector</code>的地方用使用该宏，如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SuppressPerformSelectorLeakWarning(</div><div class="line">    [_target performSelector:_action withObject:self]</div><div class="line">);</div></pre></td></tr></table></figure>
-<p>如果需要<code>performSelector</code>返回值的话</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">id result;</div><div class="line">SuppressPerformSelectorLeakWarning(</div><div class="line">    result = [_target performSelector:_action withObject:self]</div><div class="line">);</div></pre></td></tr></table></figure>
-<h3 id="2-使用函数指针方式"><a href="#2-使用函数指针方式" class="headerlink" title="2.使用函数指针方式"></a>2.使用函数指针方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SEL selector = NSSelectorFromString(@&quot;someMethod&quot;);</div><div class="line">IMP imp = [_controller methodForSelector:selector];</div><div class="line">void (*func)(id, SEL) = (void *)imp;</div><div class="line">func(_controller, selector);</div></pre></td></tr></table></figure>
-<p>当有额外参数时，如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SEL selector = NSSelectorFromString(@&quot;processRegion:ofView:&quot;);</div><div class="line">IMP imp = [_controller methodForSelector:selector];</div><div class="line">CGRect (*func)(id, SEL, CGRect, UIView *) = (void *)imp;</div><div class="line">CGRect result = func(_controller, selector, someRect, someView);</div></pre></td></tr></table></figure>
-<p>原文链接：<a href="https://github.com/dabing1022/Blog/issues/2" target="_blank" rel="external">https://github.com/dabing1022/Blog/issues/2</a></p>
-  
+<h2 id="了解Objective-C语言的起源"><a href="#了解Objective-C语言的起源" class="headerlink" title="了解Objective-C语言的起源"></a>了解Objective-C语言的起源</h2>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -129,7 +111,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/ARC/">ARC</a>
+  <span></span> <a href="/tags/OC/">OC</a>
   </div>
 
 </div>
@@ -138,7 +120,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/07/05/160705_在ARC项目中使用performSelector引起的内存警告/" data-title="在ARC项目中使用performSelector引起的内存警告 | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/11/14/161114_The-abstract-of-Effective-Objective-C-2-0/" data-title="The abstract of &#39;Effective Objective-C 2.0&#39; | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -151,19 +133,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/07/12/160712_Build-Setting中的Architectures参数问题/" title="Build Setting中的Architectures参数问题">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Build Setting中的Architectures参数问题</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/07/02/160702_Mac下使用Github-Pages和Hexo搭建博客/"  title="Mac下使用Github Pages和Hexo搭建博客">
+<a href="/2016/11/02/161102_Clear-your-Mac-by-yourself/"  title="Clear your Mac by yourself">
  <strong>下一篇：</strong><br/> 
- <span>Mac下使用Github Pages和Hexo搭建博客
+ <span>Clear your Mac by yourself
 </span>
 </a>
 </div>
@@ -172,7 +146,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/07/05/160705_在ARC项目中使用performSelector引起的内存警告/" data-title="在ARC项目中使用performSelector引起的内存警告" data-url="http://yoursite.com/2016/07/05/160705_在ARC项目中使用performSelector引起的内存警告/"></div>
+	<div class="ds-thread" data-thread-key="2016/11/14/161114_The-abstract-of-Effective-Objective-C-2-0/" data-title="The abstract of 'Effective Objective-C 2.0'" data-url="http://yoursite.com/2016/11/14/161114_The-abstract-of-Effective-Objective-C-2-0/"></div>
 </section>
 
 
@@ -182,7 +156,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原因"><span class="toc-number">2.</span> <span class="toc-text">原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决办法"><span class="toc-number">3.</span> <span class="toc-text">解决办法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-使用宏忽略警告"><span class="toc-number">3.1.</span> <span class="toc-text">1.使用宏忽略警告</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-使用函数指针方式"><span class="toc-number">3.2.</span> <span class="toc-text">2.使用函数指针方式</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#了解Objective-C语言的起源"><span class="toc-number">1.</span> <span class="toc-text">了解Objective-C语言的起源</span></a></li></ol>
  
   </div>
 
