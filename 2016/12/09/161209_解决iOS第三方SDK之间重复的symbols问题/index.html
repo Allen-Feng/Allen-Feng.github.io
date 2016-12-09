@@ -1,0 +1,584 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>解决iOS第三方SDK之间重复的symbols问题 | aFeng`s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Allen Feng">
+    
+
+    
+    <meta name="description" content="前言：某项目准备使用高德导航，其中用到了高德3D地图SDK，然后就出现bug了。在真机上可以完美运行，但是在模拟器上，就出现了一大片的bug：提示有82个Duplicate symbols，仔细一看是MobileVLCKit和高德的MAMapKit之间的问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决iOS第三方SDK之间重复的symbols问题">
+<meta property="og:url" content="http://yoursite.com/2016/12/09/161209_解决iOS第三方SDK之间重复的symbols问题/index.html">
+<meta property="og:site_name" content="aFeng`s Blog">
+<meta property="og:description" content="前言：某项目准备使用高德导航，其中用到了高德3D地图SDK，然后就出现bug了。在真机上可以完美运行，但是在模拟器上，就出现了一大片的bug：提示有82个Duplicate symbols，仔细一看是MobileVLCKit和高德的MAMapKit之间的问题。">
+<meta property="og:image" content="http://yoursite.com/images/16120901.png">
+<meta property="og:image" content="http://yoursite.com/images/16120902.png">
+<meta property="og:image" content="http://yoursite.com/images/16120903.png">
+<meta property="og:image" content="http://yoursite.com/images/16120904.png">
+<meta property="og:image" content="http://yoursite.com/images/16120905.png">
+<meta property="og:image" content="http://yoursite.com/images/16120906.png">
+<meta property="og:updated_time" content="2016-12-09T08:26:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="解决iOS第三方SDK之间重复的symbols问题">
+<meta name="twitter:description" content="前言：某项目准备使用高德导航，其中用到了高德3D地图SDK，然后就出现bug了。在真机上可以完美运行，但是在模拟器上，就出现了一大片的bug：提示有82个Duplicate symbols，仔细一看是MobileVLCKit和高德的MAMapKit之间的问题。">
+<meta name="twitter:image" content="http://yoursite.com/images/16120901.png">
+<meta name="twitter:creator" content="@allenfeng945">
+
+    
+    <link rel="alternative" href="/atom.xml" title="aFeng`s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="aFeng`s Blog" title="aFeng`s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="aFeng`s Blog">aFeng`s Blog</a></h1>
+				<h2 class="blog-motto">记录学习的点点滴滴</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/12/09/161209_解决iOS第三方SDK之间重复的symbols问题/" title="解决iOS第三方SDK之间重复的symbols问题" itemprop="url">解决iOS第三方SDK之间重复的symbols问题</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
+		
+  <p class="article-time">
+    <time datetime="2016-12-09T08:07:18.000Z" itemprop="datePublished"> Published 2016-12-09</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述及猜想"><span class="toc-number">1.</span> <span class="toc-text">问题描述及猜想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工具介绍"><span class="toc-number">2.</span> <span class="toc-text">工具介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lipo"><span class="toc-number">2.1.</span> <span class="toc-text">lipo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nm"><span class="toc-number">2.2.</span> <span class="toc-text">nm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#strip"><span class="toc-number">2.3.</span> <span class="toc-text">strip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ar"><span class="toc-number">2.4.</span> <span class="toc-text">ar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ld"><span class="toc-number">2.5.</span> <span class="toc-text">ld</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#具体步骤"><span class="toc-number">3.</span> <span class="toc-text">具体步骤</span></a></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>前言：某项目准备使用高德导航，其中用到了高德3D地图SDK，然后就出现bug了。在真机上可以完美运行，但是在模拟器上，就出现了一大片的bug：提示有82个<code>Duplicate symbols</code>，仔细一看是<code>MobileVLCKit</code>和高德的<code>MAMapKit</code>之间的问题。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="问题描述及猜想"><a href="#问题描述及猜想" class="headerlink" title="问题描述及猜想"></a>问题描述及猜想</h2><p><img src="/images/16120901.png" alt=""></p>
+<p>上图为部分报错内容。两个第三方SDK之间在某些特定平台存在一些duplicate symbols。分析：那是不是除掉其中一个SDK中相应平台上，重复的那部分symbols，是不是就解决问题了呢？且继续向下看。</p>
+<h2 id="工具介绍"><a href="#工具介绍" class="headerlink" title="工具介绍"></a>工具介绍</h2><h3 id="lipo"><a href="#lipo" class="headerlink" title="lipo"></a>lipo</h3><p>lipo是管理Fat File的工具, 可以查看平台列表, 提取特定平台, 重新打包。</p>
+<h3 id="nm"><a href="#nm" class="headerlink" title="nm"></a>nm</h3><p>nm用来显示一个程序包的符号表, 默认会显示入口地址, 符号类型, 符号名。</p>
+<h3 id="strip"><a href="#strip" class="headerlink" title="strip"></a>strip</h3><p>strip用来删除程序里的符号表。-R 用来指定一个要删除的符号列表, 使用上述生成的symbols文件.。添加 -S 选项来保留其他符号。</p>
+<h3 id="ar"><a href="#ar" class="headerlink" title="ar"></a>ar</h3><p>ar可以查看一个程序包里的对象文件列表, 解压出其中的对象文件并重新打包。</p>
+<h3 id="ld"><a href="#ld" class="headerlink" title="ld"></a>ld</h3><p>ld苹果系统下的链接器, 可以更精确的控制符号表的导出。</p>
+<h2 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h2><p>因为担心修改<code>MobileVLCKit</code>对已上线的视频播放造成不可估计的影响，因此，此次修改<code>MAMapKit</code>，出现任何bug也可以尽快发现并解决。<br>下面将进行十分小白式的记录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd path(framework的路径)</div><div class="line">lipo -info MAMapKit</div></pre></td></tr></table></figure></p>
+<p><img src="/images/16120902.png" alt=""></p>
+<p>查看MAMapKit的适用平台，可以发现arm7，i386，x86_64，arm64均可用。并且前面bug只是存在于x86_64平台上，那么就先修改这个平台的内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lipo -thin x86_64 MAMapKit -output MAMapKit.x86_64</div></pre></td></tr></table></figure>
+<p>文件瘦身，提取x86_64平台的MAMapKit到新的文件MAMapKit.x86_64，发现该文件只有3M而已(源文件20.2M)，该文件位置与MAMapKit相同，发现确实单个平台的文件比较小。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nm -j MAMapKit.x86_64  | grep png &gt; symbols</div></pre></td></tr></table></figure>
+<ul>
+<li><p>获取MAMapKit.x86_64文件中以_png为前缀的所有符号，生成符号列表并存于symbols文件中。( -j 选项控制只输出符号名)</p>
+</li>
+<li><p>因为上面的symbols内容不是上述bug中包含的内容，因此，需要更改该symbols文件，删除里面所有符号，将报错的所有重复符号</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">_png_do_invert</div><div class="line">_png_set_shift</div><div class="line">_png_get_user_transfom_ptr</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>这些符号依次输入到该文件中，每行一个。这就将本次需要删除的符号存在符号列表中了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ar -t MAMapKit.x86_64</div></pre></td></tr></table></figure>
+<p><img src="/images/16120903.png" alt=""></p>
+<p>可以发现整个包中就一个主要文件MAMapKit-x86_64-master.o文件，这也是前面bug中提到的重名符号所在的位置。（PS：更确定找对了方法）</p>
+<p><img src="/images/16120904.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ar -x MAMapKit.x86_64</div></pre></td></tr></table></figure>
+<p><img src="/images/16120905.png" alt=""></p>
+<p>可以发现多出了三个文件，也获得了需要的MAMapKit-86_64-master.o文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ld -x -r -unexported_symbols_list symbols MAMapKit-x86_64-master.o -o MAMapKit-x86_64-master.o.strip</div></pre></td></tr></table></figure>
+<p>可以将symbols文件中的符号列表在MAMapKit-x86_64-master.o文件中删除掉，并生成一个新的文件MAMapKit-x86_64-master.o.strip。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ar -r MAMapKit.x86_64 MAMapKit-x86_64-master.o.strip Pods-MAMapKit-dummy.o</div></pre></td></tr></table></figure>
+<ul>
+<li><p>在执行此命令之前，可以将前面获得MAMapKit.x86_64文件放在其他位置作为对比。</p>
+</li>
+<li><p>然后通过该命令得到一个新打包好的x86_64平台包。</p>
+</li>
+<li><p>也可以用以前的获取symbols的方式从这个新包中获取相应的_png的所有符号表，查询刚才需要删除的符号，验证那些符号是否已被删除。（很高兴确实已经删除了，这下问题应该可以解决了吧。）</p>
+</li>
+</ul>
+<p>下面将替换原有包中的x86_64平台包。（该文件中只修改了x86_64平台的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lipo MAMapKit -replace x86_64 MAMapKit.x86_64 -output MAMapKitTest</div></pre></td></tr></table></figure>
+<p>用上面生成的新包替换MAMapKit包中的x86_64平台包，然后生成一个新的文件包，最后将旧的MAMapKit包移除，其他多余内容也一并移除，将MAMapKitTest更名为MAMapKit。至此，MAMapKit.framework看起来跟原来的没有什么区别了。（看事情不能只看表面哦，咱修改的是内在！）</p>
+<p>多余的话：如果修改多个平台的包（因为我只需要修改x86_64这一个平台包），可能需要重新生成一个新包更合适。</p>
+<ul>
+<li>根据前面的方法，生成每个平台的新包；</li>
+<li>将所有新包对应各个平台，生成一个新包。</li>
+</ul>
+<p><img src="/images/16120906.png" alt=""></p>
+<p>上图红色标记即最后的合成新包方法。在此之前记得将前面更改过的x86_64平台包拷贝到这些包的相同路径下。</p>
+<p>最后重新编译工程，就这么完美解决了！！！这一刻的感觉，太激动了。暂时未发现有什么问题，以后有什么由此衍生的bug，到时候再更新了。也希望小伙伴们共同学习，有问题大家一定要指出来哟！欢迎大家找我交流问题一起进步哦。</p>
+<hr>
+<p>感谢下面两位大神踩过的坑，有了它们的经验，才让我如此顺利的解决问题！<br>[1]<a href="http://www.bubufx.com/detail-1574404.html" target="_blank" rel="external">Mac系统下lipo, ar, nm等工具的使用简介</a><br>[2]<a href="http://blog.csdn.net/volvet/article/details/50097563" target="_blank" rel="external">Lipo - 如何为ARMv7/ARMv7s/ARM64架构 创建通用文件（Universal Files)</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/iOS/">iOS</a><a href="/tags/SDK/">SDK</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/12/09/161209_解决iOS第三方SDK之间重复的symbols问题/" data-title="解决iOS第三方SDK之间重复的symbols问题 | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/11/02/161102_Clear-your-Mac-by-yourself/"  title="Clear your Mac by yourself">
+ <strong>下一篇：</strong><br/> 
+ <span>Clear your Mac by yourself
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/12/09/161209_解决iOS第三方SDK之间重复的symbols问题/" data-title="解决iOS第三方SDK之间重复的symbols问题" data-url="http://yoursite.com/2016/12/09/161209_解决iOS第三方SDK之间重复的symbols问题/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述及猜想"><span class="toc-number">1.</span> <span class="toc-text">问题描述及猜想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工具介绍"><span class="toc-number">2.</span> <span class="toc-text">工具介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lipo"><span class="toc-number">2.1.</span> <span class="toc-text">lipo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nm"><span class="toc-number">2.2.</span> <span class="toc-text">nm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#strip"><span class="toc-number">2.3.</span> <span class="toc-text">strip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ar"><span class="toc-number">2.4.</span> <span class="toc-text">ar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ld"><span class="toc-number">2.5.</span> <span class="toc-text">ld</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#具体步骤"><span class="toc-number">3.</span> <span class="toc-text">具体步骤</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="Allen-Feng" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/iOS/" title="iOS">iOS<sup>11</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ARC/" title="ARC">ARC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Xcode/" title="Xcode">Xcode<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac/" title="Mac">Mac<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SDK/" title="SDK">SDK<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.cocoachina.com" target="_blank" title="CocoaChina">CocoaChina</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://objccn.io/" target="_blank" title="objc中国">objc中国</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.devtang.com/" target="_blank" title="唐巧大神">唐巧大神</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://yulingtianxia.com/" target="_blank" title="玉令天下">玉令天下</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5580378505&verifier=07a80851&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Stay hungry, stay foolish <br/>
+			Talk is cheap, show me the code.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/5580378505" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/Allen-Feng" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/6587241" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		<a href="https://twitter.com/allenfeng945" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/profile.php?id=100011457513784" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		
+		<a href="mailto:allen-feng@hotmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Allen Feng">Allen Feng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"allenfeng123"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
