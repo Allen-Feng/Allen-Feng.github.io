@@ -4,29 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Build Setting中的Architectures参数问题 | aFeng`s Blog</title>
+    <title>Linux vi/vim | aFeng`s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Allen Feng">
     
 
     
-    <meta name="description" content="名词解释Architectures：你想支持的指令集
-
-支持指令集是通过编译生成对应的二进制数据包实现的，如果支持的指令集数目有多个，就会编译出包含多个指令集代码的数据包，造成最终编译的包很大">
+    <meta name="description" content="所有的Unix Like系统都会内建vi文书编辑器，其他的文书编辑器则不一定会存在。但是目前我们使用比较多的是vim编辑器。vim具有程序编辑的能力，可以主动的以字体颜色辨别语法的正确性，方便程序设计。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Build Setting中的Architectures参数问题">
-<meta property="og:url" content="http://yoursite.com/2016/07/12/160712_Build-Setting中的Architectures参数问题/index.html">
+<meta property="og:title" content="Linux vi/vim">
+<meta property="og:url" content="http://yoursite.com/2016/12/13/161213_Linux-vi-vim/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
-<meta property="og:description" content="名词解释Architectures：你想支持的指令集
-
-支持指令集是通过编译生成对应的二进制数据包实现的，如果支持的指令集数目有多个，就会编译出包含多个指令集代码的数据包，造成最终编译的包很大">
-<meta property="og:updated_time" content="2016-07-15T02:15:23.000Z">
+<meta property="og:description" content="所有的Unix Like系统都会内建vi文书编辑器，其他的文书编辑器则不一定会存在。但是目前我们使用比较多的是vim编辑器。vim具有程序编辑的能力，可以主动的以字体颜色辨别语法的正确性，方便程序设计。">
+<meta property="og:image" content="http://yoursite.com/images/16121301.png">
+<meta property="og:image" content="http://yoursite.com/images/16121302.png">
+<meta property="og:updated_time" content="2016-12-13T09:11:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Build Setting中的Architectures参数问题">
-<meta name="twitter:description" content="名词解释Architectures：你想支持的指令集
-
-支持指令集是通过编译生成对应的二进制数据包实现的，如果支持的指令集数目有多个，就会编译出包含多个指令集代码的数据包，造成最终编译的包很大">
+<meta name="twitter:title" content="Linux vi/vim">
+<meta name="twitter:description" content="所有的Unix Like系统都会内建vi文书编辑器，其他的文书编辑器则不一定会存在。但是目前我们使用比较多的是vim编辑器。vim具有程序编辑的能力，可以主动的以字体颜色辨别语法的正确性，方便程序设计。">
+<meta name="twitter:image" content="http://yoursite.com/images/16121301.png">
 <meta name="twitter:creator" content="@allenfeng945">
 
     
@@ -87,14 +84,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/07/12/160712_Build-Setting中的Architectures参数问题/" title="Build Setting中的Architectures参数问题" itemprop="url">Build Setting中的Architectures参数问题</a>
+      <a href="/2016/12/13/161213_Linux-vi-vim/" title="Linux vi/vim" itemprop="url">Linux vi/vim</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
 		
   <p class="article-time">
-    <time datetime="2016-07-12T08:33:08.000Z" itemprop="datePublished"> 发表于 2016-07-12</time>
+    <time datetime="2016-12-13T08:59:32.000Z" itemprop="datePublished"> 发表于 2016-12-13</time>
     
   </p>
 </header>
@@ -103,59 +100,56 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#名词解释"><span class="toc-number">1.</span> <span class="toc-text">名词解释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于指令集如下参考"><span class="toc-number">2.</span> <span class="toc-text">关于指令集如下参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#默认设置"><span class="toc-number">3.</span> <span class="toc-text">默认设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#那么问题来了"><span class="toc-number">4.</span> <span class="toc-text">那么问题来了</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是-vim"><span class="toc-number">1.</span> <span class="toc-text">什么是 vim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-vim-的使用"><span class="toc-number">2.</span> <span class="toc-text">vi/vim 的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-vim-按键说明"><span class="toc-number">3.</span> <span class="toc-text">vi/vim 按键说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一般模式"><span class="toc-number">3.1.</span> <span class="toc-text">一般模式</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><p><code>Architectures</code>：你想支持的指令集</p>
-<blockquote>
-<p>支持指令集是通过编译生成对应的二进制数据包实现的，如果支持的指令集数目有多个，就会编译出包含多个指令集代码的数据包，造成最终编译的包很大</p>
+		<blockquote>
+<p>所有的<code>Unix Like</code>系统都会内建<code>vi</code>文书编辑器，其他的文书编辑器则不一定会存在。<br>但是目前我们使用比较多的是<code>vim</code>编辑器。<br><code>vim</code>具有程序编辑的能力，可以主动的以字体颜色辨别语法的正确性，方便程序设计。</p>
 </blockquote>
 <a id="more"></a>
-<p><code>Valid architectures</code>：即将编译的指令集</p>
-<blockquote>
-<p>Valid architectures 和 Architecture两个集合的交集为最终编译生成的版本</p>
-</blockquote>
-<p><code>Build Active Architecture Only</code>：是否只编译当前设备适用的指令集</p>
-<blockquote>
-<p>如果这个参数设为YES，使用iPhone 6调试，那么最终生成的一个支持ARM64指令集的Binary。一般在DEBUG模式下设为YES，RELEASE设为NO</p>
-</blockquote>
-<h2 id="关于指令集如下参考"><a href="#关于指令集如下参考" class="headerlink" title="关于指令集如下参考"></a>关于指令集如下参考</h2><blockquote>
-<p>机器对指令集的支持是向下兼容的，例如armv7的指令集是可以运行在iphone5S的，只是效率没那么高而已~</p>
-</blockquote>
-<p><code>armv6</code></p>
+<h2 id="什么是-vim"><a href="#什么是-vim" class="headerlink" title="什么是 vim"></a>什么是 vim</h2><p>Vim是从 vi 发展出来的一个文本编辑器。代码补完、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。<br>简单的来说， vi 是老式的字处理器，不过功能已经很齐全了，但是还是有可以进步的地方。 vim 则可以说是程序开发者的一项很好用的工具。 连 vim 的<a href="http://www.vim.org" target="_blank" rel="external">官方网站</a>自己也说 vim 是一个程序开发工具而不是文字处理软件。<br>vim 键盘图：<br><img src="/images/16121301.png" alt=""></p>
+<h2 id="vi-vim-的使用"><a href="#vi-vim-的使用" class="headerlink" title="vi/vim 的使用"></a>vi/vim 的使用</h2><p>基本上 vi/vim 共分为三种模式，分别是一般模式、编辑模式与指令列命令模式。 这三种模式的作用分别是：</p>
 <ul>
-<li>iPhone</li>
-<li>iPhone2</li>
-<li>iPhone3G</li>
-<li>第一代和第二代iPod Touch</li>
+<li>一般模式：<br>以 vi 打开一个档案就直接进入一般模式了(这是默认的模式)。在这个模式中， 你可以使用『上下左右』按键来移动光标，你可以使用『删除字符』或『删除整行』来处理档案内容， 也可以使用『复制、贴上』来处理你的文件数据。</li>
+<li>编辑模式：<br>在一般模式中可以进行删除、复制、贴上等等的动作，但是却无法编辑文件内容的！ 要等到你按下『i, I, o, O, a, A, r, R』等任何一个字母之后才会进入编辑模式。注意了！通常在 Linux 中，按下这些按键时，在画面的左下方会出现『INSERT 或 REPLACE 』的字样，此时才可以进行编辑。而如果要回到一般模式时， 则必须要按下『Esc』这个按键即可退出编辑模式。</li>
+<li>指令列命令模式：<br>在一般模式当中，输入『 : / ? 』三个中的任何一个按钮，就可以将光标移动到最底下那一行。在这个模式当中， 可以提供你『搜寻资料』的动作，而读取、存盘、大量取代字符、离开 vi 、显示行号等等的动作则是在此模式中达成的！<br>简单的说，我们可以将这三个模式想成底下的图标来表示：<br><img src="/images/16121302.png" alt=""></li>
 </ul>
-<p><code>armv7</code></p>
-<ul>
-<li>iPhone4</li>
-<li>iPhone4S</li>
-</ul>
-<p><code>armv7s</code></p>
-<ul>
-<li>iPhone5</li>
-<li>iPhone5C</li>
-</ul>
-<p><code>arm64</code></p>
-<ul>
-<li>iPhone5S</li>
-<li>iPhone6 / 6P</li>
-<li>iPhone6S / 6SP</li>
-</ul>
-<h2 id="默认设置"><a href="#默认设置" class="headerlink" title="默认设置"></a>默认设置</h2><p>对于支持64-bit,我们可以设置<code>Architectures</code>为<code>Standard architectures（armv7，arm64）</code>这样设置，你的Deployment target最低只能设置为 6.0</p>
-<p>因此,<code>Valid Architecture</code>的值选择：<code>armv7</code> <code>armv7s</code> <code>arm64</code></p>
-<p>原因如下：</p>
-<blockquote>
-<p>使用默认设置，则打的包里面有32位、64位两份代码，iPhone5s的cpu是第一代64位的，所以<br>在iPhone5/5C之前的旧型号手机上，只能运行32位包，<br>在iPhone5S之后的新型号手机上，会首选运行64位代码包，<br>但是可以兼容32位代码包，但是包含两种架构的代码包，只有运行在ios6之后的系统上。<br>这也就是说，这种打包方式，对手机几乎没啥要求，但是对系统有要求，即ios6以上。</p>
-</blockquote>
-<p>所以总结如下：</p>
-<p>要发挥iPhone5s之后机型的64位性能，就要包含64位包，那么系统最低要求为ios6。 </p>
-<p>如果要兼容ios5以及更低的系统，只能打32位的包，系统都能通用，但是会丧失iPhone5s的性能。</p>
-<h2 id="那么问题来了"><a href="#那么问题来了" class="headerlink" title="那么问题来了"></a>那么问题来了</h2><p>如果你的项目中用到的第三方库比较旧，旧到不支持64位编译，那就比较悲剧了。<br>最好祈祷项目中的第三方库赶紧更新，要么就只能牺牲一下，只编译32位的代码包。</p>
+<h2 id="vi-vim-按键说明"><a href="#vi-vim-按键说明" class="headerlink" title="vi/vim 按键说明"></a>vi/vim 按键说明</h2><h3 id="一般模式"><a href="#一般模式" class="headerlink" title="一般模式"></a>一般模式</h3><p>一般模式可用的按钮说明，光标移动、复制贴上、搜寻取代等</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">移动光标的方法</th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">h 或 向左箭头键(←)</td>
+<td style="text-align:left">光标向左移动一个字符</td>
+</tr>
+<tr>
+<td style="text-align:left">j 或 向下箭头键(↓)</td>
+<td style="text-align:left">光标向下移动一个字符</td>
+</tr>
+<tr>
+<td style="text-align:left">k 或 向上箭头键(↑)</td>
+<td style="text-align:left">光标向上移动一个字符</td>
+</tr>
+<tr>
+<td style="text-align:left">l 或 向右箭头键(→)</td>
+<td style="text-align:left">光标向右移动一个字符</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">如果你将右手放在键盘上的话，你会发现 hjkl 是排列在一起的，因此可以使用这四个按钮来移动光标。 如果想要进行多次移动的话，例如向下移动 30 行，可以使用 “30j” 或 “30↓” 的组合按键， 亦即加上想要进行的次数(数字)后，按下动作即可！</td>
+</tr>
+<tr>
+<td style="text-align:left">[Ctrl] + [f]</td>
+<td style="text-align:left">屏幕『向下』移动一页，相当于 [Page Down]按键 (常用)</td>
+</tr>
+</tbody>
+</table>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -164,7 +158,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/iOS/">iOS</a><a href="/tags/Xcode/">Xcode</a>
+  <span></span> <a href="/tags/Linux/">Linux</a><a href="/tags/vim/">vim</a>
   </div>
 
 </div>
@@ -173,7 +167,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/07/12/160712_Build-Setting中的Architectures参数问题/" data-title="Build Setting中的Architectures参数问题 | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/12/13/161213_Linux-vi-vim/" data-title="Linux vi/vim | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -186,19 +180,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/07/14/160714_Xcode中修改变量名、类名及字符串的替换操作/" title="Xcode中修改变量名、类名及字符串的替换操作">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Xcode中修改变量名、类名及字符串的替换操作</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/07/05/160705_在ARC项目中使用performSelector引起的内存警告/"  title="在ARC项目中使用performSelector引起的内存警告">
+<a href="/2016/12/09/161209_解决iOS第三方SDK之间重复的symbols问题/"  title="解决iOS第三方SDK之间重复的symbols问题">
  <strong>下一篇：</strong><br/> 
- <span>在ARC项目中使用performSelector引起的内存警告
+ <span>解决iOS第三方SDK之间重复的symbols问题
 </span>
 </a>
 </div>
@@ -207,7 +193,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/07/12/160712_Build-Setting中的Architectures参数问题/" data-title="Build Setting中的Architectures参数问题" data-url="http://yoursite.com/2016/07/12/160712_Build-Setting中的Architectures参数问题/"></div>
+	<div class="ds-thread" data-thread-key="2016/12/13/161213_Linux-vi-vim/" data-title="Linux vi/vim" data-url="http://yoursite.com/2016/12/13/161213_Linux-vi-vim/"></div>
 </section>
 
 
@@ -217,7 +203,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#名词解释"><span class="toc-number">1.</span> <span class="toc-text">名词解释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于指令集如下参考"><span class="toc-number">2.</span> <span class="toc-text">关于指令集如下参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#默认设置"><span class="toc-number">3.</span> <span class="toc-text">默认设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#那么问题来了"><span class="toc-number">4.</span> <span class="toc-text">那么问题来了</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是-vim"><span class="toc-number">1.</span> <span class="toc-text">什么是 vim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-vim-的使用"><span class="toc-number">2.</span> <span class="toc-text">vi/vim 的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-vim-按键说明"><span class="toc-number">3.</span> <span class="toc-text">vi/vim 按键说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一般模式"><span class="toc-number">3.1.</span> <span class="toc-text">一般模式</span></a></li></ol></li></ol>
  
   </div>
 
