@@ -21,7 +21,12 @@
 <meta property="og:image" content="http://yoursite.com/images/16121302.png">
 <meta property="og:image" content="http://yoursite.com/images/16121303.png">
 <meta property="og:image" content="http://yoursite.com/images/16121304.png">
-<meta property="og:updated_time" content="2016-12-13T09:26:01.000Z">
+<meta property="og:image" content="http://yoursite.com/images/16121305.png">
+<meta property="og:image" content="http://yoursite.com/images/16121306.png">
+<meta property="og:image" content="http://yoursite.com/images/16121307.png">
+<meta property="og:image" content="http://yoursite.com/images/16121308.png">
+<meta property="og:image" content="http://yoursite.com/images/16121309.png">
+<meta property="og:updated_time" content="2016-12-13T09:34:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux vi/vim">
 <meta name="twitter:description" content="所有的Unix Like系统都会内建vi文书编辑器，其他的文书编辑器则不一定会存在。但是目前我们使用比较多的是vim编辑器。vim具有程序编辑的能力，可以主动的以字体颜色辨别语法的正确性，方便程序设计。">
@@ -54,7 +59,7 @@
 				<h1 class="site-name"><a href="/" title="aFeng`s Blog">aFeng`s Blog</a></h1>
 				<h2 class="blog-motto">记录学习的点点滴滴</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -70,7 +75,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -93,16 +98,16 @@
 		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
 		
   <p class="article-time">
-    <time datetime="2016-12-13T08:59:32.000Z" itemprop="datePublished"> Published 2016-12-13</time>
+    <time datetime="2016-12-13T08:59:32.000Z" itemprop="datePublished"> 发表于 2016-12-13</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是-vim"><span class="toc-number">1.</span> <span class="toc-text">什么是 vim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-vim-的使用"><span class="toc-number">2.</span> <span class="toc-text">vi/vim 的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-vim-按键说明"><span class="toc-number">3.</span> <span class="toc-text">vi/vim 按键说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一般模式"><span class="toc-number">3.1.</span> <span class="toc-text">一般模式</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是-vim"><span class="toc-number">1.</span> <span class="toc-text">什么是 vim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-vim-的使用"><span class="toc-number">2.</span> <span class="toc-text">vi/vim 的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-vim-按键说明"><span class="toc-number">3.</span> <span class="toc-text">vi/vim 按键说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第二部份"><span class="toc-number">3.1.</span> <span class="toc-text">第二部份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二部份-1"><span class="toc-number">3.2.</span> <span class="toc-text">第二部份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第三部份"><span class="toc-number">3.3.</span> <span class="toc-text">第三部份</span></a></li></ol></li></ol>
 		
 		</div>
 		
@@ -117,7 +122,10 @@
 <li>编辑模式：<br>在一般模式中可以进行删除、复制、贴上等等的动作，但是却无法编辑文件内容的！ 要等到你按下『i, I, o, O, a, A, r, R』等任何一个字母之后才会进入编辑模式。注意了！通常在 Linux 中，按下这些按键时，在画面的左下方会出现『INSERT 或 REPLACE 』的字样，此时才可以进行编辑。而如果要回到一般模式时， 则必须要按下『Esc』这个按键即可退出编辑模式。</li>
 <li>指令列命令模式：<br>在一般模式当中，输入『 : / ? 』三个中的任何一个按钮，就可以将光标移动到最底下那一行。在这个模式当中， 可以提供你『搜寻资料』的动作，而读取、存盘、大量取代字符、离开 vi 、显示行号等等的动作则是在此模式中达成的！<br>简单的说，我们可以将这三个模式想成底下的图标来表示：<br><img src="/images/16121302.png" alt=""></li>
 </ul>
-<h2 id="vi-vim-按键说明"><a href="#vi-vim-按键说明" class="headerlink" title="vi/vim 按键说明"></a>vi/vim 按键说明</h2><h3 id="一般模式"><a href="#一般模式" class="headerlink" title="一般模式"></a>一般模式</h3><p>一般模式可用的按钮说明，光标移动、复制贴上、搜寻取代等<br><img src="/images/16121303.png" alt=""><br><img src="/images/16121304.png" alt=""></p>
+<h2 id="vi-vim-按键说明"><a href="#vi-vim-按键说明" class="headerlink" title="vi/vim 按键说明"></a>vi/vim 按键说明</h2><h3 id="第二部份"><a href="#第二部份" class="headerlink" title="第二部份"></a>第二部份</h3><p>一般模式可用的按钮说明，光标移动、复制贴上、搜寻取代等<br><img src="/images/16121303.png" alt=""><br><img src="/images/16121304.png" alt=""><br><img src="/images/16121305.png" alt=""><br><img src="/images/16121306.png" alt=""><br><img src="/images/16121307.png" alt=""></p>
+<h3 id="第二部份-1"><a href="#第二部份-1" class="headerlink" title="第二部份"></a>第二部份</h3><p>一般模式切换到编辑模式的可用的按钮说明<br><img src="/images/16121308.png" alt=""></p>
+<h3 id="第三部份"><a href="#第三部份" class="headerlink" title="第三部份"></a>第三部份</h3><p>一般模式切换到指令列模式的可用的按钮说明<br><img src="/images/16121309.png" alt=""></p>
+<p>特别注意，在 vi/vim 中，数字是很有意义的！数字通常代表重复做几次的意思！ 也有可能是代表去到第几个什么什么的意思。<br>举例来说，要删除 50 行，则是用 『50dd』 对吧！ 数字加在动作之前，如我要向下移动 20 行呢？那就是『20j』或者是『20↓』即可。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -166,22 +174,22 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是-vim"><span class="toc-number">1.</span> <span class="toc-text">什么是 vim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-vim-的使用"><span class="toc-number">2.</span> <span class="toc-text">vi/vim 的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-vim-按键说明"><span class="toc-number">3.</span> <span class="toc-text">vi/vim 按键说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一般模式"><span class="toc-number">3.1.</span> <span class="toc-text">一般模式</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是-vim"><span class="toc-number">1.</span> <span class="toc-text">什么是 vim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-vim-的使用"><span class="toc-number">2.</span> <span class="toc-text">vi/vim 的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-vim-按键说明"><span class="toc-number">3.</span> <span class="toc-text">vi/vim 按键说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第二部份"><span class="toc-number">3.1.</span> <span class="toc-text">第二部份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二部份-1"><span class="toc-number">3.2.</span> <span class="toc-text">第二部份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第三部份"><span class="toc-number">3.3.</span> <span class="toc-text">第三部份</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github Card</p>
+<p class="asidetitle">Github 名片</p>
 <div class="github-card" data-github="Allen-Feng" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -193,7 +201,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
@@ -233,7 +241,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -273,11 +281,11 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">Weibo</p>
+  <p class="asidetitle">新浪微博</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5580378505&verifier=07a80851&dpc=1"></iframe>
 </div>
 
@@ -526,7 +534,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
