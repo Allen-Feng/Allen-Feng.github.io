@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/20/170420_Python使用Pycrypto库进行RSA加密的方法详解/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
 <meta property="og:description" content="RSA加密算法是一种强大的公钥加密算法,安全性很高,这里我们来看一下Python使用Pycrypto库进行RSA加密的方法详解,需要的朋友可以参考下">
-<meta property="og:updated_time" content="2017-04-20T09:07:19.000Z">
+<meta property="og:updated_time" content="2017-04-20T09:10:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python使用Pycrypto库进行RSA加密的方法详解">
 <meta name="twitter:description" content="RSA加密算法是一种强大的公钥加密算法,安全性很高,这里我们来看一下Python使用Pycrypto库进行RSA加密的方法详解,需要的朋友可以参考下">
@@ -49,7 +49,7 @@
 				<h1 class="site-name"><a href="/" title="aFeng`s Blog">aFeng`s Blog</a></h1>
 				<h2 class="blog-motto">记录学习的点点滴滴</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -65,7 +65,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -88,16 +88,16 @@
 		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
 		
   <p class="article-time">
-    <time datetime="2017-04-20T08:49:06.000Z" itemprop="datePublished"> Published 2017-04-20</time>
+    <time datetime="2017-04-20T08:49:06.000Z" itemprop="datePublished"> 发表于 2017-04-20</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#密码与通信"><span class="toc-number">1.</span> <span class="toc-text">密码与通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#密码技术"><span class="toc-number">2.</span> <span class="toc-text">密码技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python密码库–Pycrypto"><span class="toc-number">3.</span> <span class="toc-text">Python密码库–Pycrypto</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RSA-密码算法与签名"><span class="toc-number">4.</span> <span class="toc-text">RSA 密码算法与签名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#加密与解密"><span class="toc-number">5.</span> <span class="toc-text">加密与解密</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#加密（encrypt）"><span class="toc-number">5.1.</span> <span class="toc-text">加密（encrypt）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Master使用Ghost的公钥对内容进行rsa-加密"><span class="toc-number"></span> <span class="toc-text">Master使用Ghost的公钥对内容进行rsa 加密</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解密（decrypt）"><span class="toc-number">0.1.</span> <span class="toc-text">解密（decrypt）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#签名与验签"><span class="toc-number">1.</span> <span class="toc-text">签名与验签</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#签名"><span class="toc-number">1.1.</span> <span class="toc-text">签名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#验签"><span class="toc-number">1.2.</span> <span class="toc-text">验签</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">2.</span> <span class="toc-text">总结</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#密码与通信"><span class="toc-number">1.</span> <span class="toc-text">密码与通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#密码技术"><span class="toc-number">2.</span> <span class="toc-text">密码技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python密码库–Pycrypto"><span class="toc-number">3.</span> <span class="toc-text">Python密码库–Pycrypto</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RSA-密码算法与签名"><span class="toc-number">4.</span> <span class="toc-text">RSA 密码算法与签名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#加密与解密"><span class="toc-number">5.</span> <span class="toc-text">加密与解密</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#加密（encrypt）"><span class="toc-number">5.1.</span> <span class="toc-text">加密（encrypt）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解密（decrypt）"><span class="toc-number">5.2.</span> <span class="toc-text">解密（decrypt）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#签名与验签"><span class="toc-number">6.</span> <span class="toc-text">签名与验签</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#签名"><span class="toc-number">6.1.</span> <span class="toc-text">签名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#验签"><span class="toc-number">6.2.</span> <span class="toc-text">验签</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">7.</span> <span class="toc-text">总结</span></a></li></ol>
 		
 		</div>
 		
@@ -113,14 +113,18 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">from Crypto import Random</div><div class="line">from Crypto.Hash import SHA</div><div class="line">from Crypto.Cipher import PKCS1_v1_5 as Cipher_pkcs1_v1_5</div><div class="line">from Crypto.Signature import PKCS1_v1_5 as Signature_pkcs1_v1_5</div><div class="line">from Crypto.PublicKey import RSA</div><div class="line"> </div><div class="line"># 伪随机数生成器</div><div class="line">random_generator = Random.new().read</div><div class="line"># rsa算法生成实例</div><div class="line">rsa = RSA.generate(1024, random_generator)</div><div class="line"> </div><div class="line"># master的秘钥对的生成</div><div class="line">private_pem = rsa.exportKey()</div><div class="line"> </div><div class="line">with open(&apos;master-private.pem&apos;, &apos;w&apos;) as f:</div><div class="line">  f.write(private_pem)</div><div class="line"> </div><div class="line">public_pem = rsa.publickey().exportKey()</div><div class="line">with open(&apos;master-public.pem&apos;, &apos;w&apos;) as f:</div><div class="line">  f.write(public_pem)</div><div class="line"> </div><div class="line"># ghost的秘钥对的生成</div><div class="line">private_pem = rsa.exportKey()</div><div class="line">with open(&apos;master-private.pem&apos;, &apos;w&apos;) as f:</div><div class="line">  f.write(private_pem)</div><div class="line"> </div><div class="line">public_pem = rsa.publickey().exportKey()</div><div class="line">with open(&apos;master-public.pem&apos;, &apos;w&apos;) as f:</div><div class="line">  f.write(public_pem)</div></pre></td></tr></table></figure>
 <p>所生成的私钥和公钥大概是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">-----BEGIN RSA PRIVATE KEY-----</div><div class="line">MIICXQIBAAKBgQDR4Wq9l44lw/thTPyFmSi2hII92EPh90yGXQNL5e7zJPD16j6Q</div><div class="line">tr+tIPNSQaVrnmNwrtqyEC2x4Meyp3tdCWPYUF11r2GgDgxKfUByetNG4XqJeUKk</div><div class="line">kJ6D6C706mTf/2zsm8KFoNYCYPX1GhvpiTOikHcNlHLCnOD7jbMAovJg/QIDAQAB</div><div class="line">AoGBAIz8V6+0NxC3bg4WoSs9j1PL/5F7zV3lucoogSZi9vjuP89x40Vi/a9XCxye</div><div class="line">bHi2lSYEz3P92jQ7QuqIBx6gSCi3p2HLjD5LyQeSSMbPe8KSlf52dBUaPthbBceA</div><div class="line">IJSBDrE8MKGpulTQKAJ7K3zQUOP2ZZgcKxq2jcQgS6iTENIBAkEA5r7emvwuL0Ob</div><div class="line">Maav4o1Ovb5c6OL7bSm1tuLPSKl05WuNYfE6LkqiwOOn5lPvsqhwyI1dJeywVeQz</div><div class="line">E+PvcTUR7QJBAOjZ8PxnP5T14fuhbfko4d24Ev+iiTBdq3pMXWvobEFL1ljV6aYE</div><div class="line">2JAiMjO/Fzd1WgZhWPa3P+diyTs9mART6VECQQC0LeEXdsn9oDYEbFu1dZBB++8C</div><div class="line">75NTJ5m8iJlB7QjZyMUq8Ln0wdUa9+n4ohxvDraa9EADSDJdr4bvBjLH3J/1AkBr</div><div class="line">9QfO7kvDU5DXqoujVnoJ4xsj3IbAnt0vEZLKwfLW/0M84si2SU7i3IfsB+/KraT0</div><div class="line">ilPF50ZAkEN+LNt7PjBRAkAHBBPME7IbFqxi5Cc/6R12DOMiJbOLDTS12b1J1cwG</div><div class="line">p8WMIERsvwWdJw+4NdqjbJcjzeGrXhDBi//JU902TAwy</div><div class="line">-----END RSA PRIVATE KEY-----</div><div class="line"> </div><div class="line">-----BEGIN PUBLIC KEY-----</div><div class="line">MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDR4Wq9l44lw/thTPyFmSi2hII9</div><div class="line">2EPh90yGXQNL5e7zJPD16j6Qtr+tIPNSQaVrnmNwrtqyEC2x4Meyp3tdCWPYUF11</div><div class="line">r2GgDgxKfUByetNG4XqJeUKkkJ6D6C706mTf/2zsm8KFoNYCYPX1GhvpiTOikHcN</div><div class="line">lHLCnOD7jbMAovJg/QIDAQAB</div><div class="line">-----END PUBLIC KEY-----</div></pre></td></tr></table></figure></p>
 <h2 id="加密与解密"><a href="#加密与解密" class="headerlink" title="加密与解密"></a>加密与解密</h2><p>通常通信的时候，发送者使用接受者的公钥加密，接受者使用接受者私钥解密。<br>简而言之，Master给Ghost通信，需要加密内容，那么Ghost会生成一个秘钥对，Ghost的公钥ghost-public.pem和私钥ghost-private.pem 。Ghost 把公钥公开给发送者，任何人都可以用来加密，然后Master使用ghost-public.pem进行加密，然后把内容发给Ghost，Ghost再使用ghost-private.pem进行解密。</p>
-<h3 id="加密（encrypt）"><a href="#加密（encrypt）" class="headerlink" title="加密（encrypt）"></a>加密（encrypt）</h3><h1 id="Master使用Ghost的公钥对内容进行rsa-加密"><a href="#Master使用Ghost的公钥对内容进行rsa-加密" class="headerlink" title="Master使用Ghost的公钥对内容进行rsa 加密"></a>Master使用Ghost的公钥对内容进行rsa 加密</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">In [12]: message = &apos;hello ghost, this is a plian text&apos;</div><div class="line">In [13]: with open(&apos;ghost-public.pem&apos;) as f:</div><div class="line">  ....:   key = f.read()</div><div class="line">  ....:   rsakey = RSA.importKey(key)</div><div class="line">  ....:   cipher = Cipher_pkcs1_v1_5.new(rsakey)</div><div class="line">  ....:   cipher_text = base64.b64encode(cipher.encrypt(message))</div><div class="line">  ....:   print cipher_text</div><div class="line">  ....:</div><div class="line"> </div><div class="line"> </div><div class="line">HYQPGB+axWCbPp7PPGNTJEAhVPW0TX5ftvUN2v40ChBLB1pS+PVM3YGT5vfcsvmPZhW8NKVSBp8FwjLUnMn6yXP1O36NaunUzyHwI+cpjlkTwZs3DfCY/32EzeuKuJABin1FHBYUMTOKtHy+eEDOuaJTnZTC7ZBkdha+J88HXSc=</div></pre></td></tr></table></figure>
+<h3 id="加密（encrypt）"><a href="#加密（encrypt）" class="headerlink" title="加密（encrypt）"></a>加密（encrypt）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># Master使用Ghost的公钥对内容进行rsa 加密</div><div class="line"></div><div class="line">In [12]: message = &apos;hello ghost, this is a plian text&apos;</div><div class="line">In [13]: with open(&apos;ghost-public.pem&apos;) as f:</div><div class="line">  ....:   key = f.read()</div><div class="line">  ....:   rsakey = RSA.importKey(key)</div><div class="line">  ....:   cipher = Cipher_pkcs1_v1_5.new(rsakey)</div><div class="line">  ....:   cipher_text = base64.b64encode(cipher.encrypt(message))</div><div class="line">  ....:   print cipher_text</div><div class="line">  ....:</div><div class="line"> </div><div class="line"> </div><div class="line">HYQPGB+axWCbPp7PPGNTJEAhVPW0TX5ftvUN2v40ChBLB1pS+PVM3YGT5vfcsvmPZhW8NKVSBp8FwjLUnMn6yXP1O36NaunUzyHwI+cpjlkTwZs3DfCY/32EzeuKuJABin1FHBYUMTOKtHy+eEDOuaJTnZTC7ZBkdha+J88HXSc=</div></pre></td></tr></table></figure>
 <p>cipher_text 即 Master加密后将要发送给Ghost的密文。</p>
 <h3 id="解密（decrypt）"><a href="#解密（decrypt）" class="headerlink" title="解密（decrypt）"></a>解密（decrypt）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># Ghost使用自己的私钥对内容进行rsa 解密 </div><div class="line"> </div><div class="line">In [14]: with open(&apos;ghost-private.pem&apos;) as f:</div><div class="line">  ....:   key = f.read()</div><div class="line">  ....:   rsakey = RSA.importKey(key)</div><div class="line">  ....:   cipher = Cipher_pkcs1_v1_5.new(rsakey)</div><div class="line">  ....:   text = cipher.decrypt(base64.b64decode(encrypt_text), random_generator)</div><div class="line">  ....:</div><div class="line">In [15]: print text</div><div class="line">hello ghost, this is a plian text</div><div class="line">In [16]: assert text == message, &apos;decrypt falied&apos;</div></pre></td></tr></table></figure>
 <p>这样Ghost就能看到Master所发的内容了，当然，如果Ghost想要给Master发消息，就需要Master先把其的公钥给Ghost，后者再使用公钥加密，然后发送给Master，最后Master使用自己的私钥解密。</p>
 <h2 id="签名与验签"><a href="#签名与验签" class="headerlink" title="签名与验签"></a>签名与验签</h2><p>当然，对于窃听者，有时候也可以对伪造Master给Ghost发送内容。为此出现了数字签名。也就是Master给Ghost发送消息的时候，先对消息进行签名，表明自己的身份，并且这个签名无法伪造。具体过程即Master使用自己的私钥对内容签名，然后Ghost使用Master的公钥进行验签。</p>
 <h3 id="签名"><a href="#签名" class="headerlink" title="签名"></a>签名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># Master 使用自己的公钥对内容进行签名</div><div class="line">In [17]: with open(&apos;master-private.pem&apos;) as f:</div><div class="line">  ....:    key = f.read()</div><div class="line">  ....:    rsakey = RSA.importKey(key)</div><div class="line">  ....:    signer = Signature_pkcs1_v1_5.new(rsakey)</div><div class="line">  ....:    digest = SHA.new()</div><div class="line">  ....:    digest.update(message)</div><div class="line">  ....:    sign = signer.sign(digest)</div><div class="line">  ....:    signature = base64.b64encode(sign)</div><div class="line">In [18]: print signature</div><div class="line">jVUcAYfgF5Pwlpgrct3IlCX7KezWqNI5tD5OIFTrfCOQgfyCrOkN+/gRLsMiSDOHhFPj2LnfY4Cr5u4eG2IiH8+uSF5z4gUX48AqCQlqiOTLk2EGvyp+w+iYo2Bso1MUi424Ebkx7SnuJwLiPqNzIBLfEZLA3ov69aDArh6hQiw=</div></pre></td></tr></table></figure>
 <h3 id="验签"><a href="#验签" class="headerlink" title="验签"></a>验签</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">In [22]: with open(&apos;master-public.pem&apos;) as f:</div><div class="line">  ....:   key = f.read()</div><div class="line">  ....:   rsakey = RSA.importKey(key)</div><div class="line">  ....:   verifier = Signature_pkcs1_v1_5.new(rsakey)</div><div class="line">  ....:   digest = SHA.new()</div><div class="line">  ....:   # Assumes the data is base64 encoded to begin with</div><div class="line">  ....:   digest.update(message)</div><div class="line">  ....:   is_verify = signer.verify(digest, base64.b64decode(signature))</div><div class="line">  ....:   print is_verify</div><div class="line">  ....:</div><div class="line">True</div></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Pycrypto提供了比较完善的加密算法。RSA广泛用于加密与解密，还有数字签名通信领域。使用Publick/Private秘钥算法中，加密主要用对方的公钥，解密用自己的私钥。签名用自己的私钥，验签用对方的公钥。<br>1 加密解密：公钥加密，私钥解密<br>2 签名验签：私钥签名，公钥验签<br>无论是加密机密还是签名验签都使用同一对秘钥对。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Pycrypto提供了比较完善的加密算法。RSA广泛用于加密与解密，还有数字签名通信领域。使用Publick/Private秘钥算法中，加密主要用对方的公钥，解密用自己的私钥。签名用自己的私钥，验签用对方的公钥。</p>
+<ol>
+<li>加密解密：公钥加密，私钥解密</li>
+<li>签名验签：私钥签名，公钥验签<br>无论是加密机密还是签名验签都使用同一对秘钥对。</li>
+</ol>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -169,22 +173,22 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#密码与通信"><span class="toc-number">1.</span> <span class="toc-text">密码与通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#密码技术"><span class="toc-number">2.</span> <span class="toc-text">密码技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python密码库–Pycrypto"><span class="toc-number">3.</span> <span class="toc-text">Python密码库–Pycrypto</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RSA-密码算法与签名"><span class="toc-number">4.</span> <span class="toc-text">RSA 密码算法与签名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#加密与解密"><span class="toc-number">5.</span> <span class="toc-text">加密与解密</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#加密（encrypt）"><span class="toc-number">5.1.</span> <span class="toc-text">加密（encrypt）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Master使用Ghost的公钥对内容进行rsa-加密"><span class="toc-number"></span> <span class="toc-text">Master使用Ghost的公钥对内容进行rsa 加密</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解密（decrypt）"><span class="toc-number">0.1.</span> <span class="toc-text">解密（decrypt）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#签名与验签"><span class="toc-number">1.</span> <span class="toc-text">签名与验签</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#签名"><span class="toc-number">1.1.</span> <span class="toc-text">签名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#验签"><span class="toc-number">1.2.</span> <span class="toc-text">验签</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">2.</span> <span class="toc-text">总结</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#密码与通信"><span class="toc-number">1.</span> <span class="toc-text">密码与通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#密码技术"><span class="toc-number">2.</span> <span class="toc-text">密码技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python密码库–Pycrypto"><span class="toc-number">3.</span> <span class="toc-text">Python密码库–Pycrypto</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RSA-密码算法与签名"><span class="toc-number">4.</span> <span class="toc-text">RSA 密码算法与签名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#加密与解密"><span class="toc-number">5.</span> <span class="toc-text">加密与解密</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#加密（encrypt）"><span class="toc-number">5.1.</span> <span class="toc-text">加密（encrypt）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解密（decrypt）"><span class="toc-number">5.2.</span> <span class="toc-text">解密（decrypt）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#签名与验签"><span class="toc-number">6.</span> <span class="toc-text">签名与验签</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#签名"><span class="toc-number">6.1.</span> <span class="toc-text">签名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#验签"><span class="toc-number">6.2.</span> <span class="toc-text">验签</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">7.</span> <span class="toc-text">总结</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github Card</p>
+<p class="asidetitle">Github 名片</p>
 <div class="github-card" data-github="Allen-Feng" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -196,7 +200,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
@@ -244,7 +248,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -290,11 +294,11 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">Weibo</p>
+  <p class="asidetitle">新浪微博</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5580378505&verifier=07a80851&dpc=1"></iframe>
 </div>
 
@@ -543,7 +547,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
