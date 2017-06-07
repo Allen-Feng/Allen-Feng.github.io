@@ -19,7 +19,7 @@
 <meta property="og:description" content="随着iOS11的发布，苹果公司也正式加入了机器学习的战场。在新的iOS11中内置了CoreML，虽然还是Beta版本，但是功能已经非常强大了。">
 <meta property="og:image" content="http://yoursite.com/images/17060701.png">
 <meta property="og:image" content="http://yoursite.com/images/17060702.png">
-<meta property="og:updated_time" content="2017-06-07T03:10:22.000Z">
+<meta property="og:updated_time" content="2017-06-07T03:15:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS11中的机器学习CoreML库">
 <meta name="twitter:description" content="随着iOS11的发布，苹果公司也正式加入了机器学习的战场。在新的iOS11中内置了CoreML，虽然还是Beta版本，但是功能已经非常强大了。">
@@ -52,7 +52,7 @@
 				<h1 class="site-name"><a href="/" title="aFeng`s Blog">aFeng`s Blog</a></h1>
 				<h2 class="blog-motto">记录学习的点点滴滴</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -68,7 +68,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -91,36 +91,37 @@
 		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-07T03:02:28.000Z" itemprop="datePublished"> Published 2017-06-07</time>
+    <time datetime="2017-06-07T03:02:28.000Z" itemprop="datePublished"> 发表于 2017-06-07</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		
 			
 		
 		</div>
 		
 		<blockquote>
-<p>随着iOS11的发布，苹果公司也正式加入了机器学习的战场。在新的iOS11中内置了CoreML，虽然还是Beta版本，但是功能已经非常强大了。</p>
+<p>随着iOS11的发布，苹果公司也正式加入了机器学习的战场。在新的iOS11中内置了<code>CoreML</code>，虽然还是Beta版本，但是功能已经非常强大了。</p>
 </blockquote>
 <a id="more"></a>
 <p>在这个CoreML库里面，已经集成了一些训练好的模型，可以在App中直接使用这些模型进行预测。</p>
 <p><img src="/images/17060701.png" alt=""></p>
-<p>下面是苹果对于Core ML的介绍。<br>CoreML让你将很多机器学习模型集成到你的app中。除了支持层数超过30层的深度学习之外，还支持决策树的融合，SVM（支持向量机），线性模型。由于其底层建立在Metal 和Accelerate等技术上，所以可以最大限度的发挥CPU和GPU的优势。你可以在移动设备上运行机器学习模型，数据可以不离开设备直接被分析。</p>
+<p>下面是苹果对于Core ML的介绍。<br>CoreML让你将很多机器学习模型集成到你的app中。除了支持层数超过30层的深度学习之外，还支持<code>决策树</code>的融合，<code>SVM</code>（支持向量机），<code>线性模型</code>。由于其底层建立在Metal 和Accelerate等技术上，所以可以最大限度的发挥CPU和GPU的优势。你可以在移动设备上运行机器学习模型，数据可以不离开设备直接被分析。</p>
 <ul>
-<li><p>Vision：这部分是关于图像分析和图像识别的。其中包括人脸追踪，人脸识别，航标（landmarks），文本识别，区域识别，二维码识别，物体追踪，图像识别等。<br>其中使用的模型包括：Places205-GoogLeNet，ResNet50，Inception v3，VGG16。<br>这些模型最小的25M，对于app还是可以接受的，最大的有550M，不知道如何集成到app中。</p>
+<li><p><strong>Vision</strong>：这部分是关于图像分析和图像识别的。其中包括人脸追踪，人脸识别，航标（landmarks），文本识别，区域识别，二维码识别，物体追踪，图像识别等。<br>其中使用的模型包括：Places205-GoogLeNet，ResNet50，Inception v3，VGG16。<br>这些模型最小的25M，对于app还是可以接受的，最大的有550M，不知道如何集成到app中。</p>
 </li>
-<li><p>NLPAPI：这部分是自然语言处理的API，包括语言识别，分词，词性还原，词性判定，实体辨识。</p>
+<li><p><strong>NLPAPI</strong>：这部分是自然语言处理的API，包括语言识别，分词，词性还原，词性判定，实体辨识。</p>
 </li>
-<li><p>GamePlayKit：这部分的话，应该是制作游戏时候，提供一些随机数生成，寻找路径（pathfinding），人工智能的库。感觉上可能还带有强化学习的一些功能（提到了agent behavior，这个可能是强化学习 Q-Learning的一些术语吧0）。其中也有一些Decision Trees的API，但是不知道和传统的决策树是否一致。</p>
+<li><p><strong>GamePlayKit</strong>：这部分的话，应该是制作游戏时候，提供一些随机数生成，寻找路径（pathfinding），人工智能的库。感觉上可能还带有强化学习的一些功能（提到了agent behavior，这个可能是强化学习 Q-Learning的一些术语吧0）。其中也有一些Decision Trees的API，但是不知道和传统的决策树是否一致。</p>
 </li>
 </ul>
 <p><img src="/images/17060702.png" alt=""></p>
-<p>从图中可以看到，Core ML 的底层是Accelerate 和 BNNS，BNNS（Basic neural network subroutines），框架中已经集成了神经网络了，并且对于大规模计算和图形计算进行了一定的优化了。Metal Performance Shaders看介绍应该是能够使得app充分使用GPU的组件</p>
+<p>从图中可以看到，Core ML 的底层是<code>Accelerate</code>和<code>BNNS</code>，<code>BNNS</code>（Basic neural network subroutines），框架中已经集成了神经网络了，并且对于大规模计算和图形计算进行了一定的优化了。Metal Performance Shaders看介绍应该是能够使得app充分使用GPU的组件</p>
+<p><a href="https://onevcat.com/2017/06/ios-11-sdk/" target="_blank" rel="external">参OneV`s：开发者所需要知道的 iOS 11 SDK 新特性</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -169,22 +170,22 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
  
  
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github Card</p>
+<p class="asidetitle">Github 名片</p>
 <div class="github-card" data-github="Allen-Feng" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -196,7 +197,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
@@ -248,7 +249,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -294,11 +295,11 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">Weibo</p>
+  <p class="asidetitle">新浪微博</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5580378505&verifier=07a80851&dpc=1"></iframe>
 </div>
 
@@ -547,7 +548,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
