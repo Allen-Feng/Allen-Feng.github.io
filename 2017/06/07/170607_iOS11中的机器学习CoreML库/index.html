@@ -4,23 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>const和#define区别 | aFeng`s Blog</title>
+    <title>iOS11中的机器学习CoreML库 | aFeng`s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Allen Feng">
     
 
     
-    <meta name="description" content="每个项目中基本上都会有需要宏定义的常量，而我们通常都是随机从const和#define中拿一个使用，可是你知道她们的区别吗？">
+    <meta name="description" content="随着iOS11的发布，苹果公司也正式加入了机器学习的战场。在新的iOS11中内置了CoreML，虽然还是Beta版本，但是功能已经非常强大了。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="const和#define区别">
-<meta property="og:url" content="http://yoursite.com/2016/08/13/160813_const和-define区别/index.html">
+<meta property="og:title" content="iOS11中的机器学习CoreML库">
+<meta property="og:url" content="http://yoursite.com/2017/06/07/170607_iOS11中的机器学习CoreML库/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
-<meta property="og:description" content="每个项目中基本上都会有需要宏定义的常量，而我们通常都是随机从const和#define中拿一个使用，可是你知道她们的区别吗？">
-<meta property="og:updated_time" content="2016-08-13T06:28:59.000Z">
+<meta property="og:description" content="随着iOS11的发布，苹果公司也正式加入了机器学习的战场。在新的iOS11中内置了CoreML，虽然还是Beta版本，但是功能已经非常强大了。">
+<meta property="og:image" content="http://yoursite.com/images/17060701">
+<meta property="og:updated_time" content="2017-06-07T03:05:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="const和#define区别">
-<meta name="twitter:description" content="每个项目中基本上都会有需要宏定义的常量，而我们通常都是随机从const和#define中拿一个使用，可是你知道她们的区别吗？">
+<meta name="twitter:title" content="iOS11中的机器学习CoreML库">
+<meta name="twitter:description" content="随着iOS11的发布，苹果公司也正式加入了机器学习的战场。在新的iOS11中内置了CoreML，虽然还是Beta版本，但是功能已经非常强大了。">
+<meta name="twitter:image" content="http://yoursite.com/images/17060701">
 <meta name="twitter:creator" content="@allenfeng945">
 
     
@@ -81,14 +83,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/08/13/160813_const和-define区别/" title="const和#define区别" itemprop="url">const和#define区别</a>
+      <a href="/2017/06/07/170607_iOS11中的机器学习CoreML库/" title="iOS11中的机器学习CoreML库" itemprop="url">iOS11中的机器学习CoreML库</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-13T05:32:01.000Z" itemprop="datePublished"> Published 2016-08-13</time>
+    <time datetime="2017-06-07T03:02:28.000Z" itemprop="datePublished"> Published 2017-06-07</time>
     
   </p>
 </header>
@@ -97,32 +99,16 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#编译器处理方式不同"><span class="toc-number">1.</span> <span class="toc-text">编译器处理方式不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型和安全检查不同"><span class="toc-number">2.</span> <span class="toc-text">类型和安全检查不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#存储方式不同"><span class="toc-number">3.</span> <span class="toc-text">存储方式不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效率不同"><span class="toc-number">4.</span> <span class="toc-text">效率不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#潜规则"><span class="toc-number">5.</span> <span class="toc-text">潜规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#规则-1"><span class="toc-number">5.1.</span> <span class="toc-text">规则 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规则-2"><span class="toc-number">5.2.</span> <span class="toc-text">规则 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规则-3"><span class="toc-number">5.3.</span> <span class="toc-text">规则 3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类中的常量"><span class="toc-number">6.</span> <span class="toc-text">类中的常量</span></a></li></ol>
+			
 		
 		</div>
 		
 		<blockquote>
-<p>每个项目中基本上都会有需要宏定义的常量，而我们通常都是随机从<code>const</code>和<code>#define</code>中拿一个使用，可是你知道她们的区别吗？</p>
+<p>随着iOS11的发布，苹果公司也正式加入了机器学习的战场。在新的iOS11中内置了CoreML，虽然还是Beta版本，但是功能已经非常强大了。</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="编译器处理方式不同"><a href="#编译器处理方式不同" class="headerlink" title="编译器处理方式不同"></a>编译器处理方式不同</h2><p><code>define宏</code>是在预处理阶段展开。<br><code>const常量</code>是编译运行阶段使用。</p>
-<h2 id="类型和安全检查不同"><a href="#类型和安全检查不同" class="headerlink" title="类型和安全检查不同"></a>类型和安全检查不同</h2><p><code>define宏</code>没有类型，不做任何类型检查，仅仅是展开。<br><code>const常量</code>有具体的类型，在编译阶段会执行类型检查。</p>
-<h2 id="存储方式不同"><a href="#存储方式不同" class="headerlink" title="存储方式不同"></a>存储方式不同</h2><p><code>define宏</code>仅仅是展开，有多少地方使用，就展开多少次，不会分配内存。<br><code>const常量</code>会在内存中分配(可以是堆中也可以是栈中)。<br>const可以节省空间，避免不必要的内存分配。 例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#define PI 3.14159 //不进行内存分配</div><div class="line">double I=PI; //进行宏替换，分配内存</div><div class="line">double J=PI; //再进行宏替换，又一次分配内存</div><div class="line">const doulbe Pi=3.14159; //此时并未将Pi放入ROM中</div><div class="line">double i=Pi; //此时为Pi分配内存，以后不再分配</div><div class="line">double j=Pi; //没有内存分配</div></pre></td></tr></table></figure>
-<p>const定义常量从汇编的角度来看，只是给出了对应的内存地址，而不是象#define一样给出的是立即数。所以，<code>const</code>定义的常量在程序运行过程中只有一份拷贝，<code>#define</code>定义的常量在内存中有若干个拷贝。 </p>
-<h2 id="效率不同"><a href="#效率不同" class="headerlink" title="效率不同"></a>效率不同</h2><p>编译器通常不为普通const常量分配存储空间，而是将它们保存在符号表中，这使得它成为一个编译期间的常量，没有了存储与读内存的操作，使得它的效率也很高。</p>
-<h2 id="潜规则"><a href="#潜规则" class="headerlink" title="潜规则"></a>潜规则</h2><h3 id="规则-1"><a href="#规则-1" class="headerlink" title="规则 1"></a>规则 1</h3><p>在C++程序中只使用const常量而不使用宏常量，即const常量完全取代宏常量。</p>
-<h3 id="规则-2"><a href="#规则-2" class="headerlink" title="规则 2"></a>规则 2</h3><p>需要对外公开的常量放在头文件中，不需要对外公开的常量放在定义文件的头部。为便于管理，可以把不同模块的常量集中存放在一个公共的头文件中。</p>
-<h3 id="规则-3"><a href="#规则-3" class="headerlink" title="规则 3"></a>规则 3</h3><p>如果某一常量与其它常量密切相关，应在定义中包含这种关系，而不应给出一些孤立的值。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">const  float   RADIUS = 100;</div><div class="line">const  float   DIAMETER = RADIUS * 2;</div></pre></td></tr></table></figure>
-<h2 id="类中的常量"><a href="#类中的常量" class="headerlink" title="类中的常量"></a>类中的常量</h2><p>有时我们希望某些常量只在类中有效。由于#define定义的宏常量是全局的，不能达到目的，于是想当然地觉得应该用const修饰数据成员来实现。const数据成员的确是存在的，但其含义却不是我们所期望的。const数据成员只在某个对象生存期内是常量，而对于整个类而言却是可变的，因为类可以创建多个对象，不同的对象其const数据成员的值可以不同。<br>不能在类声明中初始化const数据成员。以下用法是错误的，因为类的对象未被创建时，编译器不知道SIZE的值是什么。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">class A &#123;</div><div class="line">	const int SIZE = 100;	// 错误，企图在类声明中初始化const数据成员</div><div class="line">	int array[SIZE];		// 错误，未知的SIZE</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>const数据成员的初始化只能在类构造函数的初始化表中进行，例如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class A &#123;</div><div class="line">	A(int size);			// 构造函数</div><div class="line">	const int SIZE ;  </div><div class="line">&#125;;</div><div class="line">A::A(int size) : SIZE(size) &#123; // 构造函数的初始化表</div><div class="line">	…</div><div class="line">&#125;</div><div class="line">A  a(100);		// 对象 a 的SIZE值为100</div><div class="line">A  b(200);		// 对象 b 的SIZE值为200</div></pre></td></tr></table></figure>
-<p>怎样才能建立在整个类中都恒定的常量呢？别指望const数据成员了，应该用类中的枚举常量来实现。例如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class A &#123;</div><div class="line">	enum &#123; SIZE1 = 100, SIZE2 = 200&#125;; // 枚举常量</div><div class="line">	int array1[SIZE1];</div><div class="line">	int array2[SIZE2];</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>枚举常量不会占用对象的存储空间，它们在编译时被全部求值。枚举常量的缺点是：它的隐含数据类型是整数，其最大值有限，且不能表示浮点数（如PI=3.14159）。sizeof(A) = 1200;其中枚举部长空间。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">enum   EM &#123; SIZE1 = 100, SIZE2 = 200&#125;; // 枚举常量    sizeof（EM） = 4；</div></pre></td></tr></table></figure>  
+<p>在这个CoreML库里面，已经集成了一些训练好的模型，可以在App中直接使用这些模型进行预测。<br><img src="/images/17060701" alt=""></p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -130,7 +116,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/iOS/">iOS</a>
+  <span></span> <a href="/tags/iOS/">iOS</a><a href="/tags/ML/">ML</a>
   </div>
 
 </div>
@@ -139,7 +125,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/08/13/160813_const和-define区别/" data-title="const和#define区别 | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/06/07/170607_iOS11中的机器学习CoreML库/" data-title="iOS11中的机器学习CoreML库 | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -152,19 +138,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/09/12/160912_iOS基础知识汇总/" title="iOS基础知识汇总">
-  <strong>上一篇：</strong><br/>
-  <span>
-  iOS基础知识汇总</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/08/02/160802_iOS获取设备信息总结/"  title="iOS获取设备信息总结">
+<a href="/2017/04/20/170420_Python使用Pycrypto库进行RSA加密的方法详解/"  title="Python使用Pycrypto库进行RSA加密的方法详解">
  <strong>下一篇：</strong><br/> 
- <span>iOS获取设备信息总结
+ <span>Python使用Pycrypto库进行RSA加密的方法详解
 </span>
 </a>
 </div>
@@ -173,7 +151,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/08/13/160813_const和-define区别/" data-title="const和#define区别" data-url="http://yoursite.com/2016/08/13/160813_const和-define区别/"></div>
+	<div class="ds-thread" data-thread-key="2017/06/07/170607_iOS11中的机器学习CoreML库/" data-title="iOS11中的机器学习CoreML库" data-url="http://yoursite.com/2017/06/07/170607_iOS11中的机器学习CoreML库/"></div>
 </section>
 
 
@@ -183,7 +161,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#编译器处理方式不同"><span class="toc-number">1.</span> <span class="toc-text">编译器处理方式不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型和安全检查不同"><span class="toc-number">2.</span> <span class="toc-text">类型和安全检查不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#存储方式不同"><span class="toc-number">3.</span> <span class="toc-text">存储方式不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效率不同"><span class="toc-number">4.</span> <span class="toc-text">效率不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#潜规则"><span class="toc-number">5.</span> <span class="toc-text">潜规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#规则-1"><span class="toc-number">5.1.</span> <span class="toc-text">规则 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规则-2"><span class="toc-number">5.2.</span> <span class="toc-text">规则 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规则-3"><span class="toc-number">5.3.</span> <span class="toc-text">规则 3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类中的常量"><span class="toc-number">6.</span> <span class="toc-text">类中的常量</span></a></li></ol>
+ 
  
   </div>
 
