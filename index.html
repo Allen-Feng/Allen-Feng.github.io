@@ -92,30 +92,14 @@
 </header>
     <div class="article-content">
         
-        <p>先安装<code>Xcode Command Line Tool</code>。输入<code>xcode-select --install</code>进行安装。</p>
-<p>再安装<code>marport</code>，<a href="http://www.macports.org/" target="_blank" rel="external">http://www.macports.org/</a>。安装后重启计算机。</p>
-<p>命令行输入：<code>sudo port install tesseract</code></p>
-<p>随后安装语言包：</p>
-<ul>
-<li><a href="https://github.com/tesseract-ocr/langdata" target="_blank" rel="external">https://github.com/tesseract-ocr/langdata</a></li>
-<li><a href="https://github.com/tesseract-ocr/tessdata" target="_blank" rel="external">https://github.com/tesseract-ocr/tessdata。</a></li>
-</ul>
-<blockquote>
-<p>第二个语言包直接下载，在解压zip的时候出现error，一百多个文件迫不得得，只能一个一个的下载，耗时甚巨。</p>
+        <blockquote>
+<p>最近工作中Python爬虫有识别验证码的需求，开始是下载到本地，人眼识别，手动<code>input</code>输入。本着能代码解决的事情，绝不手动去做的原则，找到了这个，不过仅限于识别干净的验证码，一旦有干扰线等基本就没有成功率。</p>
 </blockquote>
-<p>在这两个地址下载语言包后，拷贝到<code>/opt/local/share/tessdata</code>目录下。</p>
-<p>使用方式及其简单，如下：</p>
-<pre><code>import pytesseract
-from PIL import Image
-
-if __name__ == &quot;__main__&quot;:
-    image = Image.open(&quot;Captcha.jpg&quot;)
-    code = pytesseract.image_to_string(image)
-    print(code)
-</code></pre>
         
         
         <p class="article-more-link">
+          
+            <a href="/2017/06/22/170622_在Mac环境安装tesseract-ocr/#more">Read More</a>
           
        </p>
     </div>
