@@ -79,6 +79,83 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2017/06/22/170622_在Mac环境安装tesseract-ocr/" title="在Mac环境安装tesseract ocr" itemprop="url">在Mac环境安装tesseract ocr</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
+		
+  <p class="article-time">
+    <time datetime="2017-06-22T12:26:37.000Z" itemprop="datePublished"> Published 2017-06-22</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>先安装<code>Xcode Command Line Tool</code>。输入<code>xcode-select --install</code>进行安装。</p>
+<p>再安装<code>marport</code>，<a href="http://www.macports.org/" target="_blank" rel="external">http://www.macports.org/</a>。安装后重启计算机。</p>
+<p>命令行输入：<code>sudo port install tesseract</code></p>
+<p>随后安装语言包：</p>
+<ul>
+<li><a href="https://github.com/tesseract-ocr/langdata" target="_blank" rel="external">https://github.com/tesseract-ocr/langdata</a></li>
+<li><a href="https://github.com/tesseract-ocr/tessdata" target="_blank" rel="external">https://github.com/tesseract-ocr/tessdata。</a></li>
+</ul>
+<blockquote>
+<p>第二个语言包直接下载，在解压zip的时候出现error，一百多个文件迫不得得，只能一个一个的下载，耗时甚巨。</p>
+</blockquote>
+<p>在这两个地址下载语言包后，拷贝到<code>/opt/local/share/tessdata</code>目录下。</p>
+<p>使用方式及其简单，如下：</p>
+<pre><code>import pytesseract
+from PIL import Image
+
+if __name__ == &quot;__main__&quot;:
+    image = Image.open(&quot;Captcha.jpg&quot;)
+    code = pytesseract.image_to_string(image)
+    print(code)
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/ML/">ML</a><a href="/tags/Python/">Python</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/06/22/170622_在Mac环境安装tesseract-ocr/#comments" class="ds-thread-count comments-count-link" data-thread-key="2017/06/22/170622_在Mac环境安装tesseract-ocr/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2017/06/07/170607_iOS11中的机器学习CoreML库/" title="iOS11中的机器学习CoreML库" itemprop="url">iOS11中的机器学习CoreML库</a>
   </h1>
   <p class="article-author">By
@@ -614,65 +691,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/09/22/160922_iOS获取UIWebView上面的点击事件/" title="iOS获取UIWebView上面的点击事件" itemprop="url">iOS获取UIWebView上面的点击事件</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
-		
-  <p class="article-time">
-    <time datetime="2016-09-22T07:33:46.000Z" itemprop="datePublished"> Published 2016-09-22</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>在网上看到很多文章都说iOS的<code>UIWebView</code>比较耗内存，在我的项目中，最开始我也是用<code>UIWebView</code>来加载网页的。刚开始加载的是自己拼接成的<code>HTML</code>，后来在<code>HTML</code>中加入一个按钮，点击之后用当前的<code>UIWebView</code>去加载网络上的网页。程序跑起来发现非常耗内存，加载几个网上的网页之后就爆内存警告了，不处理的话很容易被评估拒掉app。</p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/09/22/160922_iOS获取UIWebView上面的点击事件/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/iOS/">iOS</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/09/22/160922_iOS获取UIWebView上面的点击事件/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/22/160922_iOS获取UIWebView上面的点击事件/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -707,11 +725,7 @@
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/ARC/" title="ARC">ARC<sup>2</sup></a></li>
+				<li><a href="/tags/ML/" title="ML">ML<sup>2</sup></a></li>
 			
 		
 			
@@ -719,11 +733,19 @@
 			
 		
 			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Mac/" title="Mac">Mac<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/ML/" title="ML">ML<sup>1</sup></a></li>
+				<li><a href="/tags/ARC/" title="ARC">ARC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Python/" title="Python">Python<sup>2</sup></a></li>
 			
 		
 			
@@ -735,15 +757,11 @@
 			
 		
 			
-				<li><a href="/tags/Python/" title="Python">Python<sup>1</sup></a></li>
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/RSA/" title="RSA">RSA<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
 			
 		
 		</ul>
