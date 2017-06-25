@@ -4,25 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Clear your Mac by yourself | aFeng`s Blog</title>
+    <title>解决 mac OSX pip OSError: [Errno 1] Operation not permitted | aFeng`s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Allen Feng">
     
 
     
-    <meta name="description" content="在寸土寸金的SSD上，尤其是安装有Xcode的码农的Mac，存储空间一直都是Mac使用者淡淡的忧伤（当然，选购1TB硬盘的土豪们，请忽略）～">
+    <meta name="description" content="这段时间在弄机器学习的事情，然后看Macbook里面的Python库有点旧，就用pip更新一下。结果抛出个异常。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Clear your Mac by yourself">
-<meta property="og:url" content="http://yoursite.com/2016/11/02/161102_Clear-your-Mac-by-yourself/index.html">
+<meta property="og:title" content="解决 mac OSX pip OSError: [Errno 1] Operation not permitted">
+<meta property="og:url" content="http://yoursite.com/2017/06/25/170625_解决-mac-OSX-pip-OSError-Errno-1-Operation-not-permitted/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
-<meta property="og:description" content="在寸土寸金的SSD上，尤其是安装有Xcode的码农的Mac，存储空间一直都是Mac使用者淡淡的忧伤（当然，选购1TB硬盘的土豪们，请忽略）～">
-<meta property="og:image" content="http://yoursite.com/images/16110201.png">
-<meta property="og:updated_time" content="2016-11-02T03:05:45.000Z">
+<meta property="og:description" content="这段时间在弄机器学习的事情，然后看Macbook里面的Python库有点旧，就用pip更新一下。结果抛出个异常。">
+<meta property="og:updated_time" content="2017-06-25T13:18:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Clear your Mac by yourself">
-<meta name="twitter:description" content="在寸土寸金的SSD上，尤其是安装有Xcode的码农的Mac，存储空间一直都是Mac使用者淡淡的忧伤（当然，选购1TB硬盘的土豪们，请忽略）～">
-<meta name="twitter:image" content="http://yoursite.com/images/16110201.png">
+<meta name="twitter:title" content="解决 mac OSX pip OSError: [Errno 1] Operation not permitted">
+<meta name="twitter:description" content="这段时间在弄机器学习的事情，然后看Macbook里面的Python库有点旧，就用pip更新一下。结果抛出个异常。">
 <meta name="twitter:creator" content="@allenfeng945">
 
     
@@ -83,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/11/02/161102_Clear-your-Mac-by-yourself/" title="Clear your Mac by yourself" itemprop="url">Clear your Mac by yourself</a>
+      <a href="/2017/06/25/170625_解决-mac-OSX-pip-OSError-Errno-1-Operation-not-permitted/" title="解决 mac OSX pip OSError: [Errno 1] Operation not permitted" itemprop="url">解决 mac OSX pip OSError: [Errno 1] Operation not permitted</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
 		
   <p class="article-time">
-    <time datetime="2016-11-02T02:25:05.000Z" itemprop="datePublished"> Published 2016-11-02</time>
+    <time datetime="2017-06-25T13:14:16.000Z" itemprop="datePublished"> Published 2017-06-25</time>
     
   </p>
 </header>
@@ -99,33 +97,19 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Xcode磁盘空间大清理"><span class="toc-number">1.</span> <span class="toc-text">Xcode磁盘空间大清理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#移除对旧设备的支持"><span class="toc-number">1.1.</span> <span class="toc-text">移除对旧设备的支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除旧版本的模拟器支持"><span class="toc-number">1.2.</span> <span class="toc-text">移除旧版本的模拟器支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除模拟器的临时文件"><span class="toc-number">1.3.</span> <span class="toc-text">移除模拟器的临时文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除模拟器中安装的Apps"><span class="toc-number">1.4.</span> <span class="toc-text">移除模拟器中安装的Apps</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除Archives"><span class="toc-number">1.5.</span> <span class="toc-text">移除Archives</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除DerivedData"><span class="toc-number">1.6.</span> <span class="toc-text">移除DerivedData</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除旧的Docsets"><span class="toc-number">1.7.</span> <span class="toc-text">移除旧的Docsets</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#彻底清空GarageBand"><span class="toc-number">2.</span> <span class="toc-text">彻底清空GarageBand</span></a></li></ol>
+			
 		
 		</div>
 		
-		<p>在寸土寸金的SSD上，尤其是安装有Xcode的码农的Mac，存储空间一直都是Mac使用者淡淡的忧伤（当然，选购<code>1TB硬盘</code>的土豪们，请忽略）～<br><a id="more"></a></p>
-<h2 id="Xcode磁盘空间大清理"><a href="#Xcode磁盘空间大清理" class="headerlink" title="Xcode磁盘空间大清理"></a>Xcode磁盘空间大清理</h2><h3 id="移除对旧设备的支持"><a href="#移除对旧设备的支持" class="headerlink" title="移除对旧设备的支持"></a>移除对旧设备的支持</h3><p><strong>影响：</strong>可重新生成；再连接旧设备调试时，会重新自动生成。<br><strong>路径：</strong>~/Library/Developer/Xcode/iOS DeviceSupport</p>
-<h3 id="移除旧版本的模拟器支持"><a href="#移除旧版本的模拟器支持" class="headerlink" title="移除旧版本的模拟器支持"></a>移除旧版本的模拟器支持</h3><p><strong>影响：</strong>不可恢复；如果需要旧版本的模拟器，就需要重新下载了。<br><strong>路径：</strong>~/Library/Application Support/iPhone Simulator</p>
-<h3 id="移除模拟器的临时文件"><a href="#移除模拟器的临时文件" class="headerlink" title="移除模拟器的临时文件"></a>移除模拟器的临时文件</h3><p><strong>影响：</strong>可重新生成；如果需要保留较新版本的模拟器，但tmp文件夹很大。放心删吧，tmp文件夹里的内容是不重要的。在iOS Device中，存储空间不足时，tmp文件夹是可能被清空的。<br><strong>路径：</strong>~/Library/Application Support/iPhone Simulator/6.1/tmp (以iOS Simulator 6.1为例)</p>
-<h3 id="移除模拟器中安装的Apps"><a href="#移除模拟器中安装的Apps" class="headerlink" title="移除模拟器中安装的Apps"></a>移除模拟器中安装的Apps</h3><p><strong>影响：</strong>不可恢复；对应的模拟器中安装的Apps被清空了，如果不需要就删了吧。<br><strong>路径：</strong>~/Library/Application Support/iPhone Simulator/6.1/Applications (以iOS Simulator 6.1为例)</p>
-<h3 id="移除Archives"><a href="#移除Archives" class="headerlink" title="移除Archives"></a>移除Archives</h3><p><strong>影响：</strong>不可恢复；Adhoc或者App Store版本会被删除。建议备份dSYM文件夹<br><strong>路径：</strong>~/Library/Developer/Xcode/Archives</p>
-<h3 id="移除DerivedData"><a href="#移除DerivedData" class="headerlink" title="移除DerivedData"></a>移除DerivedData</h3><p><strong>影响：</strong>可重新生成；会删除build生成的项目索引、build输出以及日志。重新打开项目时会重新生成，大的项目会耗费一些时间。<br><strong>路径：</strong>~/Library/Developer/Xcode/DerivedData</p>
-<h3 id="移除旧的Docsets"><a href="#移除旧的Docsets" class="headerlink" title="移除旧的Docsets"></a>移除旧的Docsets</h3><p><strong>影响：</strong>不可恢复；将删除旧的Docsets文档<br><strong>路径：</strong>~/Library/Developer/Shared/Documentation/DocSets</p>
-<blockquote>
-<p>路径可以通过右键点击<code>finder</code>&gt;<code>前往文件夹</code>直接跳转。</p>
+		<blockquote>
+<p>这段时间在弄机器学习的事情，然后看Macbook里面的Python库有点旧，就用pip更新一下。结果抛出个异常。</p>
 </blockquote>
-<h2 id="彻底清空GarageBand"><a href="#彻底清空GarageBand" class="headerlink" title="彻底清空GarageBand"></a>彻底清空GarageBand</h2><p>已从应用程序列表删除，/资源库/Application Support/GarageBand/里的也删除了，系统信息里显示还有1.61G文件。<br><img src="/images/16110201.png" alt=""></p>
-<p>从应用程序列表删除GarageBand，其实只是删除了<code>.app</code></p>
-<ol>
-<li>Macintosh HD/Applications/GarageBand.app (1.16GB)</li>
-<li>Macintosh HD/Library/Application Support/GarageBand (995MB)</li>
-<li>Macintosh HD/Library/Application Support/Logic (880MB)</li>
-<li>Macintosh HD/Library/Audio/Apple Loops (up to 10GB)*</li>
-</ol>
-<p>*Note that the size of the Apple Loops directory will vary depending on the number and type of loops downloaded by the user. You should not delete this folder (or the Logic folder) if you are using Logic Pro.<br><a href="https://www.tekrevue.com/tip/delete-garageband/" target="_blank" rel="external">原文地址</a></p>
-<hr>
-<p>更多技能，待续</p>
-  
+<a id="more"></a>
+<p>正常的包更新使用如下命令即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install numpy --upgrade</div></pre></td></tr></table></figure></p>
+<p>结果抛出下面这个异常报告</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">Exception:</div><div class="line">Traceback (most recent call last):</div><div class="line">  File &quot;/Library/Python/2.7/site-packages/pip-7.1.0-py2.7.egg/pip/basecommand.py&quot;, line 223, in main</div><div class="line">    status = self.run(options, args)</div><div class="line">  File &quot;/Library/Python/2.7/site-packages/pip-7.1.0-py2.7.egg/pip/commands/install.py&quot;, line 299, in run</div><div class="line">    root=options.root_path,</div><div class="line">  File &quot;/Library/Python/2.7/site-packages/pip-7.1.0-py2.7.egg/pip/req/req_set.py&quot;, line 640, in install</div><div class="line">    requirement.uninstall(auto_confirm=True)</div><div class="line">  File &quot;/Library/Python/2.7/site-packages/pip-7.1.0-py2.7.egg/pip/req/req_install.py&quot;, line 726, in uninstall</div><div class="line">    paths_to_remove.remove(auto_confirm)</div><div class="line">  File &quot;/Library/Python/2.7/site-packages/pip-7.1.0-py2.7.egg/pip/req/req_uninstall.py&quot;, line 125, in remove</div><div class="line">    renames(path, new_path)</div><div class="line">  File &quot;/Library/Python/2.7/site-packages/pip-7.1.0-py2.7.egg/pip/utils/__init__.py&quot;, line 314, in renames</div><div class="line">    shutil.move(old, new)</div><div class="line">  File &quot;/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/shutil.py&quot;, line 302, in move</div><div class="line">    copy2(src, real_dst)</div><div class="line">  File &quot;/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/shutil.py&quot;, line 131, in copy2</div><div class="line">    copystat(src, dst)</div><div class="line">  File &quot;/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/shutil.py&quot;, line 103, in copystat</div><div class="line">    os.chflags(dst, st.st_flags)</div><div class="line">OSError: [Errno 1] Operation not permitted: &apos;/tmp/pip-1_nHcH-uninstall/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/numpy-1.8.0rc1-py2.7.egg-info&apos;</div></pre></td></tr></table></figure>
+<p>Google后找到这个解决方案</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo pip install numpy --upgrade --ignore-installed</div><div class="line">$ sudo pip install scipy --upgrade --ignore-installed</div><div class="line">$ sudo pip install scikit-learn --upgrade --ignore-installed</div></pre></td></tr></table></figure>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -133,7 +117,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Mac/">Mac</a>
+  <span></span> <a href="/tags/Python/">Python</a><a href="/tags/ML/">ML</a>
   </div>
 
 </div>
@@ -142,7 +126,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/11/02/161102_Clear-your-Mac-by-yourself/" data-title="Clear your Mac by yourself | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/06/25/170625_解决-mac-OSX-pip-OSError-Errno-1-Operation-not-permitted/" data-title="解决 mac OSX pip OSError: [Errno 1] Operation not permitted | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -155,19 +139,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/12/09/161209_解决iOS第三方SDK之间重复的symbols问题/" title="解决iOS第三方SDK之间重复的symbols问题">
-  <strong>上一篇：</strong><br/>
-  <span>
-  解决iOS第三方SDK之间重复的symbols问题</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/10/28/161028_聊聊-pragma-和-MARK/"  title="聊聊 #pragma 和 // MARK:">
+<a href="/2017/06/22/170622_在Mac环境安装tesseract-ocr/"  title="在Mac环境安装tesseract ocr">
  <strong>下一篇：</strong><br/> 
- <span>聊聊 #pragma 和 // MARK:
+ <span>在Mac环境安装tesseract ocr
 </span>
 </a>
 </div>
@@ -176,7 +152,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/11/02/161102_Clear-your-Mac-by-yourself/" data-title="Clear your Mac by yourself" data-url="http://yoursite.com/2016/11/02/161102_Clear-your-Mac-by-yourself/"></div>
+	<div class="ds-thread" data-thread-key="2017/06/25/170625_解决-mac-OSX-pip-OSError-Errno-1-Operation-not-permitted/" data-title="解决 mac OSX pip OSError: [Errno 1] Operation not permitted" data-url="http://yoursite.com/2017/06/25/170625_解决-mac-OSX-pip-OSError-Errno-1-Operation-not-permitted/"></div>
 </section>
 
 
@@ -186,7 +162,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Xcode磁盘空间大清理"><span class="toc-number">1.</span> <span class="toc-text">Xcode磁盘空间大清理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#移除对旧设备的支持"><span class="toc-number">1.1.</span> <span class="toc-text">移除对旧设备的支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除旧版本的模拟器支持"><span class="toc-number">1.2.</span> <span class="toc-text">移除旧版本的模拟器支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除模拟器的临时文件"><span class="toc-number">1.3.</span> <span class="toc-text">移除模拟器的临时文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除模拟器中安装的Apps"><span class="toc-number">1.4.</span> <span class="toc-text">移除模拟器中安装的Apps</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除Archives"><span class="toc-number">1.5.</span> <span class="toc-text">移除Archives</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除DerivedData"><span class="toc-number">1.6.</span> <span class="toc-text">移除DerivedData</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除旧的Docsets"><span class="toc-number">1.7.</span> <span class="toc-text">移除旧的Docsets</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#彻底清空GarageBand"><span class="toc-number">2.</span> <span class="toc-text">彻底清空GarageBand</span></a></li></ol>
+ 
  
   </div>
 
