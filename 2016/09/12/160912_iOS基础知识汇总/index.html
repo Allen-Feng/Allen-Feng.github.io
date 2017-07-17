@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/09/12/160912_iOS基础知识汇总/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
 <meta property="og:description" content="初级iOS工程师知道怎么做就可以了，但是高级iOS工程师就需要知道为什么这么做。以下列出了一些基础知识的问题，后续慢慢完善答案。同时其中好多也是面试必问题哦！">
-<meta property="og:updated_time" content="2016-11-30T03:09:44.000Z">
+<meta property="og:updated_time" content="2017-07-17T06:47:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS基础知识汇总">
 <meta name="twitter:description" content="初级iOS工程师知道怎么做就可以了，但是高级iOS工程师就需要知道为什么这么做。以下列出了一些基础知识的问题，后续慢慢完善答案。同时其中好多也是面试必问题哦！">
@@ -170,9 +170,8 @@
 </blockquote>
 <h2 id="内存管理的几个原则是什么？"><a href="#内存管理的几个原则是什么？" class="headerlink" title="内存管理的几个原则是什么？"></a>内存管理的几个原则是什么？</h2><p>详见 “ <a href="https://allen-feng.github.io/2016/07/27/160727_%E7%90%86%E8%A7%A3iOS%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" target="_blank" rel="external">理解iOS的内存管理</a> ”</p>
 <h2 id="NSMuatableArray-array-NSMuatableArray-array-需要释放么？"><a href="#NSMuatableArray-array-NSMuatableArray-array-需要释放么？" class="headerlink" title="NSMuatableArray *array = [NSMuatableArray array] 需要释放么？"></a>NSMuatableArray *array = [NSMuatableArray array] 需要释放么？</h2><p><code>不需要</code></p>
-<h2 id="property本质是什么"><a href="#property本质是什么" class="headerlink" title="@property本质是什么"></a>@property本质是什么</h2><p>@property本质就是<code>setter</code>、<code>getter</code>方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@property (nonatomic, retain) NSString *name;</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-(NSString *) name&#123;</div><div class="line">	return name;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">-(void) setName:(NSStrng *) newName&#123;</div><div class="line">	if(name!=newName)&#123;</div><div class="line">		[name release];</div><div class="line">		name=[newName retain];</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="property本质是什么"><a href="#property本质是什么" class="headerlink" title="@property本质是什么"></a>@property本质是什么</h2><p>@property本质就是<code>setter</code>、<code>getter</code>方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">@property (nonatomic, retain) NSString *name;</div><div class="line"></div><div class="line">-(NSString *) name&#123;</div><div class="line">	return name;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(void) setName:(NSStrng *) newName&#123;</div><div class="line">	if(name!=newName)&#123;</div><div class="line">		[name release];</div><div class="line">		name=[newName retain];</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>对setName方法的解释：</p>
 <blockquote>
 <ol>
@@ -217,7 +216,7 @@
 </tbody>
 </table>
 <blockquote>
-<p><code>Lua</code>+<code>ngx</code>框架中如果某一字段返回位null，直接判断过滤会失效。如：<br>返回字段位<code>&quot;Ads&quot;: null</code><br><strong>if</strong> res_jg[“Ads”] ~= ngx.null <strong>then</strong></p>
+<p><code>Lua</code>+<code>nginx</code>框架中如果某一字段返回位null，直接判断过滤会失效。如：<br>返回字段位<code>&quot;Ads&quot;: null</code><br><strong>if</strong> res_jg[“Ads”] ~= ngx.null <strong>then</strong></p>
 </blockquote>
 <h2 id="block与-weak的区别是什么？"><a href="#block与-weak的区别是什么？" class="headerlink" title="__block与__weak的区别是什么？"></a>__block与__weak的区别是什么？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">__weak TableViewController *weakSelf = self;</div><div class="line">__weak typeof(self) weakSelf = self;</div></pre></td></tr></table></figure>
 <blockquote>
