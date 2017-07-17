@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/09/12/160912_iOS基础知识汇总/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
 <meta property="og:description" content="初级iOS工程师知道怎么做就可以了，但是高级iOS工程师就需要知道为什么这么做。以下列出了一些基础知识的问题，后续慢慢完善答案。同时其中好多也是面试必问题哦！">
-<meta property="og:updated_time" content="2017-07-17T08:33:16.000Z">
+<meta property="og:updated_time" content="2017-07-17T08:38:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS基础知识汇总">
 <meta name="twitter:description" content="初级iOS工程师知道怎么做就可以了，但是高级iOS工程师就需要知道为什么这么做。以下列出了一些基础知识的问题，后续慢慢完善答案。同时其中好多也是面试必问题哦！">
@@ -467,6 +467,9 @@ objc_msgSend(stu, @selector(show));
 <li>从沙盒中找（当这个图片在之前使用程序的过程中被加载过），找到使用，缓存到内存中。</li>
 <li>从网络上获取，使用，缓存到内存，缓存到沙盒。</li>
 </ol>
+<blockquote>
+<p>坑：如果后台把图片素材换了，但是名称路径相同，app之前有缓存，则此时加载的是旧的缓存图片，此时只要app清下缓冲，或重新安装app就可以了。</p>
+</blockquote>
 <h2 id="谈谈-UITableView-的优化"><a href="#谈谈-UITableView-的优化" class="headerlink" title="谈谈 UITableView 的优化"></a>谈谈 UITableView 的优化</h2><ol>
 <li>正确的复用cell。</li>
 <li>设计统一规格的Cell</li>
