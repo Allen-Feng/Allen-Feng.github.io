@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>const和#define区别 | aFeng`s Blog</title>
+    <title>在Mac上安装XGboost Python库 | aFeng`s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Allen Feng">
     
 
     
-    <meta name="description" content="每个项目中基本上都会有需要宏定义的常量，而我们通常都是随机从const和#define中拿一个使用，可是你知道她们的区别吗？">
+    <meta name="description" content="最近在Mac上用到XGboost库，安装时遇到颇多大坑，网上查了很多答案几乎都是win上的问题。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="const和#define区别">
-<meta property="og:url" content="http://yoursite.com/2016/08/13/160813_const和-define区别/index.html">
+<meta property="og:title" content="在Mac上安装XGboost Python库">
+<meta property="og:url" content="http://yoursite.com/2017/07/18/170718_在Mac上安装XGboost-Python库/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
-<meta property="og:description" content="每个项目中基本上都会有需要宏定义的常量，而我们通常都是随机从const和#define中拿一个使用，可是你知道她们的区别吗？">
-<meta property="og:updated_time" content="2016-08-13T06:28:59.000Z">
+<meta property="og:description" content="最近在Mac上用到XGboost库，安装时遇到颇多大坑，网上查了很多答案几乎都是win上的问题。">
+<meta property="og:updated_time" content="2017-07-18T02:57:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="const和#define区别">
-<meta name="twitter:description" content="每个项目中基本上都会有需要宏定义的常量，而我们通常都是随机从const和#define中拿一个使用，可是你知道她们的区别吗？">
+<meta name="twitter:title" content="在Mac上安装XGboost Python库">
+<meta name="twitter:description" content="最近在Mac上用到XGboost库，安装时遇到颇多大坑，网上查了很多答案几乎都是win上的问题。">
 <meta name="twitter:creator" content="@allenfeng945">
 
     
@@ -81,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/08/13/160813_const和-define区别/" title="const和#define区别" itemprop="url">const和#define区别</a>
+      <a href="/2017/07/18/170718_在Mac上安装XGboost-Python库/" title="在Mac上安装XGboost Python库" itemprop="url">在Mac上安装XGboost Python库</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-13T05:32:01.000Z" itemprop="datePublished"> 发表于 2016-08-13</time>
+    <time datetime="2017-07-18T02:11:55.000Z" itemprop="datePublished"> 发表于 2017-07-18</time>
     
   </p>
 </header>
@@ -97,32 +97,35 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#编译器处理方式不同"><span class="toc-number">1.</span> <span class="toc-text">编译器处理方式不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型和安全检查不同"><span class="toc-number">2.</span> <span class="toc-text">类型和安全检查不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#存储方式不同"><span class="toc-number">3.</span> <span class="toc-text">存储方式不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效率不同"><span class="toc-number">4.</span> <span class="toc-text">效率不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#潜规则"><span class="toc-number">5.</span> <span class="toc-text">潜规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#规则-1"><span class="toc-number">5.1.</span> <span class="toc-text">规则 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规则-2"><span class="toc-number">5.2.</span> <span class="toc-text">规则 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规则-3"><span class="toc-number">5.3.</span> <span class="toc-text">规则 3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类中的常量"><span class="toc-number">6.</span> <span class="toc-text">类中的常量</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#错误"><span class="toc-number">1.</span> <span class="toc-text">错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正确的打开方式"><span class="toc-number">2.</span> <span class="toc-text">正确的打开方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-1"><span class="toc-number">2.1.</span> <span class="toc-text">Step 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2"><span class="toc-number">2.2.</span> <span class="toc-text">Step 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3"><span class="toc-number">2.3.</span> <span class="toc-text">Step 3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-4"><span class="toc-number">2.4.</span> <span class="toc-text">Step 4</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<blockquote>
-<p>每个项目中基本上都会有需要宏定义的常量，而我们通常都是随机从<code>const</code>和<code>#define</code>中拿一个使用，可是你知道她们的区别吗？</p>
-</blockquote>
+		<p>最近在<code>Mac</code>上用到<code>XGboost</code>库，安装时遇到颇多大坑，网上查了很多答案几乎都是win上的问题。</p>
 <a id="more"></a>
-<h2 id="编译器处理方式不同"><a href="#编译器处理方式不同" class="headerlink" title="编译器处理方式不同"></a>编译器处理方式不同</h2><p><code>define宏</code>是在预处理阶段展开。<br><code>const常量</code>是编译运行阶段使用。</p>
-<h2 id="类型和安全检查不同"><a href="#类型和安全检查不同" class="headerlink" title="类型和安全检查不同"></a>类型和安全检查不同</h2><p><code>define宏</code>没有类型，不做任何类型检查，仅仅是展开。<br><code>const常量</code>有具体的类型，在编译阶段会执行类型检查。</p>
-<h2 id="存储方式不同"><a href="#存储方式不同" class="headerlink" title="存储方式不同"></a>存储方式不同</h2><p><code>define宏</code>仅仅是展开，有多少地方使用，就展开多少次，不会分配内存。<br><code>const常量</code>会在内存中分配(可以是堆中也可以是栈中)。<br>const可以节省空间，避免不必要的内存分配。 例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#define PI 3.14159 //不进行内存分配</div><div class="line">double I=PI; //进行宏替换，分配内存</div><div class="line">double J=PI; //再进行宏替换，又一次分配内存</div><div class="line">const doulbe Pi=3.14159; //此时并未将Pi放入ROM中</div><div class="line">double i=Pi; //此时为Pi分配内存，以后不再分配</div><div class="line">double j=Pi; //没有内存分配</div></pre></td></tr></table></figure>
-<p>const定义常量从汇编的角度来看，只是给出了对应的内存地址，而不是象#define一样给出的是立即数。所以，<code>const</code>定义的常量在程序运行过程中只有一份拷贝，<code>#define</code>定义的常量在内存中有若干个拷贝。 </p>
-<h2 id="效率不同"><a href="#效率不同" class="headerlink" title="效率不同"></a>效率不同</h2><p>编译器通常不为普通const常量分配存储空间，而是将它们保存在符号表中，这使得它成为一个编译期间的常量，没有了存储与读内存的操作，使得它的效率也很高。</p>
-<h2 id="潜规则"><a href="#潜规则" class="headerlink" title="潜规则"></a>潜规则</h2><h3 id="规则-1"><a href="#规则-1" class="headerlink" title="规则 1"></a>规则 1</h3><p>在C++程序中只使用const常量而不使用宏常量，即const常量完全取代宏常量。</p>
-<h3 id="规则-2"><a href="#规则-2" class="headerlink" title="规则 2"></a>规则 2</h3><p>需要对外公开的常量放在头文件中，不需要对外公开的常量放在定义文件的头部。为便于管理，可以把不同模块的常量集中存放在一个公共的头文件中。</p>
-<h3 id="规则-3"><a href="#规则-3" class="headerlink" title="规则 3"></a>规则 3</h3><p>如果某一常量与其它常量密切相关，应在定义中包含这种关系，而不应给出一些孤立的值。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">const  float   RADIUS = 100;</div><div class="line">const  float   DIAMETER = RADIUS * 2;</div></pre></td></tr></table></figure>
-<h2 id="类中的常量"><a href="#类中的常量" class="headerlink" title="类中的常量"></a>类中的常量</h2><p>有时我们希望某些常量只在类中有效。由于#define定义的宏常量是全局的，不能达到目的，于是想当然地觉得应该用const修饰数据成员来实现。const数据成员的确是存在的，但其含义却不是我们所期望的。const数据成员只在某个对象生存期内是常量，而对于整个类而言却是可变的，因为类可以创建多个对象，不同的对象其const数据成员的值可以不同。<br>不能在类声明中初始化const数据成员。以下用法是错误的，因为类的对象未被创建时，编译器不知道SIZE的值是什么。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">class A &#123;</div><div class="line">	const int SIZE = 100;	// 错误，企图在类声明中初始化const数据成员</div><div class="line">	int array[SIZE];		// 错误，未知的SIZE</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>const数据成员的初始化只能在类构造函数的初始化表中进行，例如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class A &#123;</div><div class="line">	A(int size);			// 构造函数</div><div class="line">	const int SIZE ;  </div><div class="line">&#125;;</div><div class="line">A::A(int size) : SIZE(size) &#123; // 构造函数的初始化表</div><div class="line">	…</div><div class="line">&#125;</div><div class="line">A  a(100);		// 对象 a 的SIZE值为100</div><div class="line">A  b(200);		// 对象 b 的SIZE值为200</div></pre></td></tr></table></figure>
-<p>怎样才能建立在整个类中都恒定的常量呢？别指望const数据成员了，应该用类中的枚举常量来实现。例如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class A &#123;</div><div class="line">	enum &#123; SIZE1 = 100, SIZE2 = 200&#125;; // 枚举常量</div><div class="line">	int array1[SIZE1];</div><div class="line">	int array2[SIZE2];</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>枚举常量不会占用对象的存储空间，它们在编译时被全部求值。枚举常量的缺点是：它的隐含数据类型是整数，其最大值有限，且不能表示浮点数（如PI=3.14159）。sizeof(A) = 1200;其中枚举部长空间。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">enum   EM &#123; SIZE1 = 100, SIZE2 = 200&#125;; // 枚举常量    sizeof（EM） = 4；</div></pre></td></tr></table></figure>  
+<h2 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h2><p>倘若直接 <code>pip install xgboost</code> 时，会出现如下错误提示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Command &quot;python setup.py egg_info&quot; failed with error code 1</div></pre></td></tr></table></figure>
+<p>还是乖乖使用Github源代码安装吧~</p>
+<h2 id="正确的打开方式"><a href="#正确的打开方式" class="headerlink" title="正确的打开方式"></a>正确的打开方式</h2><h3 id="Step-1"><a href="#Step-1" class="headerlink" title="Step 1"></a>Step 1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ～	//mac 通常选默认的home路径</div><div class="line">git clone --recursive https://github.com/dmlc/xgboost</div></pre></td></tr></table></figure>
+<p>终端输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">Cloning into &apos;xgboost&apos;...</div><div class="line">remote: Counting objects: 20916, done.</div><div class="line">remote: Total 20916 (delta 0), reused 0 (delta 0), pack-reused 20916</div><div class="line">Receiving objects: 100% (20916/20916), 7.27 MiB | 290.00 KiB/s, done.</div><div class="line">Resolving deltas: 100% (12438/12438), done.</div><div class="line">Submodule &apos;cub&apos; (https://github.com/NVlabs/cub) registered for path &apos;cub&apos;</div><div class="line">Submodule &apos;dmlc-core&apos; (https://github.com/dmlc/dmlc-core) registered for path &apos;dmlc-core&apos;</div><div class="line">Submodule &apos;nccl&apos; (https://github.com/dmlc/nccl) registered for path &apos;nccl&apos;</div><div class="line">Submodule &apos;rabit&apos; (https://github.com/dmlc/rabit) registered for path &apos;rabit&apos;</div><div class="line">.</div><div class="line">.</div><div class="line">.     </div><div class="line">remote: Total 3142 (delta 0), reused 0 (delta 0), pack-reused 3142        </div><div class="line">Receiving objects: 100% (3142/3142), 899.95 KiB | 148.00 KiB/s, done.</div><div class="line">Resolving deltas: 100% (2040/2040), done.</div><div class="line">Submodule path &apos;cub&apos;: checked out &apos;f3937a96fdec78a73446aaaa114c112ff31f5503&apos;</div><div class="line">Submodule path &apos;dmlc-core&apos;: checked out &apos;b5bec5481df86e8e6728d8bd80a61d87ef3b2cd5&apos;</div><div class="line">Submodule path &apos;nccl&apos;: checked out &apos;018ff75f78e4d3616051fdcd3da7cf64249b6d59&apos;</div><div class="line">Submodule path &apos;rabit&apos;: checked out &apos;a764d45cfb438cc9f15cf47ce586c02ff2c65d0f&apos;</div></pre></td></tr></table></figure>
+<p>可看出gitclone下来的时候回自动clone上其引用库，而直接使用Release包则不会</p>
+<h3 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a>Step 2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd xgboost</div></pre></td></tr></table></figure>
+<p>注意： 倘若直接使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd python-package; sudo python setup.py install</div></pre></td></tr></table></figure>
+<p>会出现如下的错误提示:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Traceback (most recent call last):</div><div class="line">  File &quot;setup.py&quot;, line 19, in &lt;module&gt;</div><div class="line">    LIB_PATH = [os.path.relpath(libfile, CURRENT_DIR) for libfile in libpath[&apos;find_lib_path&apos;]()]</div><div class="line">  File &quot;xgboost/libpath.py&quot;, line 49, in find_lib_path</div><div class="line">    &apos;List of candidates:\n&apos; + (&apos;\n&apos;.join(dll_path)))</div><div class="line">__builtin__.XGBoostLibraryNotFound: Cannot find XGBoost Library in the candidate path, did you install compilers and run build.sh in root path?</div><div class="line">List of candidates:</div><div class="line">/Users/fengyening/xgboost/python-package/xgboost/libxgboost.dylib</div><div class="line">/Users/fengyening/xgboost/python-package/xgboost/../../lib/libxgboost.dylib</div><div class="line">/Users/fengyening/xgboost/python-package/xgboost/./lib/libxgboost.dylib</div><div class="line">/Library/Frameworks/Python.framework/Versions/2.7/xgboost/libxgboost.dylib</div></pre></td></tr></table></figure>
+<p>还是先跑跑文件夹下面的build.sh吧</p>
+<blockquote>
+<p>使用Release包会报错/dmlc-core下找不到某文件，这也是不要使用Release包的原因:<br>那我就跑吧</p>
+</blockquote>
+<h3 id="Step-3"><a href="#Step-3" class="headerlink" title="Step 3"></a>Step 3</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/xgboost</div><div class="line">bash build.sh</div></pre></td></tr></table></figure>
+<p>这时会出现一大堆C++编译，若无出现则可能像官网所说使用brew安装下GCC</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">——brew install gcc --without-multilib</div></pre></td></tr></table></figure>
+<h3 id="Step-4"><a href="#Step-4" class="headerlink" title="Step 4"></a>Step 4</h3><p>这个时候就真可以名正而顺地使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd python-package; sudo python setup.py install</div></pre></td></tr></table></figure>
+<p>最后会终端出现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Finished processing dependencies for xgboost==0.6</div></pre></td></tr></table></figure>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -130,7 +133,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/iOS/">iOS</a>
+  <span></span> <a href="/tags/ML/">ML</a><a href="/tags/Pyhton/">Pyhton</a>
   </div>
 
 </div>
@@ -139,7 +142,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/08/13/160813_const和-define区别/" data-title="const和#define区别 | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/07/18/170718_在Mac上安装XGboost-Python库/" data-title="在Mac上安装XGboost Python库 | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -152,19 +155,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/09/12/160912_iOS基础知识汇总/" title="iOS基础知识汇总">
-  <strong>上一篇：</strong><br/>
-  <span>
-  iOS基础知识汇总</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/08/02/160802_iOS获取设备信息总结/"  title="iOS获取设备信息总结">
+<a href="/2017/07/15/170715_Install-graphviz-on-MacOS/"  title="Install graphviz on MacOS">
  <strong>下一篇：</strong><br/> 
- <span>iOS获取设备信息总结
+ <span>Install graphviz on MacOS
 </span>
 </a>
 </div>
@@ -173,7 +168,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/08/13/160813_const和-define区别/" data-title="const和#define区别" data-url="http://yoursite.com/2016/08/13/160813_const和-define区别/"></div>
+	<div class="ds-thread" data-thread-key="2017/07/18/170718_在Mac上安装XGboost-Python库/" data-title="在Mac上安装XGboost Python库" data-url="http://yoursite.com/2017/07/18/170718_在Mac上安装XGboost-Python库/"></div>
 </section>
 
 
@@ -183,7 +178,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#编译器处理方式不同"><span class="toc-number">1.</span> <span class="toc-text">编译器处理方式不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型和安全检查不同"><span class="toc-number">2.</span> <span class="toc-text">类型和安全检查不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#存储方式不同"><span class="toc-number">3.</span> <span class="toc-text">存储方式不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效率不同"><span class="toc-number">4.</span> <span class="toc-text">效率不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#潜规则"><span class="toc-number">5.</span> <span class="toc-text">潜规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#规则-1"><span class="toc-number">5.1.</span> <span class="toc-text">规则 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规则-2"><span class="toc-number">5.2.</span> <span class="toc-text">规则 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规则-3"><span class="toc-number">5.3.</span> <span class="toc-text">规则 3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类中的常量"><span class="toc-number">6.</span> <span class="toc-text">类中的常量</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#错误"><span class="toc-number">1.</span> <span class="toc-text">错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正确的打开方式"><span class="toc-number">2.</span> <span class="toc-text">正确的打开方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-1"><span class="toc-number">2.1.</span> <span class="toc-text">Step 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2"><span class="toc-number">2.2.</span> <span class="toc-text">Step 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3"><span class="toc-number">2.3.</span> <span class="toc-text">Step 3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-4"><span class="toc-number">2.4.</span> <span class="toc-text">Step 4</span></a></li></ol></li></ol>
  
   </div>
 
