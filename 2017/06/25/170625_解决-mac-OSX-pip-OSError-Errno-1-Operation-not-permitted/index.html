@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/25/170625_解决-mac-OSX-pip-OSError-Errno-1-Operation-not-permitted/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
 <meta property="og:description" content="这段时间在弄机器学习的事情，然后看Macbook里面的Python库有点旧，就用pip更新一下。结果抛出个异常。">
-<meta property="og:updated_time" content="2017-07-20T13:42:17.000Z">
+<meta property="og:updated_time" content="2017-07-23T10:59:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解决 mac OSX pip OSError: [Errno 1] Operation not permitted">
 <meta name="twitter:description" content="这段时间在弄机器学习的事情，然后看Macbook里面的Python库有点旧，就用pip更新一下。结果抛出个异常。">
@@ -49,7 +49,7 @@
 				<h1 class="site-name"><a href="/" title="aFeng`s Blog">aFeng`s Blog</a></h1>
 				<h2 class="blog-motto">记录学习的点点滴滴</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -65,7 +65,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -88,14 +88,14 @@
 		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-25T13:14:16.000Z" itemprop="datePublished"> Published 2017-06-25</time>
+    <time datetime="2017-06-25T13:14:16.000Z" itemprop="datePublished"> 发表于 2017-06-25</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题"><span class="toc-number">1.</span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Simple-Method"><span class="toc-number">2.</span> <span class="toc-text">Simple Method</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deep-Method"><span class="toc-number">3.</span> <span class="toc-text">Deep Method</span></a></li></ol>
 		
@@ -110,23 +110,21 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">Exception:</div><div class="line">Traceback (most recent call last):</div><div class="line">  File &quot;/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/pip/basecommand.py&quot;, line 215, in main</div><div class="line">    status = self.run(options, args)</div><div class="line">  File &quot;/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/pip/commands/install.py&quot;, line 342, in run</div><div class="line">    prefix=options.prefix_path,</div><div class="line">  File &quot;/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/pip/req/req_set.py&quot;, line 778, in install</div><div class="line">    requirement.uninstall(auto_confirm=True)</div><div class="line">  File &quot;/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/pip/req/req_install.py&quot;, line 754, in uninstall</div><div class="line">    paths_to_remove.remove(auto_confirm)</div><div class="line">  File &quot;/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/pip/req/req_uninstall.py&quot;, line 115, in remove</div><div class="line">    renames(path, new_path)</div><div class="line">  File &quot;/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/pip/utils/__init__.py&quot;, line 267, in renames</div><div class="line">    shutil.move(old, new)</div><div class="line">  File &quot;/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/shutil.py&quot;, line 302, in move</div><div class="line">    copy2(src, real_dst)</div><div class="line">  File &quot;/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/shutil.py&quot;, line 131, in copy2</div><div class="line">    copystat(src, dst)</div><div class="line">  File &quot;/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/shutil.py&quot;, line 103, in copystat</div><div class="line">    os.chflags(dst, st.st_flags)</div><div class="line">OSError: [Errno 1] Operation not permitted: &apos;/var/folders/zc/hgpffx914m9fn07sw5tmn23w0000gn/T/pip-bWVMmR-uninstall/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/numpy-1.8.0rc1-py2.7.egg-info&apos;</div></pre></td></tr></table></figure>
 <h2 id="Simple-Method"><a href="#Simple-Method" class="headerlink" title="Simple Method"></a>Simple Method</h2><p>Google后找到这个解决方案</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo pip install numpy --upgrade --ignore-installed</div><div class="line">$ sudo pip install scipy --upgrade --ignore-installed</div><div class="line">$ sudo pip install scikit-learn --upgrade --ignore-installed</div></pre></td></tr></table></figure>
-<p>如果以上还不能解决问题，那么就要使用下面的方法了！</p>
-<h2 id="Deep-Method"><a href="#Deep-Method" class="headerlink" title="Deep Method"></a>Deep Method</h2><p>冷静下来后重新看了一些错，Operation not permitted 没有操作权限。奇怪了，系统在10.9和10.10的时候都没有出现这种情况，难道是苹果自己搞的鬼？</p>
-<p>自己无法解决，只好求助于“度娘“ 和谷歌，不懈努力后还真的发现了问题。</p>
-<p>经历了XCode编译器代码被注入的事件后，这次 Mac OS X El Capitan系统的升级，启用了更高的安全性保护机制：系统完整性保护System Integrity Protection (<code>SIP</code>)。简单来讲就是更加强制性的保护系统相关的文件夹。开发者不能直接操作相关的文件内容。<br>苹果官方的解释:</p>
+<blockquote>
+<p>首先说明一下我的电脑环境，<code>python2.0</code>是系统自带的，后续手动装了<code>pyhton3.0</code>，相关<code>pip</code>操作分别使用<code>pip **</code>和<code>pip3 **</code>区分。现打算把<code>python2.0</code>下的numpy模块升级到最新版。上述方法执结果显示是成功了，但查看numpy模块版本时发现<code>python2.0</code>下仍旧是旧版本，<code>pyhton3.0</code>下却升级到最新版了。推测可能是因系统自带的<code>Python2.0</code>受到SIP管理，上述方法执行时识别到此信息后就去更新<code>python3.0</code>下的模块。因没有对不同环境做交叉验证，以上推理或许有误，但目前能解释我遇到的情况，权且如此。</p>
+</blockquote>
+<h2 id="Deep-Method"><a href="#Deep-Method" class="headerlink" title="Deep Method"></a>Deep Method</h2><p><code>SIP</code>: 系统完整性保护System Integrity Protection。简单来讲就是更加强制性的保护系统相关的文件夹。开发者不能直接操作相关的文件内容。<a href="https://support.apple.com/en-us/HT204899" target="_blank" rel="external">苹果官方的解释:</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">System Integrity Protection is a security technology in OS X El Capitan that’s designed to help prevent potentially malicious software from modifying protected files and folders on your Mac. </div><div class="line">In OS X, the “root” user account previously had no permission restrictions and could access any system folder or application on your Mac. Software gained root-level access when you entered your administrator name and password to install it and could then modify or overwrite any system file or application. </div><div class="line">System Integrity Protection restricts the root account and limits the actions that the root user can perform on protected parts of OS X. </div><div class="line">Paths and applications protected by System Integrity Protection include: </div><div class="line">/System </div><div class="line">/usr </div><div class="line">/bin </div><div class="line">/sbin </div><div class="line">Apps that are pre-installed with OS X </div><div class="line">Paths and applications that third-party apps and installers can write to include: </div><div class="line">/Applications </div><div class="line">/Library </div><div class="line">/usr/local </div><div class="line">System Integrity Protection is designed to allow modifications of these protected parts only by processes that are signed by Apple and have special entitlements to write to system files, like Apple software updates and Apple installers. </div><div class="line">Apps that you download from the Mac App Store already work with System Integrity Protection. Other third-party software that conflicts with System Integrity Protection might be set aside when you upgrade to OS X El Capitan. </div><div class="line">System Integrity Protection also helps prevent software from changing your startup volume. To boot your Mac from a different volume, you can use the Startup Disk pane in System Preferences or you can hold down the Option key while you reboot, and select a volume from the list. </div><div class="line">Information about products not manufactured by Apple, or independent websites not controlled or tested by Apple, is provided without recommendation or endorsement. Apple assumes no responsibility with regard to the selection, performance, or use of third-party websites or products. Apple makes no representations regarding third-party website accuracy or reliability. Risks are inherent in the use of the Internet. Contact the vendor for additional information. Other company and product names may be trademarks of their respective owners. </div><div class="line">Last Modified: Oct 2, 2015</div></pre></td></tr></table></figure>
-<p><a href="https://support.apple.com/en-us/HT204899" target="_blank" rel="external">来源</a></p>
 <p>找到问题的原因就可以解决相关的问题了，解决问题的方法就是关闭Mac系统的“SIP“。</p>
-<p>具体的操作步骤，引用国外的一个牛人给出的方法： </p>
+<p>具体的操作步骤，引用国外的一个牛人给出的<a href="http://www.imore.com/el-capitan-system-integrity-protection-helps-keep-malware-away?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">方法</a> :</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">How to turn off System Integrity Protection in El Capitan</div><div class="line"></div><div class="line">Click the  menu.</div><div class="line">Select Restart…</div><div class="line">Hold down command-R to boot into the Recovery System.</div><div class="line">Click the Utilities menu and select Terminal.</div><div class="line">Type csrutil disable and press return .</div><div class="line">Close the Terminal app.</div><div class="line">Click the  menu and select Restart… .</div></pre></td></tr></table></figure>
-<p><a href="http://www.imore.com/el-capitan-system-integrity-protection-helps-keep-malware-away?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">来源</a></p>
 <p>翻译过来就是：</p>
 <ol>
 <li>点击Mac电脑的苹果图标</li>
 <li>选择 重新启动</li>
 <li>按住 command＋R，直到进入还原模式</li>
 <li>选择实用工具，然后点击 终端</li>
-<li>输入 csrutil disable 按下回车</li>
+<li>输入 <code>csrutil disable</code> 按下回车</li>
 <li>重启电脑</li>
 </ol>
 <p>这样就将“SIP“关闭了。</p>
@@ -137,7 +135,7 @@
 <li>选择 重新启动 </li>
 <li>按住 command＋R，直到进入还原模式 </li>
 <li>选择实用工具，然后点击 终端 </li>
-<li>输入 csrutil enable 按下回车 </li>
+<li>输入 <code>csrutil enable</code> 按下回车 </li>
 <li>重启电脑</li>
 </ol>
   
@@ -196,22 +194,22 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题"><span class="toc-number">1.</span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Simple-Method"><span class="toc-number">2.</span> <span class="toc-text">Simple Method</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deep-Method"><span class="toc-number">3.</span> <span class="toc-text">Deep Method</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github Card</p>
+<p class="asidetitle">Github 名片</p>
 <div class="github-card" data-github="Allen-Feng" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -223,7 +221,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
@@ -279,7 +277,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -325,11 +323,11 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">Weibo</p>
+  <p class="asidetitle">新浪微博</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5580378505&verifier=07a80851&dpc=1"></iframe>
 </div>
 
@@ -578,7 +576,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
