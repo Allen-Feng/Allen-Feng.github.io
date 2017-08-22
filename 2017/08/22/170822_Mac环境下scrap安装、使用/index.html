@@ -4,27 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Xcode中修改变量名、类名及字符串的替换操作 | aFeng`s Blog</title>
+    <title>Mac环境下scrap安装、使用 | aFeng`s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Allen Feng">
     
 
     
-    <meta name="description" content="在做iOS开发代码优化的工作时，优化代码结构之前，我们应该先整理好工程的外貌，将文件和类的命名进行规范，在Xcode中为我们提供了方便而强大的名称修改功能。">
+    <meta name="description" content="Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 原本并没有打算为此专门写篇博文，以为只是简单的安装、使用，可过程却是一路填坑下去的，故以此记之。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Xcode中修改变量名、类名及字符串的替换操作">
-<meta property="og:url" content="http://yoursite.com/2016/07/14/160714_Xcode中修改变量名、类名及字符串的替换操作/index.html">
+<meta property="og:title" content="Mac环境下scrap安装、使用">
+<meta property="og:url" content="http://yoursite.com/2017/08/22/170822_Mac环境下scrap安装、使用/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
-<meta property="og:description" content="在做iOS开发代码优化的工作时，优化代码结构之前，我们应该先整理好工程的外貌，将文件和类的命名进行规范，在Xcode中为我们提供了方便而强大的名称修改功能。">
-<meta property="og:image" content="http://yoursite.com/images/16071401.png">
-<meta property="og:image" content="http://yoursite.com/images/16071402.png">
-<meta property="og:image" content="http://yoursite.com/images/16071403.png">
-<meta property="og:updated_time" content="2016-07-14T09:54:34.000Z">
+<meta property="og:description" content="Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 原本并没有打算为此专门写篇博文，以为只是简单的安装、使用，可过程却是一路填坑下去的，故以此记之。">
+<meta property="og:updated_time" content="2017-08-22T04:04:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xcode中修改变量名、类名及字符串的替换操作">
-<meta name="twitter:description" content="在做iOS开发代码优化的工作时，优化代码结构之前，我们应该先整理好工程的外貌，将文件和类的命名进行规范，在Xcode中为我们提供了方便而强大的名称修改功能。">
-<meta name="twitter:image" content="http://yoursite.com/images/16071401.png">
+<meta name="twitter:title" content="Mac环境下scrap安装、使用">
+<meta name="twitter:description" content="Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 原本并没有打算为此专门写篇博文，以为只是简单的安装、使用，可过程却是一路填坑下去的，故以此记之。">
 <meta name="twitter:creator" content="@allenfeng945">
 
     
@@ -85,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/07/14/160714_Xcode中修改变量名、类名及字符串的替换操作/" title="Xcode中修改变量名、类名及字符串的替换操作" itemprop="url">Xcode中修改变量名、类名及字符串的替换操作</a>
+      <a href="/2017/08/22/170822_Mac环境下scrap安装、使用/" title="Mac环境下scrap安装、使用" itemprop="url">Mac环境下scrap安装、使用</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
 		
   <p class="article-time">
-    <time datetime="2016-07-14T09:41:19.000Z" itemprop="datePublished"> 發表於 2016-07-14</time>
+    <time datetime="2017-08-22T03:17:51.000Z" itemprop="datePublished"> 發表於 2017-08-22</time>
     
   </p>
 </header>
@@ -101,30 +97,26 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#修改类名"><span class="toc-number">1.</span> <span class="toc-text">修改类名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改相关字符串："><span class="toc-number">2.</span> <span class="toc-text">修改相关字符串：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改文件中变量名"><span class="toc-number">3.</span> <span class="toc-text">修改文件中变量名</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装过程中的坑"><span class="toc-number">1.</span> <span class="toc-text">安装过程中的坑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装scrapy失败——系统自带的six包版本较低"><span class="toc-number">1.1.</span> <span class="toc-text">安装scrapy失败——系统自带的six包版本较低</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建scrapy项目失败——twisted包版本过高"><span class="toc-number">1.2.</span> <span class="toc-text">创建scrapy项目失败——twisted包版本过高</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建scrapy项目UserWarning——No-module-named-cryptography"><span class="toc-number">1.3.</span> <span class="toc-text">创建scrapy项目UserWarning——No module named cryptography</span></a></li></ol></li></ol>
 		
 		</div>
 		
 		<blockquote>
-<p>在做iOS开发代码优化的工作时，优化代码结构之前，我们应该先整理好工程的外貌，将文件和类的命名进行规范，在Xcode中为我们提供了方便而强大的名称修改功能。</p>
+<p>Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 原本并没有打算为此专门写篇博文，以为只是简单的安装、使用，可过程却是一路填坑下去的，故以此记之。</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="修改类名"><a href="#修改类名" class="headerlink" title="修改类名"></a>修改类名</h2><p>将鼠标点击放在类的名称上，选择Xcode工具栏中的<code>Edit</code> -&gt; <code>Refactor</code>-&gt;<code>Rename</code>：</p>
-<p><img src="/images/16071401.png" alt=""></p>
-<p>之后，将类名更改为我们需要的模式点击preview，记得将下面的关联文件勾选</p>
-<p><img src="/images/16071402.png" alt=""></p>
-<p>Xcode会为我们检测出需要更改的地方，浏览无误后点击save。</p>
-<h2 id="修改相关字符串："><a href="#修改相关字符串：" class="headerlink" title="修改相关字符串："></a>修改相关字符串：</h2><p>通过第一步，我们的类的文件名，类名都已经更改，但并不全面，因为某些注释，字符串动态创建类对象以及类函数创建类对象时的类名并没有更改，我们需要做这一步，将更改前的类名在Xcode左侧的搜索栏中搜索，要将Find改选为Replace：</p>
-<p><img src="/images/16071403.png" alt=""></p>
-<p>这里面有四个选项，意义如下：</p>
+<h2 id="安装过程中的坑"><a href="#安装过程中的坑" class="headerlink" title="安装过程中的坑"></a>安装过程中的坑</h2><h3 id="安装scrapy失败——系统自带的six包版本较低"><a href="#安装scrapy失败——系统自带的six包版本较低" class="headerlink" title="安装scrapy失败——系统自带的six包版本较低"></a>安装scrapy失败——系统自带的six包版本较低</h3><p>使用如下命令安装scrapy失败</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install scrapy</div></pre></td></tr></table></figure>
+<p>经研究发现是Mac系统自带的six包版本较低导致安装失败，升级时又因six包属于系统文件，受SIP保护，强制进入还原模式关闭SIP后，把系统的six相关文件手动删除，安装最新版six包后，再次执行上述命令即可</p>
+<h3 id="创建scrapy项目失败——twisted包版本过高"><a href="#创建scrapy项目失败——twisted包版本过高" class="headerlink" title="创建scrapy项目失败——twisted包版本过高"></a>创建scrapy项目失败——twisted包版本过高</h3><p>在创建scrapy项目时又出错，经研究发现是其关联的twisted包版本过高，版本降级后OK</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">fengyeningdeMacBook-Pro:~ fengyening$ scrapy startproject projectname</div><div class="line">Traceback (most recent call last):</div><div class="line">  File &quot;/Library/Frameworks/Python.framework/Versions/2.7/bin/scrapy&quot;, line 7, in &lt;module&gt;</div><div class="line">.</div><div class="line">.</div><div class="line">.</div><div class="line">  File &quot;/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/twisted/internet/_sslverify.py&quot;, line 38, in &lt;module&gt;</div><div class="line">    TLSVersion.TLSv1_1: SSL.OP_NO_TLSv1_1,</div><div class="line">AttributeError: &apos;module&apos; object has no attribute &apos;OP_NO_TLSv1_1&apos;</div></pre></td></tr></table></figure>
+<p>具体降到哪个版本，网上有很多说法，本着从最高版本依次往下试的原则发现大版本降至16就可以了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">fengyeningdeMacBook-Pro:~ fengyening$ pip install Twisted==16.4.1</div><div class="line">Collecting Twisted==16.4.1</div><div class="line">  Downloading Twisted-16.4.1.tar.bz2 (3.0MB)</div><div class="line">    100% |████████████████████████████████| 3.0MB 8.8kB/s </div><div class="line">Requirement already satisfied: zope.interface&gt;=3.6.0 in /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python (from Twisted==16.4.1)</div><div class="line">Requirement already satisfied: setuptools in /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python (from zope.interface&gt;=3.6.0-&gt;Twisted==16.4.1)</div><div class="line">Installing collected packages: Twisted</div><div class="line">  Found existing installation: Twisted 17.5.0</div><div class="line">    Uninstalling Twisted-17.5.0:</div><div class="line">      Successfully uninstalled Twisted-17.5.0</div><div class="line">  Running setup.py install for Twisted ... done</div><div class="line">Successfully installed Twisted-16.4.1</div></pre></td></tr></table></figure>
+<h3 id="创建scrapy项目UserWarning——No-module-named-cryptography"><a href="#创建scrapy项目UserWarning——No-module-named-cryptography" class="headerlink" title="创建scrapy项目UserWarning——No module named cryptography"></a>创建scrapy项目UserWarning——No module named cryptography</h3><p>至此已可以成功创建scrapy项目了，但有一个warning，强迫症的我怎么能容忍，提示的也很明确，安装一下cryptography就好了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">fengyeningdeMacBook-Pro:~ fengyening$ scrapy startproject baidu_spider</div><div class="line">:0: UserWarning: You do not have a working installation of the service_identity module: &apos;No module named cryptography.x509&apos;.  Please install it from &lt;https://pypi.python.org/pypi/service_identity&gt; and make sure all of its dependencies are satisfied.  Without the service_identity module and a recent enough pyOpenSSL to support it, Twisted can perform only rudimentary TLS client hostname verification.  Many valid certificate/hostname mappings may be rejected.</div></pre></td></tr></table></figure>
 <blockquote>
-<p>Containing: 检索出包涵检索条件的对象</p>
-<p>Matching: 检索出等于检索条件的对象</p>
-<p>Starting With: 检索出以检索条件开头的对象</p>
-<p>Ending with: 检索出以检索条件结尾的对象</p>
+<p>安装过程最好要用网速较好的网络，最开始安装scrapy时其中一个包一直报超时的错误，就怀疑包的资源问题等等，最后换了个好的网络就OK了。</p>
 </blockquote>
-<p>我们选择Matching，进行检索，将检索出来的地方进行Replace替换，通过这一步，我们可以替换代码中的注释，字符串，类方法以及xib和StoryBoard文件中关联的id，cell复用符等。</p>
-<h2 id="修改文件中变量名"><a href="#修改文件中变量名" class="headerlink" title="修改文件中变量名"></a>修改文件中变量名</h2><p>在文件中，我们也可以通过command+F换出搜索框，将Find改选为Replace检索进行我们想要的变量替换。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -133,7 +125,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Xcode/">Xcode</a>
+  <span></span> <a href="/tags/Python/">Python</a><a href="/tags/Crawler/">Crawler</a>
   </div>
 
 </div>
@@ -142,7 +134,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/07/14/160714_Xcode中修改变量名、类名及字符串的替换操作/" data-title="Xcode中修改变量名、类名及字符串的替换操作 | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/08/22/170822_Mac环境下scrap安装、使用/" data-title="Mac环境下scrap安装、使用 | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -155,19 +147,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/07/27/160727_理解iOS的内存管理/" title="理解iOS的内存管理">
-  <strong>上一篇：</strong><br/>
-  <span>
-  理解iOS的内存管理</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/07/12/160712_Build-Setting中的Architectures参数问题/"  title="Build Setting中的Architectures参数问题">
+<a href="/2017/07/18/170718_在Mac上安装XGboost-Python库/"  title="在Mac上安装XGboost Python库">
  <strong>下一篇：</strong><br/> 
- <span>Build Setting中的Architectures参数问题
+ <span>在Mac上安装XGboost Python库
 </span>
 </a>
 </div>
@@ -176,7 +160,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/07/14/160714_Xcode中修改变量名、类名及字符串的替换操作/" data-title="Xcode中修改变量名、类名及字符串的替换操作" data-url="http://yoursite.com/2016/07/14/160714_Xcode中修改变量名、类名及字符串的替换操作/"></div>
+	<div class="ds-thread" data-thread-key="2017/08/22/170822_Mac环境下scrap安装、使用/" data-title="Mac环境下scrap安装、使用" data-url="http://yoursite.com/2017/08/22/170822_Mac环境下scrap安装、使用/"></div>
 </section>
 
 
@@ -186,7 +170,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#修改类名"><span class="toc-number">1.</span> <span class="toc-text">修改类名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改相关字符串："><span class="toc-number">2.</span> <span class="toc-text">修改相关字符串：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改文件中变量名"><span class="toc-number">3.</span> <span class="toc-text">修改文件中变量名</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装过程中的坑"><span class="toc-number">1.</span> <span class="toc-text">安装过程中的坑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装scrapy失败——系统自带的six包版本较低"><span class="toc-number">1.1.</span> <span class="toc-text">安装scrapy失败——系统自带的six包版本较低</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建scrapy项目失败——twisted包版本过高"><span class="toc-number">1.2.</span> <span class="toc-text">创建scrapy项目失败——twisted包版本过高</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建scrapy项目UserWarning——No-module-named-cryptography"><span class="toc-number">1.3.</span> <span class="toc-text">创建scrapy项目UserWarning——No module named cryptography</span></a></li></ol></li></ol>
  
   </div>
 
