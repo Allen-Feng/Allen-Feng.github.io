@@ -1,0 +1,600 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Python yield 使用浅析 | aFeng`s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Allen Feng">
+    
+
+    
+    <meta name="description" content="您可能听说过，带有 yield 的函数在 Python 中被称之为 generator（生成器），何谓 generator ？我们先抛开 generator，以一个常见的编程题目来展示 yield 的概念。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python yield 使用浅析">
+<meta property="og:url" content="http://yoursite.com/2017/09/02/170902_Python-yield-使用浅析/index.html">
+<meta property="og:site_name" content="aFeng`s Blog">
+<meta property="og:description" content="您可能听说过，带有 yield 的函数在 Python 中被称之为 generator（生成器），何谓 generator ？我们先抛开 generator，以一个常见的编程题目来展示 yield 的概念。">
+<meta property="og:updated_time" content="2017-09-02T13:59:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python yield 使用浅析">
+<meta name="twitter:description" content="您可能听说过，带有 yield 的函数在 Python 中被称之为 generator（生成器），何谓 generator ？我们先抛开 generator，以一个常见的编程题目来展示 yield 的概念。">
+<meta name="twitter:creator" content="@allenfeng945">
+
+    
+    <link rel="alternative" href="/atom.xml" title="aFeng`s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="aFeng`s Blog" title="aFeng`s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="aFeng`s Blog">aFeng`s Blog</a></h1>
+				<h2 class="blog-motto">记录学习的点点滴滴</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/09/02/170902_Python-yield-使用浅析/" title="Python yield 使用浅析" itemprop="url">Python yield 使用浅析</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
+		
+  <p class="article-time">
+    <time datetime="2017-09-02T13:05:55.000Z" itemprop="datePublished"> Published 2017-09-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何生成斐波那契數列"><span class="toc-number">1.</span> <span class="toc-text">如何生成斐波那契數列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#return-的作用"><span class="toc-number">2.</span> <span class="toc-text">return 的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#另一个例子"><span class="toc-number">3.</span> <span class="toc-text">另一个例子</span></a></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>您可能听说过，带有 yield 的函数在 Python 中被称之为 generator（生成器），何谓 generator ？<br>我们先抛开 generator，以一个常见的编程题目来展示 yield 的概念。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="如何生成斐波那契數列"><a href="#如何生成斐波那契數列" class="headerlink" title="如何生成斐波那契數列"></a>如何生成斐波那契數列</h2><p>斐波那契（Fibonacci）數列是一个非常简单的递归数列，除第一个和第二个数外，任意一个数都可由前两个数相加得到。用计算机程序输出斐波那契數列的前 N 个数是一个非常简单的问题，许多初学者都可以轻易写出如下函数：</p>
+<p>清单 1. 简单输出斐波那契數列前 N 个数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">def fab(max): </div><div class="line">   n, a, b = 0, 0, 1 </div><div class="line">   while n &lt; max: </div><div class="line">       print b </div><div class="line">       a, b = b, a + b </div><div class="line">       n = n + 1</div></pre></td></tr></table></figure>
+<p>执行 fab(5)，我们可以得到如下输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; fab(5) </div><div class="line">1 </div><div class="line">1 </div><div class="line">2 </div><div class="line">3 </div><div class="line">5</div></pre></td></tr></table></figure>
+<p>结果没有问题，但有经验的开发者会指出，直接在 fab 函数中用 print 打印数字会导致该函数可复用性较差，因为 fab 函数返回 None，其他函数无法获得该函数生成的数列。<br>要提高 fab 函数的可复用性，最好不要直接打印出数列，而是返回一个 List。以下是 fab 函数改写后的第二个版本：</p>
+<p>清单 2. 输出斐波那契數列前 N 个数第二版</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">def fab(max): </div><div class="line">   n, a, b = 0, 0, 1 </div><div class="line">   L = [] </div><div class="line">   while n &lt; max: </div><div class="line">       L.append(b) </div><div class="line">       a, b = b, a + b </div><div class="line">       n = n + 1 </div><div class="line">   return L</div></pre></td></tr></table></figure>
+<p>可以使用如下方式打印出 fab 函数返回的 List：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; for n in fab(5): </div><div class="line">...     print n </div><div class="line">... </div><div class="line">1 </div><div class="line">1 </div><div class="line">2 </div><div class="line">3 </div><div class="line">5</div></pre></td></tr></table></figure>
+<p>改写后的 fab 函数通过返回 List 能满足复用性的要求，但是更有经验的开发者会指出，该函数在运行中占用的内存会随着参数 max 的增大而增大，如果要控制内存占用，最好不要用List来保存中间结果，而是通过 iterable 对象来迭代。例如，在 Python2.x 中，代码：</p>
+<p>清单 3. 通过 iterable 对象来迭代</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for i in range(1000): pass</div></pre></td></tr></table></figure>
+<p>会导致生成一个 1000 个元素的 List，而代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for i in xrange(1000): pass</div></pre></td></tr></table></figure>
+<p>则不会生成一个 1000 个元素的 List，而是在每次迭代中返回下一个数值，内存空间占用很小。因为 xrange 不返回 List，而是返回一个 iterable 对象。<br>利用 iterable 我们可以把 fab 函数改写为一个支持 iterable 的 class，以下是第三个版本的 Fab：</p>
+<p>清单 4. 第三个版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">class Fab(object): </div><div class="line"> </div><div class="line">   def __init__(self, max): </div><div class="line">       self.max = max </div><div class="line">       self.n, self.a, self.b = 0, 0, 1 </div><div class="line"> </div><div class="line">   def __iter__(self): </div><div class="line">       return self </div><div class="line"> </div><div class="line">   def next(self): </div><div class="line">       if self.n &lt; self.max: </div><div class="line">           r = self.b </div><div class="line">           self.a, self.b = self.b, self.a + self.b </div><div class="line">           self.n = self.n + 1 </div><div class="line">           return r </div><div class="line">       raise StopIteration()</div></pre></td></tr></table></figure>
+<p>Fab 类通过 next() 不断返回数列的下一个数，内存占用始终为常数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; for n in Fab(5): </div><div class="line">...     print n </div><div class="line">... </div><div class="line">1 </div><div class="line">1 </div><div class="line">2 </div><div class="line">3 </div><div class="line">5</div></pre></td></tr></table></figure>
+<p>然而，使用 class 改写的这个版本，代码远远没有第一版的 fab 函数来得简洁。如果我们想要保持第一版 fab 函数的简洁性，同时又要获得 iterable 的效果，yield 就派上用场了：<br>清单 5. 使用 yield 的第四版</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">def fab(max): </div><div class="line">    n, a, b = 0, 0, 1 </div><div class="line">    while n &lt; max: </div><div class="line">        yield b </div><div class="line">        # print b </div><div class="line">        a, b = b, a + b </div><div class="line">        n = n + 1</div></pre></td></tr></table></figure>
+<p>第四个版本的 fab 和第一版相比，仅仅把 print b 改为了 yield b，就在保持简洁性的同时获得了 iterable 的效果。<br>调用第四版的 fab 和第二版的 fab 完全一致：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; for n in fab(5): </div><div class="line">...     print n </div><div class="line">... </div><div class="line">1 </div><div class="line">1 </div><div class="line">2 </div><div class="line">3 </div><div class="line">5</div></pre></td></tr></table></figure>
+<p>简单地讲，yield 的作用就是把一个函数变成一个 generator，带有 yield 的函数不再是一个普通函数，Python 解释器会将其视为一个 generator，调用 fab(5) 不会执行 fab 函数，而是返回一个 iterable 对象！在 for 循环执行时，每次循环都会执行 fab 函数内部的代码，执行到 yield b 时，fab 函数就返回一个迭代值，下次迭代时，代码从 yield b 的下一条语句继续执行，而函数的本地变量看起来和上次中断执行前是完全一样的，于是函数继续执行，直到再次遇到 yield。<br>也可以手动调用 fab(5) 的 next() 方法（因为 fab(5) 是一个 generator 对象，该对象具有 next() 方法），这样我们就可以更清楚地看到 fab 的执行流程：<br>清单 6. 执行流程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; f = fab(5) </div><div class="line">&gt;&gt;&gt; f.next() </div><div class="line">1 </div><div class="line">&gt;&gt;&gt; f.next() </div><div class="line">1 </div><div class="line">&gt;&gt;&gt; f.next() </div><div class="line">2 </div><div class="line">&gt;&gt;&gt; f.next() </div><div class="line">3 </div><div class="line">&gt;&gt;&gt; f.next() </div><div class="line">5 </div><div class="line">&gt;&gt;&gt; f.next() </div><div class="line">Traceback (most recent call last): </div><div class="line"> File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt; </div><div class="line">StopIteration</div></pre></td></tr></table></figure>
+<p>当函数执行结束时，generator 自动抛出 StopIteration 异常，表示迭代完成。在 for 循环里，无需处理 StopIteration 异常，循环会正常结束。</p>
+<p>我们可以得出以下结论：</p>
+<p>一个带有 yield 的函数就是一个 generator，它和普通函数不同，生成一个 generator 看起来像函数调用，但不会执行任何函数代码，直到对其调用 next()（在 for 循环中会自动调用 next()）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个 yield 语句就会中断，并返回一个迭代值，下次执行时从 yield 的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被 yield 中断了数次，每次中断都会通过 yield 返回当前的迭代值。<br>yield 的好处是显而易见的，把一个函数改写为一个 generator 就获得了迭代能力，比起用类的实例保存状态来计算下一个 next() 的值，不仅代码简洁，而且执行流程异常清晰。<br>如何判断一个函数是否是一个特殊的 generator 函数？可以利用 isgeneratorfunction 判断：</p>
+<p>清单 7. 使用 isgeneratorfunction 判断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; from inspect import isgeneratorfunction </div><div class="line">&gt;&gt;&gt; isgeneratorfunction(fab) </div><div class="line">True</div></pre></td></tr></table></figure>
+<p>要注意区分 fab 和 fab(5)，fab 是一个 generator function，而 fab(5) 是调用 fab 返回的一个 generator，好比类的定义和类的实例的区别：<br>清单 8. 类的定义和类的实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; import types </div><div class="line">&gt;&gt;&gt; isinstance(fab, types.GeneratorType) </div><div class="line">False </div><div class="line">&gt;&gt;&gt; isinstance(fab(5), types.GeneratorType) </div><div class="line">True</div></pre></td></tr></table></figure>
+<p>fab 是无法迭代的，而 fab(5) 是可迭代的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; from collections import Iterable </div><div class="line">&gt;&gt;&gt; isinstance(fab, Iterable) </div><div class="line">False </div><div class="line">&gt;&gt;&gt; isinstance(fab(5), Iterable) </div><div class="line">True</div></pre></td></tr></table></figure>
+<p>每次调用 fab 函数都会生成一个新的 generator 实例，各实例互不影响：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; f1 = fab(3) </div><div class="line">&gt;&gt;&gt; f2 = fab(5) </div><div class="line">&gt;&gt;&gt; print &apos;f1:&apos;, f1.next() </div><div class="line">f1: 1 </div><div class="line">&gt;&gt;&gt; print &apos;f2:&apos;, f2.next() </div><div class="line">f2: 1 </div><div class="line">&gt;&gt;&gt; print &apos;f1:&apos;, f1.next() </div><div class="line">f1: 1 </div><div class="line">&gt;&gt;&gt; print &apos;f2:&apos;, f2.next() </div><div class="line">f2: 1 </div><div class="line">&gt;&gt;&gt; print &apos;f1:&apos;, f1.next() </div><div class="line">f1: 2 </div><div class="line">&gt;&gt;&gt; print &apos;f2:&apos;, f2.next() </div><div class="line">f2: 2 </div><div class="line">&gt;&gt;&gt; print &apos;f2:&apos;, f2.next() </div><div class="line">f2: 3 </div><div class="line">&gt;&gt;&gt; print &apos;f2:&apos;, f2.next() </div><div class="line">f2: 5</div></pre></td></tr></table></figure>
+<h2 id="return-的作用"><a href="#return-的作用" class="headerlink" title="return 的作用"></a>return 的作用</h2><p>在一个 generator function 中，如果没有 return，则默认执行至函数完毕，如果在执行过程中 return，则直接抛出 StopIteration 终止迭代。</p>
+<h2 id="另一个例子"><a href="#另一个例子" class="headerlink" title="另一个例子"></a>另一个例子</h2><p>另一个 yield 的例子来源于文件读取。如果直接对文件对象调用 read() 方法，会导致不可预测的内存占用。好的方法是利用固定长度的缓冲区来不断读取文件内容。通过 yield，我们不再需要编写读文件的迭代类，就可以轻松实现文件读取：<br>清单 9. 另一个 yield 的例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">def read_file(fpath): </div><div class="line">   BLOCK_SIZE = 1024 </div><div class="line">   with open(fpath, &apos;rb&apos;) as f: </div><div class="line">       while True: </div><div class="line">           block = f.read(BLOCK_SIZE) </div><div class="line">           if block: </div><div class="line">               yield block </div><div class="line">           else: </div><div class="line">               return</div></pre></td></tr></table></figure>
+<p>以上仅仅简单介绍了 yield 的基本概念和用法，yield 在 Python 3 中还有更强大的用法，我们会在后续文章中讨论。<br>注：本文的代码均在 Python 2.7 中调试通过</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Python/">Python</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/09/02/170902_Python-yield-使用浅析/" data-title="Python yield 使用浅析 | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/08/22/170822_Mac环境下scrap安装、使用/"  title="Mac环境下scrap安装、使用">
+ <strong>下一篇：</strong><br/> 
+ <span>Mac环境下scrap安装、使用
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/09/02/170902_Python-yield-使用浅析/" data-title="Python yield 使用浅析" data-url="http://yoursite.com/2017/09/02/170902_Python-yield-使用浅析/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何生成斐波那契數列"><span class="toc-number">1.</span> <span class="toc-text">如何生成斐波那契數列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#return-的作用"><span class="toc-number">2.</span> <span class="toc-text">return 的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#另一个例子"><span class="toc-number">3.</span> <span class="toc-text">另一个例子</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="Allen-Feng" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/iOS/" title="iOS">iOS<sup>12</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ML/" title="ML">ML<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Python/" title="Python">Python<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Xcode/" title="Xcode">Xcode<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac/" title="Mac">Mac<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ARC/" title="ARC">ARC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Pyhton/" title="Pyhton">Pyhton<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/RSA/" title="RSA">RSA<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SDK/" title="SDK">SDK<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Crawler/" title="Crawler">Crawler<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.cocoachina.com" target="_blank" title="CocoaChina">CocoaChina</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://objccn.io/" target="_blank" title="objc中国">objc中国</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.devtang.com/" target="_blank" title="唐巧大神">唐巧大神</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://yulingtianxia.com/" target="_blank" title="玉令天下">玉令天下</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://onevcat.com/#blog" target="_blank" title="王巍（@onevcat）">王巍（@onevcat）</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5580378505&verifier=07a80851&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Stay hungry, stay foolish <br/>
+			Talk is cheap, show me the code.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/5580378505" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/Allen-Feng" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/6587241" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		<a href="https://twitter.com/allenfeng945" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/profile.php?id=100011457513784" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		
+		<a href="mailto:allen-feng@hotmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Allen Feng">Allen Feng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"allenfeng123"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
