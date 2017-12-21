@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>iOS获取UIWebView上面的点击事件 | aFeng`s Blog</title>
+    <title>python如何打开ipynb后缀文件 | aFeng`s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Allen Feng">
     
 
     
-    <meta name="description" content="问题背景在网上看到很多文章都说iOS的UIWebView比较耗内存，在我的项目中，最开始我也是用UIWebView来加载网页的。刚开始加载的是自己拼接成的HTML，后来在HTML中加入一个按钮，点击之后用当前的UIWebView去加载网络上的网页。程序跑起来发现非常耗内存，加载几个网上的网页之后就爆内存警告了，不处理的话很容易被评估拒掉app。">
+    <meta name="description" content="python的即时编辑是很多学习python人员的一个必备需求，毕竟谁也不想写完一整个文件，通过命令后运行，除了PyCharm这种IDE，使用ipynb也是一个不错的选择。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS获取UIWebView上面的点击事件">
-<meta property="og:url" content="http://yoursite.com/2016/09/22/160922_iOS获取UIWebView上面的点击事件/index.html">
+<meta property="og:title" content="python如何打开ipynb后缀文件">
+<meta property="og:url" content="http://yoursite.com/2017/12/21/171221_python如何打开ipynb后缀文件/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
-<meta property="og:description" content="问题背景在网上看到很多文章都说iOS的UIWebView比较耗内存，在我的项目中，最开始我也是用UIWebView来加载网页的。刚开始加载的是自己拼接成的HTML，后来在HTML中加入一个按钮，点击之后用当前的UIWebView去加载网络上的网页。程序跑起来发现非常耗内存，加载几个网上的网页之后就爆内存警告了，不处理的话很容易被评估拒掉app。">
-<meta property="og:updated_time" content="2016-09-22T07:49:11.000Z">
+<meta property="og:description" content="python的即时编辑是很多学习python人员的一个必备需求，毕竟谁也不想写完一整个文件，通过命令后运行，除了PyCharm这种IDE，使用ipynb也是一个不错的选择。">
+<meta property="og:updated_time" content="2017-12-21T03:45:41.839Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS获取UIWebView上面的点击事件">
-<meta name="twitter:description" content="问题背景在网上看到很多文章都说iOS的UIWebView比较耗内存，在我的项目中，最开始我也是用UIWebView来加载网页的。刚开始加载的是自己拼接成的HTML，后来在HTML中加入一个按钮，点击之后用当前的UIWebView去加载网络上的网页。程序跑起来发现非常耗内存，加载几个网上的网页之后就爆内存警告了，不处理的话很容易被评估拒掉app。">
+<meta name="twitter:title" content="python如何打开ipynb后缀文件">
+<meta name="twitter:description" content="python的即时编辑是很多学习python人员的一个必备需求，毕竟谁也不想写完一整个文件，通过命令后运行，除了PyCharm这种IDE，使用ipynb也是一个不错的选择。">
 <meta name="twitter:creator" content="@allenfeng945">
 
     
@@ -81,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/09/22/160922_iOS获取UIWebView上面的点击事件/" title="iOS获取UIWebView上面的点击事件" itemprop="url">iOS获取UIWebView上面的点击事件</a>
+      <a href="/2017/12/21/171221_python如何打开ipynb后缀文件/" title="python如何打开ipynb后缀文件" itemprop="url">python如何打开ipynb后缀文件</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
 		
   <p class="article-time">
-    <time datetime="2016-09-22T07:33:46.000Z" itemprop="datePublished"> 发表于 2016-09-22</time>
+    <time datetime="2017-12-21T03:27:56.000Z" itemprop="datePublished"> 发表于 2017-12-21</time>
     
   </p>
 </header>
@@ -97,26 +97,24 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题背景"><span class="toc-number">1.</span> <span class="toc-text">问题背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意"><span class="toc-number">3.</span> <span class="toc-text">注意</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打开ipynb文件"><span class="toc-number">2.</span> <span class="toc-text">打开ipynb文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jupyter安装（可选）"><span class="toc-number">3.</span> <span class="toc-text">jupyter安装（可选）</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>在网上看到很多文章都说iOS的<code>UIWebView</code>比较耗内存，在我的项目中，最开始我也是用<code>UIWebView</code>来加载网页的。刚开始加载的是自己拼接成的<code>HTML</code>，后来在<code>HTML</code>中加入一个按钮，点击之后用当前的<code>UIWebView</code>去加载网络上的网页。程序跑起来发现非常耗内存，加载几个网上的网页之后就爆内存警告了，不处理的话很容易被评估拒掉app。</p>
+		<blockquote>
+<p>python的即时编辑是很多学习python人员的一个必备需求，毕竟谁也不想写完一整个文件，通过命令后运行，除了PyCharm这种IDE，使用ipynb也是一个不错的选择。</p>
+</blockquote>
 <a id="more"></a>
-<p>后来就改成用系统的<code>safari</code>浏览器来打开网络上的网页，把着耗内存的工作交给苹果自己自带的浏览器来处理，就避免了我这个<code>app crash</code>。但是怎么获取网页上这个按钮点击的事件呢，这个按钮本身就绑定了一个<code>url</code>,怎么让它点击之后当前的<code>UIWebView</code>不去<code>load</code>这个<code>url</code>呢。</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>后来查了一下资料，发现<code>UIWebView</code>的协议里面有这么个方法，可以获取它加载的网页上面的事件，比如单击了图片，单击了按钮等等。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType</div><div class="line">&#123;</div><div class="line">//判断是否是单击</div><div class="line">    if (navigationType == UIWebViewNavigationTypeLinkClicked)</div><div class="line">    &#123;</div><div class="line">        NSURL *url = [request URL];</div><div class="line">        if([[UIApplication sharedApplication]canOpenURL:url])</div><div class="line">        &#123;</div><div class="line">            [[UIApplication sharedApplication]openURL:url];</div><div class="line">        &#125;</div><div class="line">        return NO;</div><div class="line">    &#125;</div><div class="line">    return YES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这样写了之后，点击按钮之后就不会用当前的<code>UIWebView</code>来加载网络上的网页，而是调用系统的<code>Safari</code>来打开。</p>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>最后一点要返回<code>YES</code>，否则<code>UIWebView</code>刚开始将一片空白，这是因为第一次加载的时候也是<code>UIWebView</code>请求一个链接，如果返回<code>NO</code>，就不会去加载了。还可以对<code>url</code>的内容进行判断，看是什么请求。</p>
-<p>如果为<code>webView</code>添加了<code>delegate</code>对象并实现该接口，那么在<code>webView</code>加载任何一个<code>frame</code>之前都会<code>delegate</code>对象的该方法，该方法的返回值用以控制是否允许加载目标链接页面的内容，返回<code>YES</code>将直接加载内容，<code>NO</code>则反之。并且<code>UIWebViewNavigationType</code>枚举，定义了页面中用户行为的分类，包括</p>
-<ul>
-<li>UIWebViewNavigationTypeLinkClicked， //用户触击了一个链接。</li>
-<li>UIWebViewNavigationTypeFormSubmitted， //用户提交了一个表单。</li>
-<li>UIWebViewNavigationTypeBackForward， //用户触击前进或返回按钮。</li>
-<li>UIWebViewNavigationTypeReload， //用户触击重新加载的按钮。</li>
-<li>UIWebViewNavigationTypeFormResubmitted， //用户重复提交表单</li>
-<li>UIWebViewNavigationTypeOther， //发生其它行为。</li>
-</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>需要安装ipython notebook，如果你已经安装Anaconda软件，则不需要安装。<br>如果未安装Anaconda，则需要安装，在控制台里输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pip install ipython</div><div class="line">pip install “ipython[notebook]”</div></pre></td></tr></table></figure>
+<h2 id="打开ipynb文件"><a href="#打开ipynb文件" class="headerlink" title="打开ipynb文件"></a>打开ipynb文件</h2><ol>
+<li>cd 到 ipynb 文件所在目录</li>
+<li>命令行输入<code>ipython notebook</code>, 浏览器中就会打开ipynb文件。</li>
+</ol>
+<h2 id="jupyter安装（可选）"><a href="#jupyter安装（可选）" class="headerlink" title="jupyter安装（可选）"></a>jupyter安装（可选）</h2><p>网上搜索很多都要再安装jupyter<br>ipython notebook在下一个版本被命名为Jupyter Notebook。<br>通过pip install jupyter安装</p>
+<p>但是在Mac环境实际操作时无需此步骤，在执行<code>pip install “ipython[notebook]”</code>时发现已经安装了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Collecting jupyter-client (from notebook; extra == &quot;notebook&quot;-&gt;ipython[notebook])</div><div class="line">  Downloading jupyter_client-5.2.0-py2.py3-none-any.whl (88kB)</div><div class="line">    100% |████████████████████████████████| 92kB 7.8MB/s </div><div class="line">Collecting jupyter-core (from notebook; extra == &quot;notebook&quot;-&gt;ipython[notebook])</div><div class="line">  Downloading jupyter_core-4.4.0-py2.py3-none-any.whl (126kB)</div><div class="line">    100% |████████████████████████████████| 133kB 3.2MB/s</div></pre></td></tr></table></figure>
+<p>附上<a href="https://www.tuicool.com/articles/a6JRr2Y" target="_blank" rel="external">中文教程</a>，<a href="https://www.packtpub.com/books/content/getting-started-jupyter-notebook-part-1" target="_blank" rel="external">英文教程</a>，</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -125,7 +123,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/iOS/">iOS</a>
+  <span></span> <a href="/tags/Python/">Python</a>
   </div>
 
 </div>
@@ -134,7 +132,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/09/22/160922_iOS获取UIWebView上面的点击事件/" data-title="iOS获取UIWebView上面的点击事件 | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/12/21/171221_python如何打开ipynb后缀文件/" data-title="python如何打开ipynb后缀文件 | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -147,19 +145,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/09/28/160928_H5容器的一些探究（一）：UIWebView和WKWebView/" title="H5容器的一些探究（一）：UIWebView和WKWebView">
-  <strong>上一篇：</strong><br/>
-  <span>
-  H5容器的一些探究（一）：UIWebView和WKWebView</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/09/21/160921_Charles-从入门到精通/"  title="Charles 从入门到精通">
+<a href="/2017/09/02/170902_Python-yield-使用浅析/"  title="Python yield 使用浅析">
  <strong>下一篇：</strong><br/> 
- <span>Charles 从入门到精通
+ <span>Python yield 使用浅析
 </span>
 </a>
 </div>
@@ -168,7 +158,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/09/22/160922_iOS获取UIWebView上面的点击事件/" data-title="iOS获取UIWebView上面的点击事件" data-url="http://yoursite.com/2016/09/22/160922_iOS获取UIWebView上面的点击事件/"></div>
+	<div class="ds-thread" data-thread-key="2017/12/21/171221_python如何打开ipynb后缀文件/" data-title="python如何打开ipynb后缀文件" data-url="http://yoursite.com/2017/12/21/171221_python如何打开ipynb后缀文件/"></div>
 </section>
 
 
@@ -178,7 +168,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题背景"><span class="toc-number">1.</span> <span class="toc-text">问题背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意"><span class="toc-number">3.</span> <span class="toc-text">注意</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打开ipynb文件"><span class="toc-number">2.</span> <span class="toc-text">打开ipynb文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jupyter安装（可选）"><span class="toc-number">3.</span> <span class="toc-text">jupyter安装（可选）</span></a></li></ol>
  
   </div>
 
