@@ -4,33 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Linux vi/vim | aFeng`s Blog</title>
+    <title>面试官问这么基础的问题有必要吗? | aFeng`s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Allen Feng">
     
 
     
-    <meta name="description" content="所有的Unix Like系统都会内建vi文书编辑器，其他的文书编辑器则不一定会存在。但是目前我们使用比较多的是vim编辑器。vim具有程序编辑的能力，可以主动的以字体颜色辨别语法的正确性，方便程序设计。">
+    <meta name="description" content="关于”面试官问这么基础的问题有必要吗”这个话题一直以来争论不休;其实我们可以这样理性的分析问题。面试官问的这些基础问题更多的是一些知识的深入，这些知识大多是我们开发中不怎么想深入或者觉得不需要深入了解的；比如NSString属性用strong关键字有啥利弊等。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux vi/vim">
-<meta property="og:url" content="http://yoursite.com/2016/12/13/161213_Linux-vi-vim/index.html">
+<meta property="og:title" content="面试官问这么基础的问题有必要吗?">
+<meta property="og:url" content="http://yoursite.com/2018/06/03/180603_面试官问这么基础的问题有必要吗/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
-<meta property="og:description" content="所有的Unix Like系统都会内建vi文书编辑器，其他的文书编辑器则不一定会存在。但是目前我们使用比较多的是vim编辑器。vim具有程序编辑的能力，可以主动的以字体颜色辨别语法的正确性，方便程序设计。">
-<meta property="og:image" content="http://yoursite.com/images/16121301.png">
-<meta property="og:image" content="http://yoursite.com/images/16121302.png">
-<meta property="og:image" content="http://yoursite.com/images/16121303.png">
-<meta property="og:image" content="http://yoursite.com/images/16121304.png">
-<meta property="og:image" content="http://yoursite.com/images/16121305.png">
-<meta property="og:image" content="http://yoursite.com/images/16121306.png">
-<meta property="og:image" content="http://yoursite.com/images/16121307.png">
-<meta property="og:image" content="http://yoursite.com/images/16121308.png">
-<meta property="og:image" content="http://yoursite.com/images/16121309.png">
-<meta property="og:updated_time" content="2016-12-13T09:45:33.000Z">
+<meta property="og:description" content="关于”面试官问这么基础的问题有必要吗”这个话题一直以来争论不休;其实我们可以这样理性的分析问题。面试官问的这些基础问题更多的是一些知识的深入，这些知识大多是我们开发中不怎么想深入或者觉得不需要深入了解的；比如NSString属性用strong关键字有啥利弊等。">
+<meta property="og:updated_time" content="2018-06-03T15:06:40.134Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux vi/vim">
-<meta name="twitter:description" content="所有的Unix Like系统都会内建vi文书编辑器，其他的文书编辑器则不一定会存在。但是目前我们使用比较多的是vim编辑器。vim具有程序编辑的能力，可以主动的以字体颜色辨别语法的正确性，方便程序设计。">
-<meta name="twitter:image" content="http://yoursite.com/images/16121301.png">
+<meta name="twitter:title" content="面试官问这么基础的问题有必要吗?">
+<meta name="twitter:description" content="关于”面试官问这么基础的问题有必要吗”这个话题一直以来争论不休;其实我们可以这样理性的分析问题。面试官问的这些基础问题更多的是一些知识的深入，这些知识大多是我们开发中不怎么想深入或者觉得不需要深入了解的；比如NSString属性用strong关键字有啥利弊等。">
 <meta name="twitter:creator" content="@allenfeng945">
 
     
@@ -91,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/12/13/161213_Linux-vi-vim/" title="Linux vi/vim" itemprop="url">Linux vi/vim</a>
+      <a href="/2018/06/03/180603_面试官问这么基础的问题有必要吗/" title="面试官问这么基础的问题有必要吗?" itemprop="url">面试官问这么基础的问题有必要吗?</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
 		
   <p class="article-time">
-    <time datetime="2016-12-13T08:59:32.000Z" itemprop="datePublished"> 發表於 2016-12-13</time>
+    <time datetime="2018-06-03T14:57:21.000Z" itemprop="datePublished"> 發表於 2018-06-03</time>
     
   </p>
 </header>
@@ -107,25 +97,19 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是-vim"><span class="toc-number">1.</span> <span class="toc-text">什么是 vim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-vim-的使用"><span class="toc-number">2.</span> <span class="toc-text">vi/vim 的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-vim-按键说明"><span class="toc-number">3.</span> <span class="toc-text">vi/vim 按键说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第二部份"><span class="toc-number">3.1.</span> <span class="toc-text">第二部份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二部份-1"><span class="toc-number">3.2.</span> <span class="toc-text">第二部份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第三部份"><span class="toc-number">3.3.</span> <span class="toc-text">第三部份</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#对于开发者"><span class="toc-number">1.</span> <span class="toc-text">对于开发者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对于公司"><span class="toc-number">2.</span> <span class="toc-text">对于公司</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么我要写这篇文章呢？"><span class="toc-number">3.</span> <span class="toc-text">为什么我要写这篇文章呢？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正文"><span class="toc-number">4.</span> <span class="toc-text">正文</span></a></li></ol>
 		
 		</div>
 		
 		<blockquote>
-<p>所有的<code>Unix Like</code>系统都会内建<code>vi</code>文书编辑器，其他的文书编辑器则不一定会存在。<br>但是目前我们使用比较多的是<code>vim</code>编辑器。<br><code>vim</code>具有程序编辑的能力，可以主动的以字体颜色辨别语法的正确性，方便程序设计。</p>
+<p>关于”面试官问这么基础的问题有必要吗”这个话题一直以来争论不休;其实我们可以这样理性的分析问题。面试官问的这些基础问题更多的是一些知识的深入，这些知识大多是我们开发中不怎么想深入或者觉得不需要深入了解的；比如NSString属性用strong关键字有啥利弊等。</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="什么是-vim"><a href="#什么是-vim" class="headerlink" title="什么是 vim"></a>什么是 vim</h2><p><code>Vim</code>是从<code>vi</code>发展出来的一个文本编辑器。代码补完、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。<br>简单的来说，<code>vi</code>是老式的字处理器，不过功能已经很齐全了，但是还是有可以进步的地方。<code>vim</code>则可以说是程序开发者的一项很好用的工具。 连 <code>vim</code>的<a href="http://www.vim.org" target="_blank" rel="external">官方网站</a>自己也说<code>vim</code>是一个程序开发工具而不是文字处理软件。<br><code>vim</code>键盘图：<br><img src="/images/16121301.png" alt=""></p>
-<h2 id="vi-vim-的使用"><a href="#vi-vim-的使用" class="headerlink" title="vi/vim 的使用"></a>vi/vim 的使用</h2><p>基本上<code>vi/vim</code>共分为三种模式，分别是一般模式、编辑模式与指令列命令模式。 这三种模式的作用分别是：</p>
-<ul>
-<li><strong>一般模式：</strong><br>以<code>vi</code>打开一个档案就直接进入一般模式了(这是默认的模式)。在这个模式中， 你可以使用『上下左右』按键来移动光标，你可以使用『删除字符』或『删除整行』来处理档案内容， 也可以使用『复制、贴上』来处理你的文件数据。</li>
-<li><strong>编辑模式：</strong><br>在一般模式中可以进行删除、复制、贴上等等的动作，但是却无法编辑文件内容的！ 要等到你按下『i, I, o, O, a, A, r, R』等任何一个字母之后才会进入编辑模式。注意了！通常在 Linux 中，按下这些按键时，在画面的左下方会出现『INSERT 或 REPLACE 』的字样，此时才可以进行编辑。而如果要回到一般模式时， 则必须要按下『Esc』这个按键即可退出编辑模式。</li>
-<li><strong>指令列命令模式：</strong><br>在一般模式当中，输入『 : / ? 』三个中的任何一个按钮，就可以将光标移动到最底下那一行。在这个模式当中， 可以提供你『搜寻资料』的动作，而读取、存盘、大量取代字符、离开 vi 、显示行号等等的动作则是在此模式中达成的！<br>简单的说，我们可以将这三个模式想成底下的图标来表示：<br><img src="/images/16121302.png" alt=""></li>
-</ul>
-<h2 id="vi-vim-按键说明"><a href="#vi-vim-按键说明" class="headerlink" title="vi/vim 按键说明"></a>vi/vim 按键说明</h2><h3 id="第二部份"><a href="#第二部份" class="headerlink" title="第二部份"></a>第二部份</h3><p>一般模式可用的按钮说明，光标移动、复制贴上、搜寻取代等<br><img src="/images/16121303.png" alt=""><br><img src="/images/16121304.png" alt=""><br><img src="/images/16121305.png" alt=""><br><img src="/images/16121306.png" alt=""><br><img src="/images/16121307.png" alt=""></p>
-<h3 id="第二部份-1"><a href="#第二部份-1" class="headerlink" title="第二部份"></a>第二部份</h3><p>一般模式切换到编辑模式的可用的按钮说明<br><img src="/images/16121308.png" alt=""></p>
-<h3 id="第三部份"><a href="#第三部份" class="headerlink" title="第三部份"></a>第三部份</h3><p>一般模式切换到指令列模式的可用的按钮说明<br><img src="/images/16121309.png" alt=""></p>
-<p>特别注意，在 vi/vim 中，数字是很有意义的！数字通常代表重复做几次的意思！ 也有可能是代表去到第几个什么什么的意思。<br>举例来说，要删除 50 行，则是用 『50dd』 对吧！ 数字加在动作之前，如我要向下移动 20 行呢？那就是『20j』或者是『20↓』即可。</p>
+<h2 id="对于开发者"><a href="#对于开发者" class="headerlink" title="对于开发者"></a>对于开发者</h2><p>我目前在小公司待着，对于网上的面试题我70%都不能完美解答但是项目依然不会出现明显问题。这样看来基础显得不重要，因为小公司我们大多只有一至二个人开发，没时间去深入基础，我们的应用量级也不大，问题也就不会暴露出来。对我来说这些基础更多的是工作之余深入。<br>但是对于BAT这样的公司来说基础尤为重要，因为量级的原因问题很容易被暴露出来，在大公司的开发者写代码需要更严谨，这时候基础的作用体现出来了，不深入理解根本写不出能支持如此大体量的代码。所以他们时刻都在深入基础。</p>
+<h2 id="对于公司"><a href="#对于公司" class="headerlink" title="对于公司"></a>对于公司</h2><p>对于小公司来说，需要的是能按照需求写出功能的开发者，项目不难体量也不大，基础不怎么看重，所以问面试者的问题更多的是自己公司用到的一些技术。也就是说小公司招一个基础很好的也没用，在小公司待久了的程序员更多会变为<code>业务型程序员</code>。</p>
+<p><code>业务型程序员</code>：能完成指定的功能，技术难度低；一直写业务代码对自己的<br>技术没有太大的提升；更多的提升在于对业务的了解。<br>对于大公司，需要的是深入基础的程序员，因为要写出支持大体量的代码，对于一些没用过的技术比如音视频处理无所谓，因为基础好了学啥都快。</p>
+<h2 id="为什么我要写这篇文章呢？"><a href="#为什么我要写这篇文章呢？" class="headerlink" title="为什么我要写这篇文章呢？"></a>为什么我要写这篇文章呢？</h2><p>为了提升自己，因为自己在小公司，不想变成纯业务型程序员；</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>待续</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -134,7 +118,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Linux/">Linux</a><a href="/tags/vim/">vim</a>
+  <span></span> <a href="/tags/iOS/">iOS</a>
   </div>
 
 </div>
@@ -143,7 +127,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/12/13/161213_Linux-vi-vim/" data-title="Linux vi/vim | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
+	  <div data-url="http://yoursite.com/2018/06/03/180603_面试官问这么基础的问题有必要吗/" data-title="面试官问这么基础的问题有必要吗? | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -156,19 +140,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/01/16/170116_高效MacBook工作环境配置/" title="高效MacBook工作环境配置">
-  <strong>上一篇：</strong><br/>
-  <span>
-  高效MacBook工作环境配置</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/12/09/161209_解决iOS第三方SDK之间重复的symbols问题/"  title="解决iOS第三方SDK之间重复的symbols问题">
+<a href="/2017/12/31/171226_TensorFlow框架及使用/"  title="TensorFlow框架及使用">
  <strong>下一篇：</strong><br/> 
- <span>解决iOS第三方SDK之间重复的symbols问题
+ <span>TensorFlow框架及使用
 </span>
 </a>
 </div>
@@ -177,7 +153,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/12/13/161213_Linux-vi-vim/" data-title="Linux vi/vim" data-url="http://yoursite.com/2016/12/13/161213_Linux-vi-vim/"></div>
+	<div class="ds-thread" data-thread-key="2018/06/03/180603_面试官问这么基础的问题有必要吗/" data-title="面试官问这么基础的问题有必要吗?" data-url="http://yoursite.com/2018/06/03/180603_面试官问这么基础的问题有必要吗/"></div>
 </section>
 
 
@@ -187,7 +163,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是-vim"><span class="toc-number">1.</span> <span class="toc-text">什么是 vim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-vim-的使用"><span class="toc-number">2.</span> <span class="toc-text">vi/vim 的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-vim-按键说明"><span class="toc-number">3.</span> <span class="toc-text">vi/vim 按键说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第二部份"><span class="toc-number">3.1.</span> <span class="toc-text">第二部份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二部份-1"><span class="toc-number">3.2.</span> <span class="toc-text">第二部份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第三部份"><span class="toc-number">3.3.</span> <span class="toc-text">第三部份</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#对于开发者"><span class="toc-number">1.</span> <span class="toc-text">对于开发者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对于公司"><span class="toc-number">2.</span> <span class="toc-text">对于公司</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么我要写这篇文章呢？"><span class="toc-number">3.</span> <span class="toc-text">为什么我要写这篇文章呢？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正文"><span class="toc-number">4.</span> <span class="toc-text">正文</span></a></li></ol>
  
   </div>
 
