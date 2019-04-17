@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/22/170822_Mac环境下scrap安装、使用/index.html">
 <meta property="og:site_name" content="aFeng`s Blog">
 <meta property="og:description" content="Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 原本并没有打算为此专门写篇博文，以为只是简单的安装、使用，可过程却是一路填坑下去的，故以此记之。">
-<meta property="og:updated_time" content="2017-09-03T02:41:35.000Z">
+<meta property="og:updated_time" content="2019-04-17T03:02:23.384Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac环境下scrap安装、使用">
 <meta name="twitter:description" content="Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 原本并没有打算为此专门写篇博文，以为只是简单的安装、使用，可过程却是一路填坑下去的，故以此记之。">
@@ -49,7 +49,7 @@
 				<h1 class="site-name"><a href="/" title="aFeng`s Blog">aFeng`s Blog</a></h1>
 				<h2 class="blog-motto">记录学习的点点滴滴</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -65,7 +65,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -88,16 +88,16 @@
 		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
 		
   <p class="article-time">
-    <time datetime="2017-08-22T03:17:51.000Z" itemprop="datePublished"> 發表於 2017-08-22</time>
+    <time datetime="2017-08-22T03:17:51.000Z" itemprop="datePublished"> Published 2017-08-22</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装过程中的坑"><span class="toc-number">1.</span> <span class="toc-text">安装过程中的坑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装scrapy失败——系统自带的six包版本较低"><span class="toc-number">1.1.</span> <span class="toc-text">安装scrapy失败——系统自带的six包版本较低</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建scrapy项目失败——twisted包版本过高"><span class="toc-number">1.2.</span> <span class="toc-text">创建scrapy项目失败——twisted包版本过高</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建scrapy项目UserWarning——No-module-named-cryptography"><span class="toc-number">1.3.</span> <span class="toc-text">创建scrapy项目UserWarning——No module named cryptography</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scrapy项目基本流程"><span class="toc-number">2.</span> <span class="toc-text">Scrapy项目基本流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#默认的Scrapy项目结构"><span class="toc-number">2.1.</span> <span class="toc-text">默认的Scrapy项目结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义要抓取的数据"><span class="toc-number">2.2.</span> <span class="toc-text">定义要抓取的数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用项目命令genspider创建Spider"><span class="toc-number">2.3.</span> <span class="toc-text">使用项目命令genspider创建Spider</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编写提取item数据的Spider"><span class="toc-number">2.4.</span> <span class="toc-text">编写提取item数据的Spider</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进行爬取"><span class="toc-number">2.5.</span> <span class="toc-text">进行爬取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过选择器提取数据"><span class="toc-number">2.6.</span> <span class="toc-text">通过选择器提取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提取数据："><span class="toc-number">2.7.</span> <span class="toc-text">提取数据：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#保存数据"><span class="toc-number">2.8.</span> <span class="toc-text">保存数据</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装过程中的坑"><span class="toc-number">1.</span> <span class="toc-text">安装过程中的坑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装scrapy失败——系统自带的six包版本较低"><span class="toc-number">1.1.</span> <span class="toc-text">安装scrapy失败——系统自带的six包版本较低</span></a></li></ol></li></ol>
 		
 		</div>
 		
@@ -107,59 +107,47 @@
 <a id="more"></a>
 <h2 id="安装过程中的坑"><a href="#安装过程中的坑" class="headerlink" title="安装过程中的坑"></a>安装过程中的坑</h2><h3 id="安装scrapy失败——系统自带的six包版本较低"><a href="#安装scrapy失败——系统自带的six包版本较低" class="headerlink" title="安装scrapy失败——系统自带的six包版本较低"></a>安装scrapy失败——系统自带的six包版本较低</h3><p>使用如下命令安装scrapy失败</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install scrapy</div></pre></td></tr></table></figure>
-<p>经研究发现是Mac系统自带的six包版本较低导致安装失败，升级时又因six包属于系统文件，受SIP保护，强制进入还原模式关闭SIP后，把系统的six相关文件手动删除，安装最新版six包后，再次执行上述命令即可</p>
-<h3 id="创建scrapy项目失败——twisted包版本过高"><a href="#创建scrapy项目失败——twisted包版本过高" class="headerlink" title="创建scrapy项目失败——twisted包版本过高"></a>创建scrapy项目失败——twisted包版本过高</h3><p>在创建scrapy项目时又出错，经研究发现是其关联的twisted包版本过高，版本降级后OK</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">fengyeningdeMacBook-Pro:~ fengyening$ scrapy startproject projectname</div><div class="line">Traceback (most recent call last):</div><div class="line">  File &quot;/Library/Frameworks/Python.framework/Versions/2.7/bin/scrapy&quot;, line 7, in &lt;module&gt;</div><div class="line">.</div><div class="line">.</div><div class="line">.</div><div class="line">  File &quot;/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/twisted/internet/_sslverify.py&quot;, line 38, in &lt;module&gt;</div><div class="line">    TLSVersion.TLSv1_1: SSL.OP_NO_TLSv1_1,</div><div class="line">AttributeError: &apos;module&apos; object has no attribute &apos;OP_NO_TLSv1_1&apos;</div></pre></td></tr></table></figure>
-<p>具体降到哪个版本，网上有很多说法，本着从最高版本依次往下试的原则发现大版本降至16就可以了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">fengyeningdeMacBook-Pro:~ fengyening$ pip install Twisted==16.4.1</div><div class="line">Collecting Twisted==16.4.1</div><div class="line">  Downloading Twisted-16.4.1.tar.bz2 (3.0MB)</div><div class="line">    100% |████████████████████████████████| 3.0MB 8.8kB/s </div><div class="line">Requirement already satisfied: zope.interface&gt;=3.6.0 in /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python (from Twisted==16.4.1)</div><div class="line">Requirement already satisfied: setuptools in /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python (from zope.interface&gt;=3.6.0-&gt;Twisted==16.4.1)</div><div class="line">Installing collected packages: Twisted</div><div class="line">  Found existing installation: Twisted 17.5.0</div><div class="line">    Uninstalling Twisted-17.5.0:</div><div class="line">      Successfully uninstalled Twisted-17.5.0</div><div class="line">  Running setup.py install for Twisted ... done</div><div class="line">Successfully installed Twisted-16.4.1</div></pre></td></tr></table></figure>
-<h3 id="创建scrapy项目UserWarning——No-module-named-cryptography"><a href="#创建scrapy项目UserWarning——No-module-named-cryptography" class="headerlink" title="创建scrapy项目UserWarning——No module named cryptography"></a>创建scrapy项目UserWarning——No module named cryptography</h3><p>至此已可以成功创建scrapy项目了，但有一个warning，强迫症的我怎么能容忍，提示的也很明确，安装一下cryptography就好了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">fengyeningdeMacBook-Pro:~ fengyening$ scrapy startproject baidu_spider</div><div class="line">:0: UserWarning: You do not have a working installation of the service_identity module: &apos;No module named cryptography.x509&apos;.  Please install it from &lt;https://pypi.python.org/pypi/service_identity&gt; and make sure all of its dependencies are satisfied.  Without the service_identity module and a recent enough pyOpenSSL to support it, Twisted can perform only rudimentary TLS client hostname verification.  Many valid certificate/hostname mappings may be rejected.</div></pre></td></tr></table></figure>
+<p>经研究发现是Mac系统自带的six包版本较低导致安装失败，升级时又因six包属于系统文件，受SIP保护，强制进入还原模式关闭SIP后，把系统的six相关文件手动删除，安装最新版six包后，再次执行上述命令即可。</p>
 <blockquote>
-<p>安装过程最好要用网速较好的网络，最开始安装scrapy时其中一个包一直报超时的错误，就怀疑包的资源问题等等，最后换了个好的网络就OK了。</p>
+<p>没事别去升级Mac的系统，不然你的six包会还原到1.4.1版本，你需要再次关闭SIP，通过<figure class="highlight plain"><figcaption><span>show -- file six```查找到路径手动删除。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 创建scrapy项目失败——twisted包版本过高</div><div class="line"></div><div class="line">在创建scrapy项目时又出错，经研究发现是其关联的twisted包版本过高，版本降级后OK</div></pre></td></tr></table></figure></p>
 </blockquote>
-<h2 id="Scrapy项目基本流程"><a href="#Scrapy项目基本流程" class="headerlink" title="Scrapy项目基本流程"></a>Scrapy项目基本流程</h2><h3 id="默认的Scrapy项目结构"><a href="#默认的Scrapy项目结构" class="headerlink" title="默认的Scrapy项目结构"></a>默认的Scrapy项目结构</h3><p>使用全局命令startproject创建项目，在project_name文件夹下创建一个名为myproject的Scrapy项目。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scrapy startproject myproject</div></pre></td></tr></table></figure>
-<p>虽然可以被修改，但所有的Scrapy项目默认有类似于下边的文件结构:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">scrapy.cfg</div><div class="line">myproject/</div><div class="line">    __init__.py</div><div class="line">    items.py</div><div class="line">    middlewares.py</div><div class="line">    pipelines.py</div><div class="line">    settings.py</div><div class="line">    spiders/</div><div class="line">        __init__.py</div><div class="line">        spider1.py</div><div class="line">        spider2.py</div><div class="line">        ...</div></pre></td></tr></table></figure>
-<ul>
-<li>scrapy.cfg: 项目的配置文件</li>
-<li>myproject/: 该项目的python模块。之后您将在此加入代码。</li>
-<li>myproject/items.py:需要提取的数据结构定义文件。</li>
-<li>myproject/middlewares.py: 是和Scrapy的请求/响应处理相关联的框架。</li>
-<li>myproject/pipelines.py: 用来对items里面提取的数据做进一步处理，如保存等。</li>
-<li>myproject/settings.py: 项目的配置文件。</li>
-<li>myproject/spiders/: 放置spider代码的目录。</li>
-</ul>
-<p>scrapy.cfg 存放的目录被认为是<code>项目的根目录</code>。该文件中包含python模块名的字段定义了项目的设置。</p>
-<h3 id="定义要抓取的数据"><a href="#定义要抓取的数据" class="headerlink" title="定义要抓取的数据"></a>定义要抓取的数据</h3><p>Item 是保存爬取到的数据的容器；其使用方法和python字典类似， 并且提供了额外保护机制来避免拼写错误导致的未定义字段错误。<br>类似在ORM中做的一样，您可以通过创建一个 scrapy.Item 类， 并且定义类型为 scrapy.Field 的类属性来定义一个Item。<br>首先根据需要从dmoz.org（DMOZ网站是一个著名的开放式分类目录（Open DirectoryProject），由来自世界各地的志愿者共同维护与建设的最大的全球目录社区）获取到的数据对item进行建模。 我们需要从dmoz中获取名字，url，以及网站的描述。 对此，在item中定义相应的字段。编辑items.py 文件:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">import scrapy</div><div class="line"></div><div class="line">class MyprojectItem(scrapy.Item):</div><div class="line">    title = scrapy.Field()</div><div class="line">    link = scrapy.Field()</div><div class="line">    desc = scrapy.Field()</div></pre></td></tr></table></figure>
-<h3 id="使用项目命令genspider创建Spider"><a href="#使用项目命令genspider创建Spider" class="headerlink" title="使用项目命令genspider创建Spider"></a>使用项目命令genspider创建Spider</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">You can start your first spider with:</div><div class="line">    cd myproject</div><div class="line">    scrapy genspider example example.com</div></pre></td></tr></table></figure>
-<p>在当前项目中创建spider。<br>这仅仅是创建spider的一种快捷方法。该方法可以使用提前定义好的模板来生成spider。您也可以自己创建spider的源码文件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">$ scrapy genspider -l</div><div class="line">Available templates:</div><div class="line">  basic</div><div class="line">  crawl</div><div class="line">  csvfeed</div><div class="line">  xmlfeed</div><div class="line"></div><div class="line">$ scrapy genspider -d basic</div><div class="line">import scrapy</div><div class="line"></div><div class="line">class $classname(scrapy.Spider):</div><div class="line">    name = &quot;$name&quot;</div><div class="line">    allowed_domains = [&quot;$domain&quot;]</div><div class="line">    start_urls = (</div><div class="line">        &apos;http://www.$domain/&apos;,</div><div class="line">        )</div><div class="line"></div><div class="line">    def parse(self, response):</div><div class="line">        pass</div><div class="line"></div><div class="line">$ scrapy genspider -t basic example example.com</div><div class="line">Created spider &apos;example&apos; using template &apos;basic&apos; in module:</div><div class="line">  mybot.spiders.example</div></pre></td></tr></table></figure>
-<h3 id="编写提取item数据的Spider"><a href="#编写提取item数据的Spider" class="headerlink" title="编写提取item数据的Spider"></a>编写提取item数据的Spider</h3><p>Spider是用户编写用于从单个网站(或者一些网站)爬取数据的类。<br>其包含了一个用于下载的初始URL，如何跟进网页中的链接以及如何分析页面中的内容， 提取生成 item 的方法。<br>为了创建一个Spider，您必须继承 scrapy.Spider 类，且定义以下三个属性:</p>
-<ul>
-<li>name: 用于区别Spider。 该名字必须是唯一的，您不可以为不同的Spider设定相同的名字。</li>
-<li>start_urls: 包含了Spider在启动时进行爬取的url列表。 因此，第一个被获取到的页面将是其中之一。 后续的URL则从初始的URL获取到的数据中提取。</li>
-<li>parse() 是spider的一个方法。 被调用时，每个初始URL完成下载后生成的 Response 对象将会作为唯一的参数传递给该函数。 该方法负责解析返回的数据(response data)，提取数据(生成item)以及生成需要进一步处理的URL的 Request 对象</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">import scrapy</div><div class="line"></div><div class="line">class DmozSpider(scrapy.spider.Spider):</div><div class="line">    name = &quot;example&quot;    #唯一标识，启动spider时即指定该名称</div><div class="line">    allowed_domains = [&quot;example.com&quot;]</div><div class="line">    start_urls = [</div><div class="line">        &quot;http://www.dmoz.org/Computers/Programming/Languages/Python/Books/&quot;,</div><div class="line">        &quot;http://www.dmoz.org/Computers/Programming/Languages/Python/Resources/&quot;</div><div class="line">    ]</div><div class="line"></div><div class="line">    def parse(self, response):</div><div class="line">        filename = response.url.split(&quot;/&quot;)[-2]</div><div class="line">        with open(filename, &apos;wb&apos;) as f:</div><div class="line">            f.write(response.body)</div></pre></td></tr></table></figure>
-<h3 id="进行爬取"><a href="#进行爬取" class="headerlink" title="进行爬取"></a>进行爬取</h3><p>执行项目命令crawl，启动Spider：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scrapy crawl example</div></pre></td></tr></table></figure>
-<p>在这个过程中：<br>Scrapy为Spider的 start_urls 属性中的每个URL创建了 scrapy.Request 对象，并将 parse 方法作为回调函数(callback)赋值给了Request。<br>Request对象经过调度，执行生成 scrapy.http.Response 对象并送回给spider parse() 方法。</p>
-<h3 id="通过选择器提取数据"><a href="#通过选择器提取数据" class="headerlink" title="通过选择器提取数据"></a>通过选择器提取数据</h3><p>Selectors选择器简介：<br>Scrapy提取数据有自己的一套机制。它们被称作选择器(seletors)，因为他们通过特定的 XPath 或者 CSS 表达式来“选择” HTML文件中的某个部分。<br>XPath 是一门用来在XML文件中选择节点的语言，也可以用在HTML上。 CSS 是一门将HTML文档样式化的语言。选择器由它定义，并与特定的HTML元素的样式相关连。</p>
-<p>XPath表达式的例子和含义：</p>
-<ul>
-<li>/html/head/title: 选择HTML文档中\<head> 标签内的\<title> 元素</title></head></li>
-<li>/html/head/title/text(): 选择上面提到的\<title> 元素的文字</title></li>
-<li>//td: 选择所有的 \<td> 元素</td></li>
-<li>//div[@class=”mine”]: 选择所有具有 class=”mine” 属性的 div 元素</li>
-</ul>
-<h3 id="提取数据："><a href="#提取数据：" class="headerlink" title="提取数据："></a>提取数据：</h3><p>观察HTML源码并确定合适的XPath表达式。<br>在查看了网页的源码后，您会发现网站的信息是被包含在 第二个元素中。<br>我们可以通过这段代码选择该页面中网站列表里所有元素:<br>response.xpath(‘//ul/li’)<br>Item 对象是自定义的python字典。 您可以使用标准的字典语法来获取到其每个字段的值。<br>一般来说，Spider将会将爬取到的数据以 Item 对象返回。所以为了将爬取的数据返回，我们最终的代码将是:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">import scrapy</div><div class="line"></div><div class="line">from tutorial.items import DmozItem</div><div class="line"></div><div class="line">class DmozSpider(scrapy.Spider):</div><div class="line">    name = &quot;example&quot;</div><div class="line">    allowed_domains = [&quot;example.com&quot;]</div><div class="line">    start_urls = [</div><div class="line">        &quot;http://www.dmoz.org/Computers/Programming/Languages/Python/Books/&quot;,</div><div class="line">        &quot;http://www.dmoz.org/Computers/Programming/Languages/Python/Resources/&quot;</div><div class="line">    ]</div><div class="line"></div><div class="line">    def parse(self, response):</div><div class="line">        for sel in response.xpath(&apos;//ul/li&apos;):</div><div class="line">            item = MyprojectItem()</div><div class="line">            item[&apos;title&apos;] = sel.xpath(&apos;a/text()&apos;).extract()</div><div class="line">            item[&apos;link&apos;] = sel.xpath(&apos;a/@href&apos;).extract()</div><div class="line">            item[&apos;desc&apos;] = sel.xpath(&apos;text()&apos;).extract()</div><div class="line">            yield item</div></pre></td></tr></table></figure>
-<p>现在对example.org进行爬取将会产生 MyprojectItem 对象。</p>
-<h3 id="保存数据"><a href="#保存数据" class="headerlink" title="保存数据"></a>保存数据</h3><p>最简单存储爬取的数据的方式是使用 Feed exports:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scrapy crawl example -o items.json</div></pre></td></tr></table></figure>
-<p>该命令将采用 JSON 格式对爬取的数据进行序列化，生成 items.json 文件。<br>如果需要对爬取到的item做更多更为复杂的操作，您可以编写 Item Pipeline 。类似于我们在创建项目时对Item做的，用于您编写自己的 tutorial/pipelines.py 也被创建。不过如果您仅仅想要保存item，您不需要实现任何的pipeline。</p>
+<p>fengyeningdeMacBook-Pro:~ fengyening$ scrapy startproject projectname<br>Traceback (most recent call last):<br>  File “/Library/Frameworks/Python.framework/Versions/2.7/bin/scrapy”, line 7, in <module><br>.<br>.<br>.<br>  File “/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/twisted/internet/_sslverify.py”, line 38, in <module><br>    TLSVersion.TLSv1_1: SSL.OP_NO_TLSv1_1,<br>AttributeError: ‘module’ object has no attribute ‘OP_NO_TLSv1_1’</module></module></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">具体降到哪个版本，网上有很多说法，本着从最高版本依次往下试的原则发现大版本降至16就可以了。</div></pre></td></tr></table></figure>
+<p>fengyeningdeMacBook-Pro:~ fengyening$ pip install Twisted==16.4.1<br>Collecting Twisted==16.4.1<br>  Downloading Twisted-16.4.1.tar.bz2 (3.0MB)<br>    100% |████████████████████████████████| 3.0MB 8.8kB/s<br>Requirement already satisfied: zope.interface&gt;=3.6.0 in /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python (from Twisted==16.4.1)<br>Requirement already satisfied: setuptools in /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python (from zope.interface&gt;=3.6.0-&gt;Twisted==16.4.1)<br>Installing collected packages: Twisted<br>  Found existing installation: Twisted 17.5.0<br>    Uninstalling Twisted-17.5.0:<br>      Successfully uninstalled Twisted-17.5.0<br>  Running setup.py install for Twisted … done<br>Successfully installed Twisted-16.4.1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 创建scrapy项目UserWarning——No module named cryptography</div><div class="line"></div><div class="line">至此已可以成功创建scrapy项目了，但有一个warning，强迫症的我怎么能容忍，提示的也很明确，安装一下cryptography就好了。</div></pre></td></tr></table></figure></p>
+<p>fengyeningdeMacBook-Pro:~ fengyening$ scrapy startproject baidu_spider<br>:0: UserWarning: You do not have a working installation of the service_identity module: ‘No module named cryptography.x509’.  Please install it from <a href="https://pypi.python.org/pypi/service_identity" target="_blank" rel="external">https://pypi.python.org/pypi/service_identity</a> and make sure all of its dependencies are satisfied.  Without the service_identity module and a recent enough pyOpenSSL to support it, Twisted can perform only rudimentary TLS client hostname verification.  Many valid certificate/hostname mappings may be rejected.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&gt;安装过程最好要用网速较好的网络，最开始安装scrapy时其中一个包一直报超时的错误，就怀疑包的资源问题等等，最后换了个好的网络就OK了。</div><div class="line"></div><div class="line">## Scrapy项目基本流程</div><div class="line"></div><div class="line">### 默认的Scrapy项目结构</div><div class="line"></div><div class="line">使用全局命令startproject创建项目，在project_name文件夹下创建一个名为myproject的Scrapy项目。</div></pre></td></tr></table></figure></p>
+<p>scrapy startproject myproject<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">虽然可以被修改，但所有的Scrapy项目默认有类似于下边的文件结构:</div></pre></td></tr></table></figure></p>
+<p>scrapy.cfg<br>myproject/<br>    <strong>init</strong>.py<br>    items.py<br>    middlewares.py<br>    pipelines.py<br>    settings.py<br>    spiders/<br>        <strong>init</strong>.py<br>        spider1.py<br>        spider2.py<br>        …</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* scrapy.cfg: 项目的配置文件</div><div class="line">* myproject/: 该项目的python模块。之后您将在此加入代码。</div><div class="line">* myproject/items.py:需要提取的数据结构定义文件。</div><div class="line">* myproject/middlewares.py: 是和Scrapy的请求/响应处理相关联的框架。</div><div class="line">* myproject/pipelines.py: 用来对items里面提取的数据做进一步处理，如保存等。</div><div class="line">* myproject/settings.py: 项目的配置文件。</div><div class="line">* myproject/spiders/: 放置spider代码的目录。</div><div class="line"></div><div class="line">scrapy.cfg 存放的目录被认为是`项目的根目录`。该文件中包含python模块名的字段定义了项目的设置。</div><div class="line"></div><div class="line">### 定义要抓取的数据</div><div class="line"></div><div class="line">Item 是保存爬取到的数据的容器；其使用方法和python字典类似， 并且提供了额外保护机制来避免拼写错误导致的未定义字段错误。</div><div class="line">类似在ORM中做的一样，您可以通过创建一个 scrapy.Item 类， 并且定义类型为 scrapy.Field 的类属性来定义一个Item。</div><div class="line">首先根据需要从dmoz.org（DMOZ网站是一个著名的开放式分类目录（Open DirectoryProject），由来自世界各地的志愿者共同维护与建设的最大的全球目录社区）获取到的数据对item进行建模。 我们需要从dmoz中获取名字，url，以及网站的描述。 对此，在item中定义相应的字段。编辑items.py 文件:</div></pre></td></tr></table></figure>
+<p>import scrapy</p>
+<p>class MyprojectItem(scrapy.Item):<br>    title = scrapy.Field()<br>    link = scrapy.Field()<br>    desc = scrapy.Field()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 使用项目命令genspider创建Spider</div></pre></td></tr></table></figure></p>
+<p>You can start your first spider with:<br>    cd myproject<br>    scrapy genspider example example.com<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在当前项目中创建spider。</div><div class="line">这仅仅是创建spider的一种快捷方法。该方法可以使用提前定义好的模板来生成spider。您也可以自己创建spider的源码文件。</div></pre></td></tr></table></figure></p>
+<p>$ scrapy genspider -l<br>Available templates:<br>  basic<br>  crawl<br>  csvfeed<br>  xmlfeed</p>
+<p>$ scrapy genspider -d basic<br>import scrapy</p>
+<p>class $classname(scrapy.Spider):<br>    name = “$name”<br>    allowed_domains = [“$domain”]<br>    start_urls = (<br>        ‘<a href="http://www.$domain/" target="_blank" rel="external">http://www.$domain/</a>‘,<br>        )</p>
+<pre><code>def parse(self, response):
+    pass
+</code></pre><p>$ scrapy genspider -t basic example example.com<br>Created spider ‘example’ using template ‘basic’ in module:<br>  mybot.spiders.example</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">### 编写提取item数据的Spider</div><div class="line"></div><div class="line">Spider是用户编写用于从单个网站(或者一些网站)爬取数据的类。</div><div class="line">其包含了一个用于下载的初始URL，如何跟进网页中的链接以及如何分析页面中的内容， 提取生成 item 的方法。</div><div class="line">为了创建一个Spider，您必须继承 scrapy.Spider 类，且定义以下三个属性:</div><div class="line"></div><div class="line">* name: 用于区别Spider。 该名字必须是唯一的，您不可以为不同的Spider设定相同的名字。</div><div class="line">* start_urls: 包含了Spider在启动时进行爬取的url列表。 因此，第一个被获取到的页面将是其中之一。 后续的URL则从初始的URL获取到的数据中提取。</div><div class="line">* parse() 是spider的一个方法。 被调用时，每个初始URL完成下载后生成的 Response 对象将会作为唯一的参数传递给该函数。 该方法负责解析返回的数据(response data)，提取数据(生成item)以及生成需要进一步处理的URL的 Request 对象</div></pre></td></tr></table></figure>
+<p>import scrapy</p>
+<p>class DmozSpider(scrapy.spider.Spider):<br>    name = “example”    #唯一标识，启动spider时即指定该名称<br>    allowed_domains = [“example.com”]<br>    start_urls = [<br>        “<a href="http://www.dmoz.org/Computers/Programming/Languages/Python/Books/" target="_blank" rel="external">http://www.dmoz.org/Computers/Programming/Languages/Python/Books/</a>“,<br>        “<a href="http://www.dmoz.org/Computers/Programming/Languages/Python/Resources/" target="_blank" rel="external">http://www.dmoz.org/Computers/Programming/Languages/Python/Resources/</a>“<br>    ]</p>
+<pre><code>def parse(self, response):
+    filename = response.url.split(&quot;/&quot;)[-2]
+    with open(filename, &apos;wb&apos;) as f:
+        f.write(response.body)
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">### 进行爬取</div><div class="line"></div><div class="line">执行项目命令crawl，启动Spider：</div></pre></td></tr></table></figure>
+<p>scrapy crawl example<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">在这个过程中：</div><div class="line">Scrapy为Spider的 start_urls 属性中的每个URL创建了 scrapy.Request 对象，并将 parse 方法作为回调函数(callback)赋值给了Request。</div><div class="line">Request对象经过调度，执行生成 scrapy.http.Response 对象并送回给spider parse() 方法。</div><div class="line"></div><div class="line">### 通过选择器提取数据</div><div class="line"></div><div class="line">Selectors选择器简介：</div><div class="line">Scrapy提取数据有自己的一套机制。它们被称作选择器(seletors)，因为他们通过特定的 XPath 或者 CSS 表达式来“选择” HTML文件中的某个部分。</div><div class="line">XPath 是一门用来在XML文件中选择节点的语言，也可以用在HTML上。 CSS 是一门将HTML文档样式化的语言。选择器由它定义，并与特定的HTML元素的样式相关连。</div><div class="line"></div><div class="line">XPath表达式的例子和含义：</div><div class="line"></div><div class="line">* /html/head/title: 选择HTML文档中\&lt;head&gt; 标签内的\&lt;title&gt; 元素</div><div class="line">* /html/head/title/text(): 选择上面提到的\&lt;title&gt; 元素的文字</div><div class="line">* //td: 选择所有的 \&lt;td&gt; 元素</div><div class="line">* //div[@class=&quot;mine&quot;]: 选择所有具有 class=&quot;mine&quot; 属性的 div 元素</div><div class="line"></div><div class="line">### 提取数据：</div><div class="line"></div><div class="line">观察HTML源码并确定合适的XPath表达式。</div><div class="line">在查看了网页的源码后，您会发现网站的信息是被包含在 第二个元素中。</div><div class="line">我们可以通过这段代码选择该页面中网站列表里所有元素:</div><div class="line">response.xpath(&apos;//ul/li&apos;)</div><div class="line">Item 对象是自定义的python字典。 您可以使用标准的字典语法来获取到其每个字段的值。</div><div class="line">一般来说，Spider将会将爬取到的数据以 Item 对象返回。所以为了将爬取的数据返回，我们最终的代码将是:</div></pre></td></tr></table></figure></p>
+<p>import scrapy</p>
+<p>from tutorial.items import DmozItem</p>
+<p>class DmozSpider(scrapy.Spider):<br>    name = “example”<br>    allowed_domains = [“example.com”]<br>    start_urls = [<br>        “<a href="http://www.dmoz.org/Computers/Programming/Languages/Python/Books/" target="_blank" rel="external">http://www.dmoz.org/Computers/Programming/Languages/Python/Books/</a>“,<br>        “<a href="http://www.dmoz.org/Computers/Programming/Languages/Python/Resources/" target="_blank" rel="external">http://www.dmoz.org/Computers/Programming/Languages/Python/Resources/</a>“<br>    ]</p>
+<pre><code>def parse(self, response):
+    for sel in response.xpath(&apos;//ul/li&apos;):
+        item = MyprojectItem()
+        item[&apos;title&apos;] = sel.xpath(&apos;a/text()&apos;).extract()
+        item[&apos;link&apos;] = sel.xpath(&apos;a/@href&apos;).extract()
+        item[&apos;desc&apos;] = sel.xpath(&apos;text()&apos;).extract()
+        yield item
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">现在对example.org进行爬取将会产生 MyprojectItem 对象。</div><div class="line"></div><div class="line">### 保存数据</div><div class="line"></div><div class="line">最简单存储爬取的数据的方式是使用 Feed exports:</div></pre></td></tr></table></figure>
+<p>scrapy crawl example -o items.json<br>```<br>该命令将采用 JSON 格式对爬取的数据进行序列化，生成 items.json 文件。<br>如果需要对爬取到的item做更多更为复杂的操作，您可以编写 Item Pipeline 。类似于我们在创建项目时对Item做的，用于您编写自己的 tutorial/pipelines.py 也被创建。不过如果您仅仅想要保存item，您不需要实现任何的pipeline。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -216,22 +204,22 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目錄</strong>
+  <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装过程中的坑"><span class="toc-number">1.</span> <span class="toc-text">安装过程中的坑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装scrapy失败——系统自带的six包版本较低"><span class="toc-number">1.1.</span> <span class="toc-text">安装scrapy失败——系统自带的six包版本较低</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建scrapy项目失败——twisted包版本过高"><span class="toc-number">1.2.</span> <span class="toc-text">创建scrapy项目失败——twisted包版本过高</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建scrapy项目UserWarning——No-module-named-cryptography"><span class="toc-number">1.3.</span> <span class="toc-text">创建scrapy项目UserWarning——No module named cryptography</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scrapy项目基本流程"><span class="toc-number">2.</span> <span class="toc-text">Scrapy项目基本流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#默认的Scrapy项目结构"><span class="toc-number">2.1.</span> <span class="toc-text">默认的Scrapy项目结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义要抓取的数据"><span class="toc-number">2.2.</span> <span class="toc-text">定义要抓取的数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用项目命令genspider创建Spider"><span class="toc-number">2.3.</span> <span class="toc-text">使用项目命令genspider创建Spider</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编写提取item数据的Spider"><span class="toc-number">2.4.</span> <span class="toc-text">编写提取item数据的Spider</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进行爬取"><span class="toc-number">2.5.</span> <span class="toc-text">进行爬取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过选择器提取数据"><span class="toc-number">2.6.</span> <span class="toc-text">通过选择器提取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提取数据："><span class="toc-number">2.7.</span> <span class="toc-text">提取数据：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#保存数据"><span class="toc-number">2.8.</span> <span class="toc-text">保存数据</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装过程中的坑"><span class="toc-number">1.</span> <span class="toc-text">安装过程中的坑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装scrapy失败——系统自带的six包版本较低"><span class="toc-number">1.1.</span> <span class="toc-text">安装scrapy失败——系统自带的six包版本较低</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github 名片</p>
+<p class="asidetitle">Github Card</p>
 <div class="github-card" data-github="Allen-Feng" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -243,7 +231,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -303,7 +291,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情鏈接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -349,11 +337,11 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
+  <p class="asidetitle">Weibo</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5580378505&verifier=07a80851&dpc=1"></iframe>
 </div>
 
@@ -402,7 +390,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2019 
 		
 		<a href="/about" target="_blank" title="Allen Feng">Allen Feng</a>
 		
@@ -602,7 +590,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
