@@ -1,0 +1,601 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Google Cloud Platform免费申请&amp;一键搭建SSR &amp; BBR加速 | aFeng`s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Allen Feng">
+    
+
+    
+    <meta name="description" content="前言Google Cloud Platform (GCP) 简介Google Cloud Platform (以下简称GCP)是Google提供的云平台, 可以用来搭建加速服务, 网站和存储数据等等, 本文将介绍如何申请GCP一年的免费试用、Linux服务器环境搭建、配置BBR加速以及安装SSR等服务端. 网上关于如何搭建GCP的教程很多, 不过都不是太详尽。如果你是没基础的新手, 看这些就够了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google Cloud Platform免费申请&一键搭建SSR & BBR加速">
+<meta property="og:url" content="http://yoursite.com/2019/04/24/190424_Google-Cloud-Platform免费申请-一键搭建SSR-BBR加速/index.html">
+<meta property="og:site_name" content="aFeng`s Blog">
+<meta property="og:description" content="前言Google Cloud Platform (GCP) 简介Google Cloud Platform (以下简称GCP)是Google提供的云平台, 可以用来搭建加速服务, 网站和存储数据等等, 本文将介绍如何申请GCP一年的免费试用、Linux服务器环境搭建、配置BBR加速以及安装SSR等服务端. 网上关于如何搭建GCP的教程很多, 不过都不是太详尽。如果你是没基础的新手, 看这些就够了。">
+<meta property="og:image" content="http://yoursite.com/images/19042401.png">
+<meta property="og:image" content="http://yoursite.com/images/19042402.png">
+<meta property="og:image" content="http://yoursite.com/images/19042403.png">
+<meta property="og:image" content="http://yoursite.com/images/19042404.png">
+<meta property="og:image" content="http://yoursite.com/images/19042405.png">
+<meta property="og:image" content="http://yoursite.com/images/19042406.png">
+<meta property="og:image" content="http://yoursite.com/images/19042407.png">
+<meta property="og:updated_time" content="2019-04-24T14:24:27.956Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Google Cloud Platform免费申请&一键搭建SSR & BBR加速">
+<meta name="twitter:description" content="前言Google Cloud Platform (GCP) 简介Google Cloud Platform (以下简称GCP)是Google提供的云平台, 可以用来搭建加速服务, 网站和存储数据等等, 本文将介绍如何申请GCP一年的免费试用、Linux服务器环境搭建、配置BBR加速以及安装SSR等服务端. 网上关于如何搭建GCP的教程很多, 不过都不是太详尽。如果你是没基础的新手, 看这些就够了。">
+<meta name="twitter:image" content="http://yoursite.com/images/19042401.png">
+<meta name="twitter:creator" content="@allenfeng945">
+
+    
+    <link rel="alternative" href="/atom.xml" title="aFeng`s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="aFeng`s Blog" title="aFeng`s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="aFeng`s Blog">aFeng`s Blog</a></h1>
+				<h2 class="blog-motto">记录学习的点点滴滴</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2019/04/24/190424_Google-Cloud-Platform免费申请-一键搭建SSR-BBR加速/" title="Google Cloud Platform免费申请&amp;一键搭建SSR &amp; BBR加速" itemprop="url">Google Cloud Platform免费申请&amp;一键搭建SSR &amp; BBR加速</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
+		
+  <p class="article-time">
+    <time datetime="2019-04-24T13:07:18.000Z" itemprop="datePublished"> Published 2019-04-24</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Google-Cloud-Platform-GCP-简介"><span class="toc-number">1.1.</span> <span class="toc-text">Google Cloud Platform (GCP) 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Google-Cloud-Platform-优势"><span class="toc-number">1.2.</span> <span class="toc-text">Google Cloud Platform 优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#需要准备的东西"><span class="toc-number">1.3.</span> <span class="toc-text">需要准备的东西</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#申请Google-Cloud-Platform"><span class="toc-number">2.</span> <span class="toc-text">申请Google Cloud Platform</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注册"><span class="toc-number">2.1.</span> <span class="toc-text">注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#激活结算账号"><span class="toc-number">2.2.</span> <span class="toc-text">激活结算账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改防火墙规则"><span class="toc-number">2.3.</span> <span class="toc-text">修改防火墙规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#准备SSH密钥"><span class="toc-number">2.4.</span> <span class="toc-text">准备SSH密钥</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="Google-Cloud-Platform-GCP-简介"><a href="#Google-Cloud-Platform-GCP-简介" class="headerlink" title="Google Cloud Platform (GCP) 简介"></a>Google Cloud Platform (GCP) 简介</h3><p>Google Cloud Platform (以下简称GCP)是Google提供的云平台, 可以用来搭建加速服务, 网站和存储数据等等, 本文将介绍如何申请GCP一年的免费试用、Linux服务器环境搭建、配置BBR加速以及安装SSR等服务端. 网上关于如何搭建GCP的教程很多, 不过都不是太详尽。如果你是没基础的新手, 看这些就够了。</p>
+<a id="more"></a>
+<h3 id="Google-Cloud-Platform-优势"><a href="#Google-Cloud-Platform-优势" class="headerlink" title="Google Cloud Platform 优势"></a>Google Cloud Platform 优势</h3><p>大家用得比较多的可能是Linode, 搬瓦工, Vultr等VPS, 收费$5-$20美金左右。<br>最近LinodeIP段也封得比较多, 基本上开十多台机器都难找到能PING通的IP。<br>另外还有各种VP/恩基本都挂了。至于XX路由器, 本质上只是刷了个固件内置了SS服务而已, 略过不提。</p>
+<p>GCP的优势在于:</p>
+<ul>
+<li><p>免费<br>Google云服务平台对新用户赠送300美元, 可以免费使用1年.<br>并且到期后如果不打算续费, 也不会额外收取费用 (像亚马逊AWS就直接扣你费用了).<br>如果还想继续用, 直接新注册个账号, 免费<br>用来搭SS的话, 最低配置的机型$5/月, 出口大陆流量1T以内为0.23$/1G, 算下来每个月可用80多G的流量, 足够用了, 当然你还可以顺便搭个网站之类的 </p>
+</li>
+<li><p>速度快<br>Google GCP有美国, 亚洲, 欧洲等机房, 而亚洲机房就在厦门正对面的台湾省彰化县, TTL只有40ms左右，快到飞起, 而Linode、Vultr等通常是200多；</p>
+</li>
+</ul>
+<p><img src="/images/19042401.png" alt=""></p>
+<h3 id="需要准备的东西"><a href="#需要准备的东西" class="headerlink" title="需要准备的东西"></a>需要准备的东西</h3><ul>
+<li><code>Gmail账号</code></li>
+<li><code>双币信用卡</code> (淘宝购买的虚拟卡无法使用, 不要浪费钱)</li>
+<li><code>Xshell</code>: SSH客户端 (也可用Google自带的在线SSH, 以后比较方便).<br>Xshell不建议用绿色版, 某些电脑没装运行库的话可能无法打开.<br>另外之前官方5.0 Build 1322版本存在后门, 所以还是去官网下载最新的安装版吧.<br><a href="https://www.netsarang.com/zh/xshell/" target="_blank" rel="external">Xshell 6官网下载地址点我</a>, 目前家庭与学校用户可免费使用. 填写姓名和邮箱并提交表单后, 邮箱会收到下载链接.</li>
+<li><code>puttygen</code>: SSH密钥生成工具. </li>
+<li><code>能访问Google</code> (额, 这貌似是个悖论, 你可以先找其他临时方案)</li>
+<li>需要一定动手能力以及Linux系统基础知识, </li>
+</ul>
+<h2 id="申请Google-Cloud-Platform"><a href="#申请Google-Cloud-Platform" class="headerlink" title="申请Google Cloud Platform"></a>申请Google Cloud Platform</h2><h3 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h3><p>申请地址: <a href="https://cloud.google.com/free/" target="_blank" rel="external">https://cloud.google.com/free/</a></p>
+<p><img src="/images/19042402.png" alt=""></p>
+<p>点击<code>免费试用</code>, 登入Gmail账号.<br>地区选<code>~~中国~~</code>.<br>现在没有中国了, 选其他国家吧</p>
+<p><img src="/images/19042403.png" alt=""></p>
+<p>账号类型选<code>个人</code>, 接下来输入账单地址以及信用卡信息.</p>
+<blockquote>
+<p>可能遇到的问题:<br>提示 “交易遭拒: 付款方式无效”: 一般是信用卡相关信息不正确. 账单地址的国家记得与之前选的区域对应.</p>
+</blockquote>
+<p>提交后Google一般会从信用卡扣除1美元用于验证, 验证完成后会退还到账户.</p>
+<p>点击<code>开始免费试用</code>.</p>
+<h3 id="激活结算账号"><a href="#激活结算账号" class="headerlink" title="激活结算账号"></a>激活结算账号</h3><p>注册成功后可能并不能马上使用 (国内注册的基本都需要激活, 当然也不排除你人品好的情况), Gmail邮箱会受到一封标题为<code>紧急通知：您的结算帐号 XXXXX 已经被暂停使用</code>的邮件, 你需要点击邮件中的链接, 上传身份证和信用卡照片完成验证 (信用卡照片可以遮住或PS掉敏感信息, 只保留最后四位, 自己看页面提示), 一般提交后10分钟左右就能收到通过的邮件, 验证完成后就可以正常使用了.</p>
+<blockquote>
+<p>这一步很多人会忽略, 结果就是创建实例的时候会不停提示你Enable Billing Account, 但是指引界面又没有明确说明要怎么激活, 即使是进到账号管理界面也无法自己开启. 所以别忘了去喵一眼你的邮箱</p>
+</blockquote>
+<p><img src="/images/19042404.png" alt=""></p>
+<p>结算账号验证成功后会显示消息:</p>
+<p><img src="/images/19042405.png" alt=""></p>
+<h3 id="修改防火墙规则"><a href="#修改防火墙规则" class="headerlink" title="修改防火墙规则"></a>修改防火墙规则</h3><p>有的文章是先创建实例再改规则.<br>我们先修改防火墙规则, 后面会省事一点.</p>
+<p><img src="/images/19042406.png" alt=""></p>
+<p>点击<code>创建防火墙规则</code>, 按下图设置:</p>
+<p><img src="/images/19042407.png" alt=""></p>
+<p>注意IP地址范围是<code>0.0.0.0/0</code>, 别写错了.<br>有遇到过有人写成<code>0.0.0.0</code>, 结果后来怎么试都不成功的.</p>
+<h3 id="准备SSH密钥"><a href="#准备SSH密钥" class="headerlink" title="准备SSH密钥"></a>准备SSH密钥</h3><p>如果你之前已经生成过SSH密钥, 忽略此步, 直接使用即可.</p>
+<p>这一步用Xshell连接时需要用到.<br>当然你也可以直接用Google自带的在线SSH, 那这一步可忽略.<br>不过还是建议使用Xshell, 以后本地连接进行管理, 不用每次都打开浏览器后台.</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2019/04/24/190424_Google-Cloud-Platform免费申请-一键搭建SSR-BBR加速/" data-title="Google Cloud Platform免费申请&amp;一键搭建SSR &amp; BBR加速 | aFeng`s Blog" data-tsina="5580378505" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2018/06/03/180603_面试官问这么基础的问题有必要吗/"  title="面试官问这么基础的问题有必要吗?">
+ <strong>下一篇：</strong><br/> 
+ <span>面试官问这么基础的问题有必要吗?
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2019/04/24/190424_Google-Cloud-Platform免费申请-一键搭建SSR-BBR加速/" data-title="Google Cloud Platform免费申请&一键搭建SSR & BBR加速" data-url="http://yoursite.com/2019/04/24/190424_Google-Cloud-Platform免费申请-一键搭建SSR-BBR加速/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Google-Cloud-Platform-GCP-简介"><span class="toc-number">1.1.</span> <span class="toc-text">Google Cloud Platform (GCP) 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Google-Cloud-Platform-优势"><span class="toc-number">1.2.</span> <span class="toc-text">Google Cloud Platform 优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#需要准备的东西"><span class="toc-number">1.3.</span> <span class="toc-text">需要准备的东西</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#申请Google-Cloud-Platform"><span class="toc-number">2.</span> <span class="toc-text">申请Google Cloud Platform</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注册"><span class="toc-number">2.1.</span> <span class="toc-text">注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#激活结算账号"><span class="toc-number">2.2.</span> <span class="toc-text">激活结算账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改防火墙规则"><span class="toc-number">2.3.</span> <span class="toc-text">修改防火墙规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#准备SSH密钥"><span class="toc-number">2.4.</span> <span class="toc-text">准备SSH密钥</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="Allen-Feng" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/iOS/" title="iOS">iOS<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Python/" title="Python">Python<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ML/" title="ML">ML<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac/" title="Mac">Mac<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Xcode/" title="Xcode">Xcode<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ARC/" title="ARC">ARC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SDK/" title="SDK">SDK<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/TensorFlow/" title="TensorFlow">TensorFlow<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/RSA/" title="RSA">RSA<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Crawler/" title="Crawler">Crawler<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.cocoachina.com" target="_blank" title="CocoaChina">CocoaChina</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://objccn.io/" target="_blank" title="objc中国">objc中国</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.devtang.com/" target="_blank" title="唐巧大神">唐巧大神</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://yulingtianxia.com/" target="_blank" title="玉令天下">玉令天下</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://onevcat.com/#blog" target="_blank" title="王巍（@onevcat）">王巍（@onevcat）</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5580378505&verifier=07a80851&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Stay hungry, stay foolish <br/>
+			Talk is cheap, show me the code.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/5580378505" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/Allen-Feng" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/6587241" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		<a href="https://twitter.com/allenfeng945" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/profile.php?id=100011457513784" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		
+		<a href="mailto:allen-feng@hotmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2019 
+		
+		<a href="/about" target="_blank" title="Allen Feng">Allen Feng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"allenfeng123"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
