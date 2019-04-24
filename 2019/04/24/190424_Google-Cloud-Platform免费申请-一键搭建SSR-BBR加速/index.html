@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://yoursite.com/images/19042405.png">
 <meta property="og:image" content="http://yoursite.com/images/19042406.png">
 <meta property="og:image" content="http://yoursite.com/images/19042407.png">
-<meta property="og:updated_time" content="2019-04-24T14:37:45.364Z">
+<meta property="og:updated_time" content="2019-04-24T14:42:09.567Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Google Cloud Platform免费申请&一键搭建SSR & BBR加速">
 <meta name="twitter:description" content="前言Google Cloud Platform (GCP) 简介Google Cloud Platform (以下简称GCP)是Google提供的云平台, 可以用来搭建加速服务, 网站和存储数据等等, 本文将介绍如何申请GCP一年的免费试用、Linux服务器环境搭建、配置BBR加速以及安装SSR等服务端. 网上关于如何搭建GCP的教程很多, 不过都不是太详尽。如果你是没基础的新手, 看这些就够了。">
@@ -57,7 +57,7 @@
 				<h1 class="site-name"><a href="/" title="aFeng`s Blog">aFeng`s Blog</a></h1>
 				<h2 class="blog-motto">记录学习的点点滴滴</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -73,7 +73,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -96,14 +96,14 @@
 		<a href="/about" title="Allen Feng" target="_blank" itemprop="author">Allen Feng</a>
 		
   <p class="article-time">
-    <time datetime="2019-04-24T13:07:18.000Z" itemprop="datePublished"> 發表於 2019-04-24</time>
+    <time datetime="2019-04-24T13:07:18.000Z" itemprop="datePublished"> Published 2019-04-24</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Google-Cloud-Platform-GCP-简介"><span class="toc-number">1.1.</span> <span class="toc-text">Google Cloud Platform (GCP) 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Google-Cloud-Platform-优势"><span class="toc-number">1.2.</span> <span class="toc-text">Google Cloud Platform 优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#需要准备的东西"><span class="toc-number">1.3.</span> <span class="toc-text">需要准备的东西</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#申请Google-Cloud-Platform"><span class="toc-number">2.</span> <span class="toc-text">申请Google Cloud Platform</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注册"><span class="toc-number">2.1.</span> <span class="toc-text">注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#激活结算账号"><span class="toc-number">2.2.</span> <span class="toc-text">激活结算账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改防火墙规则"><span class="toc-number">2.3.</span> <span class="toc-text">修改防火墙规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#准备SSH密钥"><span class="toc-number">2.4.</span> <span class="toc-text">准备SSH密钥</span></a></li></ol></li></ol>
 		
@@ -130,7 +130,7 @@
 </ul>
 <h2 id="申请Google-Cloud-Platform"><a href="#申请Google-Cloud-Platform" class="headerlink" title="申请Google Cloud Platform"></a>申请Google Cloud Platform</h2><h3 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h3><p>申请地址: <a href="https://cloud.google.com/free/" target="_blank" rel="external">https://cloud.google.com/free/</a></p>
 <p><img src="/images/19042402.png" alt=""></p>
-<p>点击<code>免费试用</code>, 登入Gmail账号.<br>地区选 <del>中国</del>.<br>现在没有中国了, 选其他国家吧</p>
+<p>点击<code>免费试用</code>, 登入Gmail账号.<br><del>地区选中国</del>.<br>现在没有中国了, 选其他国家吧</p>
 <p><img src="/images/19042403.png" alt=""></p>
 <p>账号类型选<code>个人</code>, 接下来输入账单地址以及信用卡信息.</p>
 <blockquote>
@@ -195,22 +195,22 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目錄</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Google-Cloud-Platform-GCP-简介"><span class="toc-number">1.1.</span> <span class="toc-text">Google Cloud Platform (GCP) 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Google-Cloud-Platform-优势"><span class="toc-number">1.2.</span> <span class="toc-text">Google Cloud Platform 优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#需要准备的东西"><span class="toc-number">1.3.</span> <span class="toc-text">需要准备的东西</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#申请Google-Cloud-Platform"><span class="toc-number">2.</span> <span class="toc-text">申请Google Cloud Platform</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注册"><span class="toc-number">2.1.</span> <span class="toc-text">注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#激活结算账号"><span class="toc-number">2.2.</span> <span class="toc-text">激活结算账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改防火墙规则"><span class="toc-number">2.3.</span> <span class="toc-text">修改防火墙规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#准备SSH密钥"><span class="toc-number">2.4.</span> <span class="toc-text">准备SSH密钥</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github 名片</p>
+<p class="asidetitle">Github Card</p>
 <div class="github-card" data-github="Allen-Feng" data-width="220" data-height="119" data-theme="medium">
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -222,7 +222,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -282,7 +282,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情鏈接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -328,11 +328,11 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
+  <p class="asidetitle">Weibo</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=5580378505&verifier=07a80851&dpc=1"></iframe>
 </div>
 
@@ -581,7 +581,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
