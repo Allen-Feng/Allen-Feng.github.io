@@ -24,7 +24,22 @@
 <meta property="og:image" content="http://yoursite.com/images/19042405.png">
 <meta property="og:image" content="http://yoursite.com/images/19042406.png">
 <meta property="og:image" content="http://yoursite.com/images/19042407.png">
-<meta property="og:updated_time" content="2019-04-24T14:44:48.843Z">
+<meta property="og:image" content="http://yoursite.com/images/19042408.png">
+<meta property="og:image" content="http://yoursite.com/images/19042409.png">
+<meta property="og:image" content="http://yoursite.com/images/19042410.png">
+<meta property="og:image" content="http://yoursite.com/images/19042411.png">
+<meta property="og:image" content="http://yoursite.com/images/19042412.png">
+<meta property="og:image" content="http://yoursite.com/images/19042413.png">
+<meta property="og:image" content="http://yoursite.com/images/19042414.png">
+<meta property="og:image" content="http://yoursite.com/images/19042415.png">
+<meta property="og:image" content="http://yoursite.com/images/19042416.png">
+<meta property="og:image" content="http://yoursite.com/images/19042417.png">
+<meta property="og:image" content="http://yoursite.com/images/19042418.png">
+<meta property="og:image" content="http://yoursite.com/images/19042419.png">
+<meta property="og:image" content="http://yoursite.com/images/19042420.png">
+<meta property="og:image" content="http://yoursite.com/images/19042421.png">
+<meta property="og:image" content="http://yoursite.com/images/19042422.png">
+<meta property="og:updated_time" content="2019-05-06T01:51:55.340Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Google Cloud Platform免费申请&一键搭建SSR & BBR加速">
 <meta name="twitter:description" content="前言Google Cloud Platform (GCP) 简介Google Cloud Platform (以下简称GCP)是Google提供的云平台, 可以用来搭建加速服务, 网站和存储数据等等, 本文将介绍如何申请GCP一年的免费试用、Linux服务器环境搭建、配置BBR加速以及安装SSR等服务端. 网上关于如何搭建GCP的教程很多, 不过都不是太详尽。如果你是没基础的新手, 看这些就够了。">
@@ -105,7 +120,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Google-Cloud-Platform-GCP-简介"><span class="toc-number">1.1.</span> <span class="toc-text">Google Cloud Platform (GCP) 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Google-Cloud-Platform-优势"><span class="toc-number">1.2.</span> <span class="toc-text">Google Cloud Platform 优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#需要准备的东西"><span class="toc-number">1.3.</span> <span class="toc-text">需要准备的东西</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#申请Google-Cloud-Platform"><span class="toc-number">2.</span> <span class="toc-text">申请Google Cloud Platform</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注册"><span class="toc-number">2.1.</span> <span class="toc-text">注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#激活结算账号"><span class="toc-number">2.2.</span> <span class="toc-text">激活结算账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改防火墙规则"><span class="toc-number">2.3.</span> <span class="toc-text">修改防火墙规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#准备SSH密钥"><span class="toc-number">2.4.</span> <span class="toc-text">准备SSH密钥</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Google-Cloud-Platform-GCP-简介"><span class="toc-number">1.1.</span> <span class="toc-text">Google Cloud Platform (GCP) 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Google-Cloud-Platform-优势"><span class="toc-number">1.2.</span> <span class="toc-text">Google Cloud Platform 优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#需要准备的东西"><span class="toc-number">1.3.</span> <span class="toc-text">需要准备的东西</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#申请Google-Cloud-Platform"><span class="toc-number">2.</span> <span class="toc-text">申请Google Cloud Platform</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注册"><span class="toc-number">2.1.</span> <span class="toc-text">注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#激活结算账号"><span class="toc-number">2.2.</span> <span class="toc-text">激活结算账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改防火墙规则"><span class="toc-number">2.3.</span> <span class="toc-text">修改防火墙规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#准备SSH密钥"><span class="toc-number">2.4.</span> <span class="toc-text">准备SSH密钥</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建计算引擎"><span class="toc-number">3.</span> <span class="toc-text">创建计算引擎</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建实例"><span class="toc-number">3.1.</span> <span class="toc-text">创建实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成静态IP"><span class="toc-number">3.2.</span> <span class="toc-text">生成静态IP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上传SSH公钥"><span class="toc-number">3.3.</span> <span class="toc-text">上传SSH公钥</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一键安装最新内核并开启BBR脚本"><span class="toc-number">4.</span> <span class="toc-text">一键安装最新内核并开启BBR脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#连接实例"><span class="toc-number">4.1.</span> <span class="toc-text">连接实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行BBR脚本"><span class="toc-number">4.2.</span> <span class="toc-text">运行BBR脚本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装SSR"><span class="toc-number">5.</span> <span class="toc-text">安装SSR</span></a></li></ol>
 		
 		</div>
 		
@@ -152,6 +167,75 @@
 <p>注意IP地址范围是<code>0.0.0.0/0</code>, 别写错了.<br>有遇到过有人写成<code>0.0.0.0</code>, 结果后来怎么试都不成功的.</p>
 <h3 id="准备SSH密钥"><a href="#准备SSH密钥" class="headerlink" title="准备SSH密钥"></a>准备SSH密钥</h3><p>如果你之前已经生成过SSH密钥, 忽略此步, 直接使用即可.</p>
 <p>这一步用Xshell连接时需要用到.<br>当然你也可以直接用Google自带的在线SSH, 那这一步可忽略.<br>不过还是建议使用Xshell, 以后本地连接进行管理, 不用每次都打开浏览器后台.</p>
+<h2 id="创建计算引擎"><a href="#创建计算引擎" class="headerlink" title="创建计算引擎"></a>创建计算引擎</h2><h3 id="创建实例"><a href="#创建实例" class="headerlink" title="创建实例"></a>创建实例</h3><p>直接访问 <a href="https://console.cloud.google.com/compute/instances" target="_blank" rel="external">https://console.cloud.google.com/compute/instances</a><br>或登录GCP控制台后, 点击<code>计算引擎</code> – <code>创建实例</code>. 如图:</p>
+<p><img src="/images/19042408.png" alt=""></p>
+<ul>
+<li><code>名称</code>: 随便填</li>
+<li><code>地区</code>: 建议选台湾<code>asia-east1</code>区或香港<code>asia-east2</code>的, a b c都行<br>asia-east1-a, asia-east1-b, asia-east1-c 机房都在中国台湾彰化县.<br>机房对应区域如下图,别选错了跑来说怎么延迟不一样:</li>
+</ul>
+<p><img src="/images/19042409.png" alt=""></p>
+<ul>
+<li><code>机器类型</code>: 选微型(一个共享vCPU)<br>0.6G内存, 一般加速上网, 看视频, 玩游戏都够用了. 你也可以换小型或更高的.</li>
+<li><code>启动磁盘</code>: 默认是Debian, 推荐改成CentOS 7.<br>本文命令都是基于CentOS 7 64位, 如选Debian, Ubuntu等其他系统, 命令会稍有不同, 自行解决.<br>点击<code>更改</code>, 然后选择:<br><img src="/images/19042410.png" alt=""></li>
+</ul>
+<h3 id="生成静态IP"><a href="#生成静态IP" class="headerlink" title="生成静态IP"></a>生成静态IP</h3><p>点击<code>网络</code>选项卡 —<code>网络接口</code> — 编辑</p>
+<p><img src="/images/19042411.png" alt=""></p>
+<p><code>外部IP</code>—<code>创建IP地址</code>.</p>
+<p><img src="/images/19042412.png" alt=""></p>
+<p><img src="/images/19042413.png" alt=""></p>
+<p><img src="/images/19042414.png" alt=""></p>
+<p>然后会提示输入名称, 任意输入即可(小写字母开头,不能为大写字母)</p>
+<p><img src="/images/19042415.png" alt=""></p>
+<blockquote>
+<p>补充说明<br>关于IP会有<code>静态</code>和<code>临时</code>两个选项.<br>推荐选择静态, 选择临时的话机器重启后会重新分配IP地址.<br>更多信息可以去Dashboard中的<code>网络</code> – <code>VNC网络</code> – <code>外部IP地址</code>或直接点击<a href="https://console.cloud.google.com/networking/addresses/list" target="_blank" rel="external">https://console.cloud.google.com/networking/addresses/list</a>查看.</p>
+</blockquote>
+<p>把创建好的IP记下来, 用Xshell连接的时候会用到.</p>
+<blockquote>
+<p>静态IP一定记得绑定到实例.<br>已分配但未被使用的IP, 会按$0.01/小时计费.</p>
+</blockquote>
+<h3 id="上传SSH公钥"><a href="#上传SSH公钥" class="headerlink" title="上传SSH公钥"></a>上传SSH公钥</h3><p>点击<code>安全</code>选项卡</p>
+<p><img src="/images/19042416.png" alt=""></p>
+<p>在上图文本框内填入公钥, 直接<code>全选</code>并<code>复制</code>, 再<code>粘贴</code>过来即可</p>
+<p><img src="/images/19042417.png" alt=""></p>
+<p>最后点击最底部的<code>创建</code>按钮, 创建实例.<br>页面左下角会提示正在创建实例, 实际等待10秒左右即可创建完成并启动.</p>
+<p>VM实例管理界面第一列中绿色的对勾图标表示该实例正在运行, 第五列为实例的外部IP, 也就是下一步用Xshell连接时需要用到的主机IP地址.</p>
+<p><img src="/images/19042418.png" alt=""></p>
+<h2 id="一键安装最新内核并开启BBR脚本"><a href="#一键安装最新内核并开启BBR脚本" class="headerlink" title="一键安装最新内核并开启BBR脚本"></a>一键安装最新内核并开启BBR脚本</h2><blockquote>
+<p>BBR要求系统内核版本为4.9以上, 本文采用teddysun的脚本, 支持一键自动判断和安装所需内核版本并开启BBR.</p>
+</blockquote>
+<h3 id="连接实例"><a href="#连接实例" class="headerlink" title="连接实例"></a>连接实例</h3><p>可以通过Xshell链接道Google Cloud VPS，也可以用其他终端工具。</p>
+<p>Google也自带了在线SSH, 实例创建好后, 在列表界面点击<code>SSH</code> – <code>在浏览器窗口中打开</code>即可进入, 见下图.<br>不过出于个人习惯, 用Xshell本地进行连接管理更方便, 不用每次都打开浏览器进GCP后台.</p>
+<p><img src="/images/19042419.png" alt=""></p>
+<h3 id="运行BBR脚本"><a href="#运行BBR脚本" class="headerlink" title="运行BBR脚本"></a>运行BBR脚本</h3><p>通过脚本一键升级内核并安装BBR加速.</p>
+<p>Linux系统中root用户拥有最高权限, 出于安全考虑, GCP默认是以普通用户登录的, 我们需要先切换到root用户, 否则运行某些命令时会提示无权限.</p>
+<p>先切换到root用户.<br>Xshell连上服务器后, 输入命令:<br><code>sudo -i</code></p>
+<p>切换后, 命令前面的提示符中也会显示root, 如图:</p>
+<p><img src="/images/19042420.png" alt=""></p>
+<p>依次运行以下4条命令 (输完一条记得按回车呀)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y wget</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x bbr.sh</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./bbr.sh</div></pre></td></tr></table></figure>
+<p>如果遇到问题, 记得看提示!</p>
+<p>安装完成后，脚本会提示需要重启VPS，输入 <code>y</code> 并回车后重启, 这时Xshell连接也会自动断开。</p>
+<p>VPS重启可能需要几分钟, 耐心等待一下.</p>
+<p>重启完成后，再用Xhell重新连接VPS, <code>sudo -i</code>切换到root用户.</p>
+<p>现在验证一下是否成功安装了最新内核并开启BBR.<br>输入以下命令：</p>
+<p><code>uname -r</code><br>查看内核版本，如果返回值含有4.13或以上版本, 就表示OK了.</p>
+<p><img src="/images/19042421.png" alt=""></p>
+<p>sysctl net.ipv4.tcp_available_congestion_control<br>返回值一般为：<br>net.ipv4.tcp_available_congestion_control = reno cubic bbr</p>
+<p>sysctl net.ipv4.tcp_congestion_control<br>返回值一般为：<br>net.ipv4.tcp_congestion_control = bbr</p>
+<p>sysctl net.core.default_qdisc<br>返回值一般为：<br>net.core.default_qdisc = fq</p>
+<p>lsmod | grep bbr<br>返回值有 tcp_bbr 模块即说明bbr已启动。</p>
+<h2 id="安装SSR"><a href="#安装SSR" class="headerlink" title="安装SSR"></a>安装SSR</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x shadowsocks-all.sh</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./shadowsocks-all.sh 2&gt;&amp;1 | tee shadowsocks-all.log</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意: 前面两行命令可能因为网页排版原因显示成2行, 直接把这两行都复制, 再粘贴到Xshell即可. 好多人在这一步出错, 特意提醒下. 具体看截图, 图上是一条命令哦:</p>
+</blockquote>
+<p><img src="/images/19042422.png" alt=""></p>
+<p>然后是选择SSR版本, 设置端口、密码、加密方式等等，之前的 SSR安装教程已有详细步骤，此处略过.</p>
+<p>安装好之后即可通过客户端进行连接与测速.</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -200,7 +284,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Google-Cloud-Platform-GCP-简介"><span class="toc-number">1.1.</span> <span class="toc-text">Google Cloud Platform (GCP) 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Google-Cloud-Platform-优势"><span class="toc-number">1.2.</span> <span class="toc-text">Google Cloud Platform 优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#需要准备的东西"><span class="toc-number">1.3.</span> <span class="toc-text">需要准备的东西</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#申请Google-Cloud-Platform"><span class="toc-number">2.</span> <span class="toc-text">申请Google Cloud Platform</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注册"><span class="toc-number">2.1.</span> <span class="toc-text">注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#激活结算账号"><span class="toc-number">2.2.</span> <span class="toc-text">激活结算账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改防火墙规则"><span class="toc-number">2.3.</span> <span class="toc-text">修改防火墙规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#准备SSH密钥"><span class="toc-number">2.4.</span> <span class="toc-text">准备SSH密钥</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Google-Cloud-Platform-GCP-简介"><span class="toc-number">1.1.</span> <span class="toc-text">Google Cloud Platform (GCP) 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Google-Cloud-Platform-优势"><span class="toc-number">1.2.</span> <span class="toc-text">Google Cloud Platform 优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#需要准备的东西"><span class="toc-number">1.3.</span> <span class="toc-text">需要准备的东西</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#申请Google-Cloud-Platform"><span class="toc-number">2.</span> <span class="toc-text">申请Google Cloud Platform</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注册"><span class="toc-number">2.1.</span> <span class="toc-text">注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#激活结算账号"><span class="toc-number">2.2.</span> <span class="toc-text">激活结算账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改防火墙规则"><span class="toc-number">2.3.</span> <span class="toc-text">修改防火墙规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#准备SSH密钥"><span class="toc-number">2.4.</span> <span class="toc-text">准备SSH密钥</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建计算引擎"><span class="toc-number">3.</span> <span class="toc-text">创建计算引擎</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建实例"><span class="toc-number">3.1.</span> <span class="toc-text">创建实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成静态IP"><span class="toc-number">3.2.</span> <span class="toc-text">生成静态IP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上传SSH公钥"><span class="toc-number">3.3.</span> <span class="toc-text">上传SSH公钥</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一键安装最新内核并开启BBR脚本"><span class="toc-number">4.</span> <span class="toc-text">一键安装最新内核并开启BBR脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#连接实例"><span class="toc-number">4.1.</span> <span class="toc-text">连接实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行BBR脚本"><span class="toc-number">4.2.</span> <span class="toc-text">运行BBR脚本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装SSR"><span class="toc-number">5.</span> <span class="toc-text">安装SSR</span></a></li></ol>
  
   </div>
 
